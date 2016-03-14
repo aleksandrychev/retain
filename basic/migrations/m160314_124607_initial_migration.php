@@ -11,7 +11,7 @@ class m160314_124607_initial_migration extends Migration
             'title' => $this->string(650),
             'uploaded_date' => $this->integer(11),
             'user_ip' => $this->string(20),
-            'user_agent' => $this->string(100),
+            'user_agent' => $this->string(400),
             'html_file' => $this->string(100),
         ]);
         $this->createIndex('title', 'documents', 'title(3)');

@@ -22,7 +22,10 @@ class Pdf2htmlExModel extends Model
     }
 
     public function pdfToHtmlConvertion(){
-        exec('pdftohtml '.__DIR__ . '/../web/files/pdf.pdf '.' -xml');
-    }
+        $uploadsDir =  __DIR__.'/../../web/uploads';
+        $command = "cd $uploadsDir;";
+        $command .= 'pdf2htmlEX  --dest-dir ./html ./pdf/' . $this->filename ;
+        exec($command,  $output, $return_var);
+            }
 
 }

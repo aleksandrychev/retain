@@ -36,7 +36,7 @@ class Documents extends \yii\db\ActiveRecord
             [['uploaded_date'], 'integer'],
             [['title'], 'string', 'max' => 650],
             [['user_ip'], 'string', 'max' => 20],
-            [['user_agent', 'html_file'], 'string', 'max' => 100]
+            [['user_agent', 'html_file'], 'string', 'max' => 500]
         ];
     }
 
@@ -78,5 +78,17 @@ class Documents extends \yii\db\ActiveRecord
     public static function find()
     {
         return new DocumentsQuery(get_called_class());
+    }
+
+    public  function  createDocumentByName($pdfName){
+
+
+        $this->title = $pdfName;
+        $this->user_ip = $_SERVER['REMOTE_ADDR'];
+        $this->user_agent = $_SERVER['HTTP_USER_AGENT'];
+        $this->uploaded_date = time();
+        $this->save();
+        $this->html_file = $this->id . '.html';
+        $this->save();
     }
 }

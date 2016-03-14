@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use app\models\logic\Pdf2htmlExModel;
 use yii\web\UploadedFile;
 use Yii;
 use app\models\logic\UploadsModel;
@@ -19,6 +20,8 @@ class UploadController extends \yii\web\Controller
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             $pdfName = $model->upload();
             if ($pdfName) {
+                $pdfToHtml = new Pdf2htmlExModel($pdfName);
+                $pdfToHtml->pdfToHtmlConvertion();
                var_dump($pdfName);exit;
                 return;
             }
