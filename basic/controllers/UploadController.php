@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+use app\models\logic\AlchemyAPI;
 use app\models\logic\Pdf2htmlExModel;
 use yii\web\UploadedFile;
 use Yii;
@@ -20,9 +21,15 @@ class UploadController extends \yii\web\Controller
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             $pdfName = $model->upload();
             if ($pdfName) {
-                $pdfToHtml = new Pdf2htmlExModel($pdfName);
+                $pdfToHtml = new Pdf2htmlExModel($pdfName. '.pdf');
                 $pdfToHtml->pdfToHtmlConvertion();
-               var_dump($pdfName);exit;
+                $html = strip_tags(file_get_contents(__DIR__ . '/../web/uploads/html/' . $pdfName . '.html'));
+
+                $api = new AlchemyAPI();
+                $apires = $api->textExtractDates($html);
+                var_dump($apires);exit;
+
+                exit;
                 return;
             }
         }
