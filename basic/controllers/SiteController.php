@@ -84,12 +84,6 @@ class SiteController extends Controller
         return $this->render('viewpdf', ['pdfstring'=>$pdfstring]);
     }
 
-    public function actionJavascript()
-    {
-
-
-        return $this->render('javascript');
-    }
 
     public function actionLogin()
     {
