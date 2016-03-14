@@ -27,7 +27,7 @@ AppAsset::register($this);
 <div class="wrap">
     <?php
     NavBar::begin([
-        'brandLabel' => 'Upload File',
+        'brandLabel' => 'Retain',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-inverse navbar-fixed-top',
@@ -37,21 +37,8 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
-            ['label' => 'PHP version', 'url' => ['/site/index']],
-            ['label' => 'JavaScript Version', 'url' => ['/javascript']],
+            ['label' => 'Results Archive', 'url' => ['/site/index']],
 
-//            Yii::$app->user->isGuest ? (
-//                ['label' => 'Login', 'url' => ['/site/login']]
-//            ) : (
-//                '<li>'
-//                . Html::beginForm(['/site/logout'], 'post')
-//                . Html::submitButton(
-//                    'Logout (' . Yii::$app->user->identity->username . ')',
-//                    ['class' => 'btn btn-link']
-//                )
-//                . Html::endForm()
-//                . '</li>'
-//            )
         ],
     ]);
     NavBar::end();

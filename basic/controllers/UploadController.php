@@ -1,7 +1,9 @@
 <?php
 
 namespace app\controllers;
-
+use yii\web\UploadedFile;
+use Yii;
+use app\models\logic\UploadsModel;
 class UploadController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -9,10 +11,21 @@ class UploadController extends \yii\web\Controller
         return $this->render('index');
     }
 
-    public function actionUpload()
+    public function actionLoad()
     {
-        return $this->render('upload');
-    }
+        $model = new UploadsModel();
+
+        if (Yii::$app->request->isPost) {
+            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+            $pdfName = $model->upload();
+            if ($pdfName) {
+               var_dump($pdfName);exit;
+                return;
+            }
+        }
+
+          }
+
 
     public function actionValidatepdf()
     {

@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\logic\UploadsModel;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -52,8 +53,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-
-        return $this->render('index');
+        $mu = new UploadsModel();
+        return $this->render('index',['modelUpload' => $mu]);
     }
 
     public function actionLoad()

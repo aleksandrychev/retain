@@ -1,32 +1,66 @@
 <?php
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
 
 
 /* @var $this yii\web\View */
 
-$this->title = 'Pdf to Html Test Application';
+$this->title = 'Retain - pdf to html';
 ?>
 <div class="site-index">
 
-    <div class="jumbotron">
-        <h2>PDF to HTML!</h2>
+    <h2>Upload Document/s</h2>
+
+    <?php for ($i = 1; $i < 4; $i++) { ?>
+        <div class="row" style="margin-top: 30px;">
+            <?php
+            $form = ActiveForm::begin([
+                'id' => "pdf-$i",
+                'class' => 'pdf-form',
+                'options' => ['class' => 'form-horizontal', 'target' => "_blank", 'enctype' => 'multipart/form-data'],
+                'action' => '/upload/load'
+            ]) ?>
+            <div class="col-md-5">
+                <?= Html::label("Choose $i pdf file: ", 'uploadsmodel-pdf') ?>
 
 
-        <p><a class="btn btn-lg btn-success" href="#">upload pdf</a></p>
-        <form method="POST" style="display: none" action="/load" enctype="multipart/form-data">
-            <input name="pdf"  id="pdf"  type="file">
-            <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
-        </form>
-    </div>
+                <?= $form->field($modelUpload, 'pdf')->fileInput(['class'=>'pdfinput'])->label(false) ?>
+            </div>
+            <div class="col-md-1">
+                <?= Html::submitButton('<span class="glyphicon glyphicon-cog"></span> &nbsp;Process', ['class' => 'btn btn-success btn-xs', 'style' => 'display: none;']) ?>
+                <?= Html::hiddenInput('_csrf', Yii::$app->request->getCsrfToken()) ?>
+            </div>
+            <?php ActiveForm::end() ?>
+        </div>
+    <?php } ?>
+
 </div>
-<script src="https://code.jquery.com/jquery-2.2.1.min.js"></script>
-<script>
-    $(document).ready(function(){
-        $('.btn-lg').click(function(){
-          $('#pdf').click();
-        });
 
-        $('#pdf').change(function(){
-            $(this).closest('form').submit();
-        });
-    });
-</script>
+<?php
+$script = <<<JS
+$('.form-horizontal').unbind('submit');
+$('.form-horizontal').submit(function(){
+var ext = $(this).find('.pdfinput').val().split('.').pop().toLowerCase();
+if($.inArray(ext, ['pdf']) == -1) {
+    alert('invalid extension!');
+    return false;
+}
+});
+$('.pdfinput').change(function(){
+$(this).closest('form').find('.btn').show();
+});
+
+
+
+
+JS;
+
+$this->registerJs($script);
+
+?>
+
+<style>
+    .form-group  {display: inline-block;}
+    label {display:inline-block;margin-right: 20px !important;}
+</style>
+
