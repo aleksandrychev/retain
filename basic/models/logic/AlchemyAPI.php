@@ -12,31 +12,31 @@ namespace app\models\logic;
 class AlchemyAPI
 {
     private $apiKey = '7ba9369c80e73f358e8d6ad4ac9d8f6cf796f9ec';
-    private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/text/TextExtractDates';
-    private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/text/TextExtractDates';
+    private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/text/URLExtractDates';
+    private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
 
     public function setApiKey($key){
         $this->apiKey = $key;
     }
 
-    public function textGetRankedNamedEntities($text){
+    public function textGetRankedNamedEntities($url){
         $data = [
             'apikey' => $this->apiKey,
             'outputMode'=> 'json',
             'showSourceText'=> 1,
-            'text'=>$text
+            'url'=>$url
         ];
 
         return $this->callAPI($this->entityApiUrl, $data);
     }
 
-    public function textExtractDates($text){
+    public function textExtractDates($url){
 
         $data = [
             'apikey' => $this->apiKey,
             'outputMode'=> 'json',
             'showSourceText'=> 1,
-            'text'=>$text
+            'url'=>$url
         ];
 
        return $this->callAPI($this->dateApiUrl, $data);
