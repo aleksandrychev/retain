@@ -26,6 +26,3 @@ phpunit.phar
 # local phpunit config
 /phpunit.xml
 
-/web/uploads/html
-/web/assets/pdf
-/runtime/*
