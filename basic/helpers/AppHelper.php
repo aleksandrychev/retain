@@ -13,8 +13,8 @@ class AppHelper
 {
 
     public static function getHtmlUrlByHtmlName($htmlName){
-        //                $url =  Url::base('http') .  Url::to('/uploads/html/' . $htmlName);
-        $url = "http://pdf2html.demo.relevant.software/uploads/html/4.html";
+        $url =  Url::base('http') .  Url::to('/uploads/html/' . $htmlName);
+//        $url = "http://pdf2html.demo.relevant.software/uploads/html/4.html";
         return $url;
     }
 

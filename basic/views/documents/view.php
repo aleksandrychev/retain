@@ -14,10 +14,10 @@ $this->title = $model->title;
     <h1><?= Html::encode($this->title) ?></h1>
     <ul class="nav nav-pills">
         <li class="active"><a data-toggle="tab" href="#sectionA">
-                <span class="glyphicon glyphicon-file"></span> Html View</a></li>
-        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted by alchemy</a></li>
+                <span class="glyphicon glyphicon-file"></span> Html View </a></li>
+        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted by alchemy <span class="badge"><?= $model->datesCount ?></span></a></li>
         <li><a data-toggle="tab" href="#sectionC">
-                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy</a></li>
+                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy <span class="badge"><?= $model->entitiesCount ?></span></a></li>
 
     </ul>
     <div class="tab-content">

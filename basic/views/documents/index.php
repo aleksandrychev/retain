@@ -7,30 +7,30 @@ use yii\grid\GridView;
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
 $this->title = 'Results Archive';
-//$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="documents-index">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'columns' => [
-
-
-            'id',
-            'title' => [
-                'header' => 'title',
+            'id' => [
+                'header' => 'Document ID',
                 'format' => 'raw',
                 'value' => function ($model) {
-                    return '<a target="_blank" href="'. \yii\helpers\Url::toRoute('documents/view/' . $model->id) .'">'. $model->title . '</a>';
+                    return $model->id;
+                },
+            ],
+            'title' => [
+                'header' => 'Document',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return '<a target="_blank" href="' . \yii\helpers\Url::toRoute('documents/view/' . $model->id) . '">' . $model->title . '</a>';
                 },
             ],
             'entitiesCount',
             'datesCount',
-//            Dates extracted by alchemy
-//            Entities Extracted by Alchemy
         ],
     ]); ?>
 

@@ -30,9 +30,6 @@ class UploadController extends \yii\web\Controller
                 $process = new ProcessModel($doc);
                 $process->startProcess();
 
-
-                exit;
-                return;
             }
         }
 

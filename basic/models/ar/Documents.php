@@ -39,6 +39,7 @@ class Documents extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 650],
             [['user_ip'], 'string', 'max' => 20],
             [['user_agent', 'html_file'], 'string', 'max' => 500],
+            [['datesCount','entitiesCount'], 'safe']
 
         ];
     }
