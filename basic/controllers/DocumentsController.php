@@ -5,6 +5,7 @@ namespace app\controllers;
 use Yii;
 use app\models\ar\Documents;
 use yii\data\ActiveDataProvider;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -38,6 +39,7 @@ class DocumentsController extends Controller
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+
         ]);
     }
 
@@ -48,8 +50,11 @@ class DocumentsController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
+            'url' => Url::base('http') .  Url::to('/uploads/html/' . $model->html_file),
+
         ]);
     }
 

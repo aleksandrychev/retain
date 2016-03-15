@@ -36,7 +36,7 @@ class UploadsModel extends Model
             $doc = new Documents();
             $doc->createDocumentByName($pdfName);
             $this->pdf->saveAs(__DIR__ . '/../../web/uploads/pdf/' . $doc->id . '.pdf');
-            return  $doc->id;
+            return  $doc;
         } else {
             return false;
         }

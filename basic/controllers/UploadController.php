@@ -3,6 +3,7 @@
 namespace app\controllers;
 use app\models\logic\AlchemyAPI;
 use app\models\logic\Pdf2htmlExModel;
+use app\models\logic\ProcessModel;
 use yii\helpers\Url;
 use yii\web\UploadedFile;
 use Yii;
@@ -20,16 +21,15 @@ class UploadController extends \yii\web\Controller
 
         if (Yii::$app->request->isPost) {
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
-            $pdfName = $model->upload();
-            if ($pdfName) {
-                $pdfToHtml = new Pdf2htmlExModel($pdfName. '.pdf');
+            $doc = $model->upload();
+            if ($doc) {
+                $pdfToHtml = new Pdf2htmlExModel($doc->id . '.pdf');
                 $pdfToHtml->pdfToHtmlConvertion();
-                $url =  Url::base('http') .  Url::to('/uploads/html/' . $pdfName . '.html');
-                var_dump($url);exit;
 
-                $api = new AlchemyAPI();
-                $apires = $api->textExtractDates($url);
-                var_dump($apires);exit;
+
+                $process = new ProcessModel($doc);
+                $process->startProcess();
+
 
                 exit;
                 return;

@@ -19,9 +19,11 @@ use Yii;
  */
 class Documents extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
+
     public static function tableName()
     {
         return 'documents';
@@ -36,7 +38,8 @@ class Documents extends \yii\db\ActiveRecord
             [['uploaded_date'], 'integer'],
             [['title'], 'string', 'max' => 650],
             [['user_ip'], 'string', 'max' => 20],
-            [['user_agent', 'html_file'], 'string', 'max' => 500]
+            [['user_agent', 'html_file'], 'string', 'max' => 500],
+
         ];
     }
 
@@ -52,7 +55,17 @@ class Documents extends \yii\db\ActiveRecord
             'user_ip' => 'User Ip',
             'user_agent' => 'User Agent',
             'html_file' => 'Html File',
+            'datesCount' => 'Dates extracted by alchemy',
+            'entitiesCount' => 'Entities Extracted by Alchemy',
         ];
+    }
+
+    public function getEntitiesCount()
+    {
+      return count($this->extractedEntities);
+    }
+    public function getDatesCount(){
+        return count($this->extractedDates);
     }
 
     /**
