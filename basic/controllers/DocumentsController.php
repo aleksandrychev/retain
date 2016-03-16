@@ -58,6 +58,22 @@ class DocumentsController extends Controller
         ]);
     }
 
+    public function actionHtml($id){
+        $model = $this->findModel($id);
+
+        $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' .  $model->html_file);
+
+        $htmlContent = preg_replace("/<img[^>]+\>/i", "", $htmlContent);
+        $htmlContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $htmlContent);
+        $htmlContent = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $htmlContent);
+        $htmlContent = preg_replace('/class=".*?"/', '', $htmlContent);
+        $htmlContent = preg_replace('/id=".*?"/', '', $htmlContent);
+        $htmlContent = preg_replace('/style=".*?"/', '', $htmlContent);
+
+
+        echo $htmlContent;
+    }
+
 
 
 
