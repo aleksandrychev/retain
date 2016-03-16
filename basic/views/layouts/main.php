@@ -54,9 +54,9 @@ AppAsset::register($this);
 
 <footer class="footer">
     <div class="container">
-        <p class="pull-left">&copy; Retain <?= date('Y') ?></p>
+        <p class="pull-left">&copy; Retain            <?= date('Y') ?></p>
 
-
+        <p class="pull-right">Disk Free Space: <b><?= \app\helpers\AppHelper::getFreeSpace(); ?></b></p>
     </div>
 </footer>
 
