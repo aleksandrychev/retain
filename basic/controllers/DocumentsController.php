@@ -59,11 +59,11 @@ class DocumentsController extends Controller
     }
 
     public function actionHtml($id){
-//        ini_set('memory_limit','1048MB');
+        ini_set('memory_limit','2048M');
+        ini_set('pcre.backtrack_limit', '200M');
         $model = $this->findModel($id);
 
         $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' .  $model->html_file);
-
         $htmlContent = preg_replace("/<img[^>]+\>/i", "", $htmlContent);
         $htmlContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $htmlContent);
         $htmlContent = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $htmlContent);
