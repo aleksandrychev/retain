@@ -15,39 +15,43 @@ class AlchemyAPI
     private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLExtractDates';
     private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
 
-    public function setApiKey($key){
+    public function setApiKey($key)
+    {
         $this->apiKey = $key;
     }
 
-    public function textGetRankedNamedEntities($url){
+    public function textGetRankedNamedEntities($url)
+    {
         $data = [
             'apikey' => $this->apiKey,
-            'outputMode'=> 'json',
-            'showSourceText'=> 1,
+            'outputMode' => 'json',
+            'showSourceText' => 1,
+            'maxRetrieve' => 500,
             'sentiment' => 1,
-            'url'=>$url
+            'url' => $url
         ];
 
         return $this->callAPI($this->entityApiUrl, $data);
     }
 
-    public function textExtractDates($url){
+    public function textExtractDates($url)
+    {
 
         $data = [
             'apikey' => $this->apiKey,
-            'outputMode'=> 'json',
-            'showSourceText'=> 1,
-            'url'=>$url
+            'outputMode' => 'json',
+            'maxRetrieve' => 500,
+            'showSourceText' => 1,
+            'url' => $url
         ];
 
-       return $this->callAPI($this->dateApiUrl, $data);
+        return $this->callAPI($this->dateApiUrl, $data);
     }
 
 
     private function callAPI($url, $data)
     {
         $curl = curl_init();
-
 
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
@@ -56,7 +60,6 @@ class AlchemyAPI
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
 
         $result = curl_exec($curl);
-
         curl_close($curl);
 
         return json_decode($result);

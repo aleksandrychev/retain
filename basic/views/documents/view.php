@@ -15,9 +15,11 @@ $this->title = $model->title;
     <ul class="nav nav-pills">
         <li class="active"><a data-toggle="tab" href="#sectionA">
                 <span class="glyphicon glyphicon-file"></span> Html View </a></li>
-        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted by alchemy <span class="badge"><?= $model->datesCount ?></span></a></li>
+        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted by
+                alchemy <span class="badge"><?= $model->datesCount ?></span></a></li>
         <li><a data-toggle="tab" href="#sectionC">
-                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy <span class="badge"><?= $model->entitiesCount ?></span></a></li>
+                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy <span
+                    class="badge"><?= $model->entitiesCount ?></span></a></li>
 
     </ul>
     <div class="tab-content">
@@ -36,13 +38,13 @@ $this->title = $model->title;
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($model->extractedEntities as $entity){ ?>
+                <?php foreach ($model->extractedEntities as $entity) { ?>
                     <tr>
                         <td><?= $entity->entity; ?></td>
                         <td><?= $entity->type; ?></td>
                         <td><?= $entity->full_sentence; ?></td>
                     </tr>
-                <?php }?>
+                <?php } ?>
 
                 </tbody>
             </table>
@@ -56,12 +58,12 @@ $this->title = $model->title;
                 </tr>
                 </thead>
                 <tbody>
-                <?php foreach($model->extractedDates as $date){ ?>
+                <?php foreach ($model->extractedDates as $date) { ?>
                     <tr>
                         <td><?= $date->date; ?></td>
                         <td><?= $date->full_sentence; ?></td>
                     </tr>
-                <?php }?>
+                <?php } ?>
 
                 </tbody>
             </table>

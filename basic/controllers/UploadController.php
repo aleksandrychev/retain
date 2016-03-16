@@ -1,6 +1,7 @@
 <?php
 
 namespace app\controllers;
+
 use app\models\logic\AlchemyAPI;
 use app\models\logic\Pdf2htmlExModel;
 use app\models\logic\ProcessModel;
@@ -8,6 +9,7 @@ use yii\helpers\Url;
 use yii\web\UploadedFile;
 use Yii;
 use app\models\logic\UploadsModel;
+
 class UploadController extends \yii\web\Controller
 {
     public function actionIndex()
@@ -26,19 +28,11 @@ class UploadController extends \yii\web\Controller
                 $pdfToHtml = new Pdf2htmlExModel($doc->id . '.pdf');
                 $pdfToHtml->pdfToHtmlConvertion();
 
-
                 $process = new ProcessModel($doc);
                 $process->startProcess();
 
             }
         }
 
-          }
-
-
-    public function actionValidatepdf()
-    {
-        return $this->render('validatepdf');
     }
-
 }

@@ -13,6 +13,7 @@ use app\models\ar\Documents;
 use yii\base\Model;
 use yii\web\UploadedFile;
 use Yii;
+
 class UploadsModel extends Model
 {
     /**
@@ -36,7 +37,7 @@ class UploadsModel extends Model
             $doc = new Documents();
             $doc->createDocumentByName($pdfName);
             $this->pdf->saveAs(__DIR__ . '/../../web/uploads/pdf/' . $doc->id . '.pdf');
-            return  $doc;
+            return $doc;
         } else {
             return false;
         }

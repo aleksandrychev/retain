@@ -39,7 +39,7 @@ class Documents extends \yii\db\ActiveRecord
             [['title'], 'string', 'max' => 650],
             [['user_ip'], 'string', 'max' => 20],
             [['user_agent', 'html_file'], 'string', 'max' => 500],
-            [['datesCount','entitiesCount'], 'safe']
+            [['datesCount', 'entitiesCount'], 'safe']
 
         ];
     }
@@ -63,9 +63,11 @@ class Documents extends \yii\db\ActiveRecord
 
     public function getEntitiesCount()
     {
-      return count($this->extractedEntities);
+        return count($this->extractedEntities);
     }
-    public function getDatesCount(){
+
+    public function getDatesCount()
+    {
         return count($this->extractedDates);
     }
 
@@ -94,7 +96,8 @@ class Documents extends \yii\db\ActiveRecord
         return new DocumentsQuery(get_called_class());
     }
 
-    public  function  createDocumentByName($pdfName){
+    public function createDocumentByName($pdfName)
+    {
 
 
         $this->title = $pdfName;

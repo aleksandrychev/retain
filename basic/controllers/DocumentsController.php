@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\AppHelper;
 use Yii;
 use app\models\ar\Documents;
 use yii\data\ActiveDataProvider;
@@ -53,29 +54,23 @@ class DocumentsController extends Controller
         $model = $this->findModel($id);
         return $this->render('view', [
             'model' => $model,
-            'url' => Url::base('http') .  Url::to('/uploads/html/' . $model->html_file),
+            'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),
 
         ]);
     }
 
-    public function actionHtml($id){
-        ini_set('memory_limit','2048M');
+    public function actionHtml($id)
+    {
+        ini_set('memory_limit', '2048M');
         ini_set('pcre.backtrack_limit', '200M');
+
         $model = $this->findModel($id);
 
-        $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' .  $model->html_file);
-        $htmlContent = preg_replace("/<img[^>]+\>/i", "", $htmlContent);
-        $htmlContent = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $htmlContent);
-        $htmlContent = preg_replace('#<style(.*?)>(.*?)</style>#is', '', $htmlContent);
-        $htmlContent = preg_replace('/class=".*?"/', '', $htmlContent);
-        $htmlContent = preg_replace('/id=".*?"/', '', $htmlContent);
-        $htmlContent = preg_replace('/style=".*?"/', '', $htmlContent);
-
+        $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' . $model->html_file);
+        $htmlContent = AppHelper::clearHtml($htmlContent);
 
         echo $htmlContent;
     }
-
-
 
 
     /**

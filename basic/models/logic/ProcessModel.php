@@ -35,7 +35,7 @@ class ProcessModel extends Model
         $this->processEntity();
         $this->processDate();
 
-        header('location: /documents/view/' .$this->document->id);
+        header('location: /documents/view/' . $this->document->id);
         exit;
     }
 
