@@ -59,6 +59,7 @@ class DocumentsController extends Controller
     }
 
     public function actionHtml($id){
+//        ini_set('memory_limit','1048MB');
         $model = $this->findModel($id);
 
         $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' .  $model->html_file);

@@ -14,7 +14,7 @@ use yii\helpers\Url;
 class AppHelper
 {
 
-    public static function getHtmlUrlByHtmlName($id){
+    public static function getHtmlUrlById($id){
         $url =  Url::base('http') .  Url::to('/documents/html/' . $id);
         //        $url = "http://pdf2html.demo.relevant.software/uploads/html/4.html";
         return $url;

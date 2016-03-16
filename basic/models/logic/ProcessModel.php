@@ -26,7 +26,8 @@ class ProcessModel extends Model
     {
         $this->document = $document;
         $this->api = new AlchemyAPI();
-        $this->url = AppHelper::getHtmlUrlByHtmlName($this->document->html_file);
+        $this->url = AppHelper::getHtmlUrlById($this->document->id);
+
     }
 
     public function startProcess()
