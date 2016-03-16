@@ -21,8 +21,8 @@ class AppHelper
 
     public static function getSentenceByPhrase($phrase, $text)
     {
-        $text = str_replace('\n', '. ', $text);
-        $sentences = preg_split('/(?<=[\s])\s+/', $text, -1, PREG_SPLIT_NO_EMPTY);
+
+        $sentences = explode("\n", $text);
 
         foreach ($sentences as $k => $v) {
             if (stristr($v, $phrase)) {
