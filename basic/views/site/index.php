@@ -46,8 +46,17 @@ if($.inArray(ext, ['pdf']) == -1) {
     return false;
 }
 });
+
+
 $('.pdfinput').change(function(){
+var ext = $(this).val().split('.').pop().toLowerCase();
+if($.inArray(ext, ['pdf']) == -1) {
+$(this).closest('form').find('.btn').hide();
+
+} else{
 $(this).closest('form').find('.btn').show();
+}
+
 });
 
 
