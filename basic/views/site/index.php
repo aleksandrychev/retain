@@ -26,7 +26,7 @@ $this->title = 'Retain - pdf to html';
 
                 <?= $form->field($modelUpload, 'pdf')->fileInput(['class'=>'pdfinput'])->label(false) ?>
             </div>
-            <div class="col-md-1">
+            <div class="col-md-1" >
                 <?= Html::submitButton('<span class="glyphicon glyphicon-cog"></span> &nbsp;Process', ['class' => 'btn btn-success btn-xs', 'style' => 'display: none;']) ?>
                 <?= Html::hiddenInput('_csrf', Yii::$app->request->getCsrfToken()) ?>
             </div>
@@ -69,7 +69,7 @@ $this->registerJs($script);
 ?>
 
 <style>
-    .form-group  {display: inline-block;}
+    .form-group  {display: inline-block;vertical-align: top;}
     label {display:inline-block;margin-right: 20px !important;}
 </style>
 
