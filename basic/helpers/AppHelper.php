@@ -23,13 +23,15 @@ class AppHelper
 
     public static function getSentenceByPhrase($phrase, $htmlFileName)
     {
+        ini_set('memory_limit','2048M');
+
         $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
         $text = strip_tags(AppHelper::clearHtml($text));
         $re = '/(?<=[.!?”]|[.!?][\'"])\s+(?=[A-Z"\'])/';
         $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
 
         if (array_key_exists($phrase, self::$tempSent)) {
-         $res =   self::findInArray(self::$tempSent[$phrase], $phrase, false);
+            $res =   self::findInArray(self::$tempSent[$phrase], $phrase, false);
         } else {
             $res =    self::findInArray($sentences, $phrase, true);
         }
