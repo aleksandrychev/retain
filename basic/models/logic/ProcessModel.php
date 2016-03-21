@@ -27,7 +27,6 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById($this->document->id);
-
     }
 
     public function startProcess()
@@ -45,7 +44,7 @@ class ProcessModel extends Model
 
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
-                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $entities->text);
+                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file);
                 $this->saveEntity($entity);
             }
         }
@@ -60,7 +59,7 @@ class ProcessModel extends Model
         if ($dates && $dates->status == 'OK' && count($dates->dates) > 0) {
             foreach ($dates->dates as $date) {
 
-                $date->full_sentence = AppHelper::getSentenceByPhrase($date->text, $dates->text);
+                $date->full_sentence = AppHelper::getSentenceByPhrase($date->text, $this->document->html_file);
                 $this->saveDate($date);
             }
         }

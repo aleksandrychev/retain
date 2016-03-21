@@ -1,16 +1,12 @@
 <?php
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
-
-
 /* @var $this yii\web\View */
 
 $this->title = 'Retain - pdf to html';
 ?>
 <div class="site-index">
-
     <h2>Upload Document/s</h2>
-
     <?php for ($i = 1; $i < 4; $i++) { ?>
         <div class="row" style="margin-top: 30px;">
             <?php
@@ -22,8 +18,6 @@ $this->title = 'Retain - pdf to html';
             ]) ?>
             <div class="col-md-5">
                 <?= Html::label("Choose $i pdf file: ", 'uploadsmodel-pdf') ?>
-
-
                 <?= $form->field($modelUpload, 'pdf')->fileInput(['class'=>'pdfinput'])->label(false) ?>
             </div>
             <div class="col-md-1" >
@@ -33,9 +27,7 @@ $this->title = 'Retain - pdf to html';
             <?php ActiveForm::end() ?>
         </div>
     <?php } ?>
-
 </div>
-
 <?php
 $script = <<<JS
 $('.form-horizontal').unbind('submit');
@@ -46,8 +38,6 @@ if($.inArray(ext, ['pdf']) == -1) {
     return false;
 }
 });
-
-
 $('.pdfinput').change(function(){
 var ext = $(this).val().split('.').pop().toLowerCase();
 if($.inArray(ext, ['pdf']) == -1) {
@@ -56,20 +46,11 @@ $(this).closest('form').find('.btn').hide();
 } else{
 $(this).closest('form').find('.btn').show();
 }
-
 });
-
-
-
-
 JS;
-
 $this->registerJs($script);
-
 ?>
-
 <style>
     .form-group  {display: inline-block;vertical-align: top;}
     label {display:inline-block;margin-right: 20px !important;}
 </style>
-
