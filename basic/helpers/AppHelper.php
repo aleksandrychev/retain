@@ -61,7 +61,8 @@ class AppHelper
     public static function clearHtml($htmlContent)
     {
         $replacePatterns = [
-            '\.<.*?>'=>'. ',
+            '#\.<.*?>#is'=>'. ',
+            '#\;<.*?>#is'=>'; ',
             "/<img[^>]+\>/i" => '',
             '#<script(.*?)>(.*?)</script>#is' => '',
             '#<style(.*?)>(.*?)</style>#is' => '',
