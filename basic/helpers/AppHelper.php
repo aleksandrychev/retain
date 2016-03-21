@@ -25,6 +25,7 @@ class AppHelper
     {
         ini_set('memory_limit','2048M');
         ini_set('pcre.backtrack_limit', '200M');
+
         $phrase= self::clearHtml($phrase);
         $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
         $text = strip_tags(AppHelper::clearHtml($text));
@@ -60,18 +61,19 @@ class AppHelper
     public static function clearHtml($htmlContent)
     {
         $replacePatterns = [
-            "/<img[^>]+\>/i",
-            '#<script(.*?)>(.*?)</script>#is',
-            '#<style(.*?)>(.*?)</style>#is',
-            '/class=".*?"/',
-            '/id=".*?"/',
-            '/style=".*?"/',
-            '/&.*?;/',
-            '/\n/'
+            '\.<.*?>'=>'. ',
+            "/<img[^>]+\>/i" => '',
+            '#<script(.*?)>(.*?)</script>#is' => '',
+            '#<style(.*?)>(.*?)</style>#is' => '',
+            '/class=".*?"/' => '',
+            '/id=".*?"/' => '',
+            '/style=".*?"/' => '',
+            '/&.*?;/' => '',
+            '/\n/' => ''
         ];
 
-        foreach ($replacePatterns as $pattern) {
-            $htmlContent = preg_replace($pattern, '', $htmlContent);
+        foreach ($replacePatterns as $pattern => $replacement) {
+            $htmlContent = preg_replace($pattern, $replacement, $htmlContent);
         }
 
         return $htmlContent;
