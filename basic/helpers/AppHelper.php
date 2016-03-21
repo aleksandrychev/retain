@@ -24,7 +24,8 @@ class AppHelper
     public static function getSentenceByPhrase($phrase, $htmlFileName)
     {
         ini_set('memory_limit','2048M');
-
+        ini_set('pcre.backtrack_limit', '200M');
+        
         $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
         $text = strip_tags(AppHelper::clearHtml($text));
         $re = '/(?<=[.!?”]|[.!?][\'"])\s+(?=[A-Z"\'])/';
