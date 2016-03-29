@@ -39,7 +39,7 @@ class AppHelper
             $skip = $skip . (empty($skip) ? '' : '|') . 's{1}' . $abbr . '[.!?]';
         }
 
-        $re = '/(?<!$skip)(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
+        $re = '/(?<!' . $skip . ')(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
         $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
 
 
