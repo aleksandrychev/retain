@@ -31,8 +31,8 @@ class Pdf2htmlExModel extends Model
 
     public function htmlSaveWithoutTags()
     {
-        $uploadsDir = __DIR__ . '/../../web/uploads';
-        $this->docID
+//        $uploadsDir = __DIR__ . '/../../web/uploads';
+//        $this->docID
     }
 
 }
