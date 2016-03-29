@@ -77,7 +77,7 @@ class AppHelper
             $htmlContent = preg_replace($pattern, $replacement, $htmlContent);
         }
 
-        return $htmlContent;
+        return strip_tags($htmlContent);
     }
 
     public static function getFreeSpace()
