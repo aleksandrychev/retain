@@ -32,14 +32,8 @@ class AppHelper
         $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
         $text = strip_tags(AppHelper::clearHtml($text));
 
-        $skip_array = array('Jr', 'Mr', 'Mrs', 'Ms', 'Dr', 'Prof', 'Sr');
-
-        $skip = '';
-        foreach ($skip_array as $abbr) {
-            $skip = $skip . (empty($skip) ? '' : '|') . 's{1}' . $abbr . '[.!?]';
-        }
-
-        $re = '/(?<!' . $skip . ')(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
+        
+        $re = '/(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
         $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
 
 

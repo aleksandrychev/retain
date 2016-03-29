@@ -25,7 +25,7 @@ class UploadController extends \yii\web\Controller
             $model->pdf = UploadedFile::getInstance($model, 'pdf');
             $doc = $model->upload();
             if ($doc) {
-                $pdfToHtml = new Pdf2htmlExModel($doc->id . '.pdf');
+                $pdfToHtml = new Pdf2htmlExModel($doc->id);
                 $pdfToHtml->pdfToHtmlConvertion();
 
                 $process = new ProcessModel($doc);
