@@ -63,7 +63,6 @@ class AppHelper
         $replacePatterns = [
             '#\.<.*?>#is'=>'. ',
             '#<\/div>#is' => ' ',
-            '#<\/span>#is' => ' ',
             '#<\/p>#is' => ' ',
             '#\;<.*?>#is'=>'; ',
             "/<img[^>]+\>/i" => '',
