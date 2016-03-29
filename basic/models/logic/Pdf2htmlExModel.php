@@ -17,7 +17,7 @@ class Pdf2htmlExModel extends Model
 
     public function __construct($filename)
     {
-        $this->filename = $filename;
+        $this->docID = $filename;
 
     }
 
