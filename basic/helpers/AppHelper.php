@@ -29,12 +29,15 @@ class AppHelper
 
 
         $phrase = self::clearHtml($phrase);
-        $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
-        $text = strip_tags(AppHelper::clearHtml($text));
-
-
-        $re = '/(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
-        $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
+//        $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
+//        $text = strip_tags(AppHelper::clearHtml($text));
+//
+//
+//        $re = '/(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
+//        $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
+        $sentences = file_get_contents(__DIR__ . '/../web/uploads/json/' . $htmlFileName);
+        $sentences = str_replace(array('["','"]'),'',$sentences);
+        $sentences = explode('", "',$sentences);
 
 
         if (array_key_exists($phrase, self::$tempSent)) {
@@ -84,6 +87,7 @@ class AppHelper
             $htmlContent = preg_replace($pattern, $replacement, $htmlContent);
         }
 
+        $htmlContent = str_replace('  ',' ',$htmlContent);
         return strip_tags($htmlContent);
     }
 
@@ -95,6 +99,15 @@ class AppHelper
         $class = min((int)log($bytes, $base), count($si_prefix) - 1);
 
         return sprintf('%1.2f', $bytes / pow($base, $class)) . ' ' . $si_prefix[$class];
+    }
+
+    public static function segmentationText($id)
+    {
+//var_dump($id);exit;
+        $client = new \GearmanClient();
+        $client->addServer('127.0.0.1', '4730');
+        $client->doBackground('runruby', json_encode(['id' => $id, 'uploads_path' => __DIR__ . '/../web/uploads', 'ps_path' =>  __DIR__ . '/../../ps']));
+
     }
 
 }

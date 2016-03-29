@@ -1,0 +1,12 @@
+GEM
+  remote: https://rubygems.org/
+  specs:
+    pragmatic_segmenter (0.3.7)
+      unicode
+    unicode (0.4.4.2)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  pragmatic_segmenter

@@ -9,6 +9,7 @@
 namespace app\models\logic;
 
 
+use app\helpers\AppHelper;
 use yii\base\Model;
 
 class Pdf2htmlExModel extends Model
@@ -27,12 +28,15 @@ class Pdf2htmlExModel extends Model
         $command = "cd $uploadsDir;";
         $command .= 'pdf2htmlEX  --dest-dir ./html ./pdf/' . $this->docID . '.pdf';
         exec($command, $output, $return_var);
+
     }
 
     public function htmlSaveWithoutTags()
     {
-//        $uploadsDir = __DIR__ . '/../../web/uploads';
-//        $this->docID
+         $uploadsDir = __DIR__ . '/../../web/uploads';
+         $text = file_get_contents($uploadsDir . '/html/' . $this->docID . '.html');
+         $text = AppHelper::clearHtml($text);
+         file_put_contents($uploadsDir . '/strip_html/' .  $this->docID . '.html' , $text);
     }
 
 }
