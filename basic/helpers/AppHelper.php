@@ -11,6 +11,7 @@ namespace app\helpers;
 
 use yii\helpers\Url;
 
+
 class AppHelper
 {
 
@@ -23,22 +24,32 @@ class AppHelper
 
     public static function getSentenceByPhrase($phrase, $htmlFileName)
     {
-        ini_set('memory_limit','2048M');
+        ini_set('memory_limit', '2048M');
         ini_set('pcre.backtrack_limit', '200M');
 
-        $phrase= self::clearHtml($phrase);
+
+        $phrase = self::clearHtml($phrase);
         $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
         $text = strip_tags(AppHelper::clearHtml($text));
-        $re = '/(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[A-Z“\'"])/';
-        $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
 
-        if (array_key_exists($phrase, self::$tempSent)) {
-            $res =   self::findInArray(self::$tempSent[$phrase], $phrase, false);
-        } else {
-            $res =    self::findInArray($sentences, $phrase, true);
+        $skip_array = array('Jr', 'Mr', 'Mrs', 'Ms', 'Dr', 'Prof', 'Sr');
+
+        $skip = '';
+        foreach ($skip_array as $abbr) {
+            $skip = $skip . (empty($skip) ? '' : '|') . 's{1}' . $abbr . '[.!?]';
         }
 
-        return  $res;
+        $re = '/(?<!$skip)(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
+        $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
+
+
+        if (array_key_exists($phrase, self::$tempSent)) {
+            $res = self::findInArray(self::$tempSent[$phrase], $phrase, false);
+        } else {
+            $res = self::findInArray($sentences, $phrase, true);
+        }
+
+        return $res;
 
     }
 
@@ -61,10 +72,10 @@ class AppHelper
     public static function clearHtml($htmlContent)
     {
         $replacePatterns = [
-            '#\.<.*?>#is'=>'. ',
+            '#\.<.*?>#is' => '. ',
             '#<\/div>#is' => ' ',
             '#<\/p>#is' => ' ',
-            '#\;<.*?>#is'=>'; ',
+            '#\;<.*?>#is' => '; ',
             "/<img[^>]+\>/i" => '',
             '#<script(.*?)>(.*?)</script>#is' => '',
             '#<style(.*?)>(.*?)</style>#is' => '',
