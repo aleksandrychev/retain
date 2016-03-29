@@ -68,7 +68,7 @@ class AppHelper
 
     public static function clearHtml($htmlContent)
     {
-        ini_set('pcre.backtrack_limit', '200M')
+        ini_set('pcre.backtrack_limit', '200M');
         $replacePatterns = [
             '#\.<.*?>#is' => '. ',
             '#<\/div>#is' => ' ',
