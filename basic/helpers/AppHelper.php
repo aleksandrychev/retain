@@ -31,8 +31,6 @@ class AppHelper
         $phrase = self::clearHtml($phrase);
 //        $text = file_get_contents(__DIR__ . '/../web/uploads/html/' . $htmlFileName);
 //        $text = strip_tags(AppHelper::clearHtml($text));
-//
-//
 //        $re = '/(?<=[.!?”•;]|[.!?”•;][\'"])([\s])(?=[\d+]|[A-Z“\'"])/';
 //        $sentences = preg_split($re, $text, -1, PREG_SPLIT_NO_EMPTY);
         $sentences = file_get_contents(__DIR__ . '/../web/uploads/json/' . $htmlFileName);
