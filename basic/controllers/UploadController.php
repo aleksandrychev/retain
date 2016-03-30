@@ -27,13 +27,6 @@ class UploadController extends \yii\web\Controller
                 $pdfToHtml = new Pdf2htmlExModel($doc->id);
                 $pdfToHtml->pdfToHtmlConvertion();
                 $pdfToHtml->htmlSaveWithoutTags();
-                AppHelper::segmentationText($doc->id);
-
-
-                while(!file_exists(__DIR__ . '/../web/uploads/json/' . $doc->id . '.html' )){
-                    sleep(1);
-                }
-
                 $process = new ProcessModel($doc);
                 $process->startProcess();
 

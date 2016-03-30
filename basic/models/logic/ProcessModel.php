@@ -32,6 +32,7 @@ class ProcessModel extends Model
 
     public function startProcess()
     {
+        $this->checkSentencesDocument();
         $this->processEntity();
         $this->processDate();
 
@@ -39,10 +40,19 @@ class ProcessModel extends Model
         exit;
     }
 
+    private function checkSentencesDocument(){
+        $i = 0;
+        while(!file_exists(__DIR__ . '/../../web/uploads/json/' . $this->document->id . '.html' )){
+            if($i++ > 15){
+                break;
+            }
+            sleep(1);
+        }
+    }
+
     private function processEntity()
     {
         $entities = $this->api->textGetRankedNamedEntities($this->url);
-
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
                 $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file);

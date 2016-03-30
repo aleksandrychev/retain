@@ -1,7 +1,189 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="932721fd-bb24-43ee-9c71-c83252b2bbf4" name="Default" comment="" />
+    <list default="true" id="932721fd-bb24-43ee-9c71-c83252b2bbf4" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/basic/web/uploads/json/.gitignore" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/basic/web/uploads/strip_html/.gitignore" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/.bundle/config" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/Gemfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/Gemfile.lock" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/file.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/build_info/pragmatic_segmenter-0.3.7.info" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/build_info/unicode-0.4.4.2.info" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/cache/pragmatic_segmenter-0.3.7.gem" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/cache/unicode-0.4.4.2.gem" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/extensions/x86_64-linux/2.3.0/unicode-0.4.4.2/gem.build_complete" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/extensions/x86_64-linux/2.3.0/unicode-0.4.4.2/gem_make.out" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/extensions/x86_64-linux/2.3.0/unicode-0.4.4.2/unicode/unicode_native.so" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/.gitignore" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/.rspec" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/.travis.yml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/Gemfile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/LICENSE.txt" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/README.md" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/Rakefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/abbreviation_replacer.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/between_punctuation.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/cleaner.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/cleaner/rules.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/exclamation_words.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/amharic.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/arabic.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/armenian.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/bulgarian.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/burmese.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/chinese.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/common.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/common/ellipsis.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/common/numbers.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/deutsch.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/dutch.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/english.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/french.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/greek.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/hindi.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/italian.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/japanese.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/persian.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/polish.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/russian.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/spanish.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/languages/urdu.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/list.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/processor.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/punctuation_replacer.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/segmenter.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/types.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/lib/pragmatic_segmenter/version.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/pragmatic_segmenter.gemspec" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/performance_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/amharic_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/arabic_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/armenian_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/bulgarian_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/burmese_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/chinese_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/deutsch_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/dutch_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/english_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/french_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/greek_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/hindi_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/italian_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/japanese_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/persian_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/polish_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/russian_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/spanish_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages/urdu_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter/languages_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/pragmatic_segmenter_spec.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/pragmatic_segmenter-0.3.7/spec/spec_helper.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/Rakefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/.RUBYARCHDIR.-.unicode.time" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/Makefile" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/extconf.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/unicode.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/unicode.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/unicode_native.so" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/unidata.map" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/ustring.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/ustring.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/ustring.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/wstring.c" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/wstring.h" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/ext/unicode/wstring.o" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/lib/unicode.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/lib/unicode/unicode_native.so" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/test/test.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/tools/README" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/tools/mkunidata.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/tools/normtest.rb" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/gems/unicode-0.4.4.2/unicode.gemspec" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/specifications/pragmatic_segmenter-0.3.7.gemspec" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/ruby/2.3.0/specifications/unicode-0.4.4.2.gemspec" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/ps/worker.php" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/docs/adv_op_ref.pdf" afterPath="$PROJECT_DIR$/basic/web/uploads/docs/adv_op_ref.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/docs/compare.pdf" afterPath="$PROJECT_DIR$/basic/web/uploads/docs/compare.pdf" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/controllers/UploadController.php" afterPath="$PROJECT_DIR$/basic/controllers/UploadController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/helpers/AppHelper.php" afterPath="$PROJECT_DIR$/basic/helpers/AppHelper.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/models/logic/ProcessModel.php" afterPath="$PROJECT_DIR$/basic/models/logic/ProcessModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/models/logic/UploadsModel.php" afterPath="$PROJECT_DIR$/basic/models/logic/UploadsModel.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/100.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/100.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/101.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/101.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/102.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/102.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/103.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/103.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/104.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/104.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/105.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/105.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/106.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/106.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/107.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/107.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/108.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/108.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/109.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/109.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/110.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/110.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/111.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/111.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/112.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/112.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/113.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/113.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/114.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/114.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/115.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/115.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/116.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/116.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/279.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/279.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/280.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/280.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/281.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/281.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/282.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/282.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/283.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/283.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/55.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/55.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/56.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/56.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/57.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/57.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/58.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/58.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/59.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/59.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/60.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/60.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/61.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/61.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/62.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/62.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/63.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/63.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/64.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/64.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/65.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/65.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/66.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/66.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/67.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/67.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/68.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/68.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/69.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/69.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/70.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/70.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/71.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/71.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/72.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/72.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/73.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/73.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/74.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/74.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/75.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/75.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/78.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/78.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/79.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/79.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/81.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/81.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/82.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/82.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/83.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/83.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/84.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/84.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/85.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/85.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/86.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/86.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/87.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/87.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/88.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/88.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/89.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/89.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/90.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/90.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/91.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/91.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/92.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/92.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/93.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/93.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/94.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/94.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/95.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/95.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/96.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/96.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/97.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/97.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/98.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/98.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/json/99.html" afterPath="$PROJECT_DIR$/basic/web/uploads/json/99.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/strip_html/280.html" afterPath="$PROJECT_DIR$/basic/web/uploads/strip_html/280.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/strip_html/281.html" afterPath="$PROJECT_DIR$/basic/web/uploads/strip_html/281.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/strip_html/282.html" afterPath="$PROJECT_DIR$/basic/web/uploads/strip_html/282.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/basic/web/uploads/strip_html/283.html" afterPath="$PROJECT_DIR$/basic/web/uploads/strip_html/283.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ps/watchr.rb" afterPath="$PROJECT_DIR$/ps/watchr.rb" />
+    </list>
     <ignored path="pdftohtm.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -25,8 +207,30 @@
       <file leaf-file-name="ProcessModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/models/logic/ProcessModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+            <state vertical-scroll-proportion="-0.074074075">
+              <caret line="54" column="71" selection-start-line="54" selection-start-column="71" selection-end-line="54" selection-end-column="71" />
+              <folding>
+                <element signature="e#127#153#0#PHP" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadsModel.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/basic/models/logic/UploadsModel.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.09977827">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SiteController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basic/controllers/SiteController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-5.3333335">
+              <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
               <folding />
             </state>
           </provider>
@@ -35,28 +239,8 @@
       <file leaf-file-name="AppHelper.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/helpers/AppHelper.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="37" column="45" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="DocumentsQuery.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/basic/models/ar/DocumentsQuery.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Documents.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/basic/models/ar/Documents.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="87" column="5" selection-start-line="87" selection-start-column="5" selection-end-line="87" selection-end-column="5" />
+            <state vertical-scroll-proportion="-8.379311">
+              <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
               <folding />
             </state>
           </provider>
@@ -65,7 +249,7 @@
       <file leaf-file-name="AlchemyAPI.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/models/logic/AlchemyAPI.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-37.333332">
               <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
               <folding />
             </state>
@@ -75,7 +259,7 @@
       <file leaf-file-name="Pdf2htmlExModel.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/models/logic/Pdf2htmlExModel.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-21.333334">
               <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
               <folding>
                 <element signature="e#127#153#0#PHP" expanded="true" />
@@ -87,28 +271,28 @@
       <file leaf-file-name="DocumentsController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/controllers/DocumentsController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-14.740741">
               <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="sent.rb" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/ps/sent.rb">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basic/web/uploads/json/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="13" column="41" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="41" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="worker.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ps/worker.php">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/basic/web/uploads/strip_html/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.29933482">
-              <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -117,8 +301,8 @@
       <file leaf-file-name="UploadController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/basic/controllers/UploadController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
+            <state vertical-scroll-proportion="-20.0">
+              <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
               <folding>
                 <element signature="e#35#61#0#PHP" expanded="true" />
               </folding>
@@ -138,7 +322,6 @@
         <option value="$PROJECT_DIR$/basic/models/ar/Documents.php" />
         <option value="$PROJECT_DIR$/basic/controllers/DocumentsController.php" />
         <option value="$PROJECT_DIR$/basic/models/logic/AlchemyAPI.php" />
-        <option value="$PROJECT_DIR$/basic/models/logic/UploadsModel.php" />
         <option value="$PROJECT_DIR$/basic/controllers/SiteController.php" />
         <option value="$PROJECT_DIR$/basic/views/documents/view.php" />
         <option value="$PROJECT_DIR$/basic/views/layouts/main.php" />
@@ -146,10 +329,12 @@
         <option value="$PROJECT_DIR$/basic/composer.json" />
         <option value="$PROJECT_DIR$/basic/models/logic/Pdf2htmlExModel.php" />
         <option value="$PROJECT_DIR$/ps/sent.rb" />
+        <option value="$PROJECT_DIR$/ps/worker.php" />
+        <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/basic/helpers/AppHelper.php" />
         <option value="$PROJECT_DIR$/basic/controllers/UploadController.php" />
         <option value="$PROJECT_DIR$/basic/models/logic/ProcessModel.php" />
-        <option value="$PROJECT_DIR$/basic/helpers/AppHelper.php" />
-        <option value="$PROJECT_DIR$/ps/worker.php" />
+        <option value="$PROJECT_DIR$/basic/models/logic/UploadsModel.php" />
       </list>
     </option>
   </component>
@@ -268,6 +453,46 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="uploads" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdftohtm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdftohtm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="basic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="runtime" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdftohtm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="pdftohtm" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="basic" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -293,46 +518,6 @@
               <option name="myItemId" value="models" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ar" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pdftohtm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pdftohtm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="basic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="helpers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pdftohtm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pdftohtm" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="basic" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controllers" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -343,6 +528,13 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/bin/node" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/basic/web/uploads/docs" />
+      <recent name="$PROJECT_DIR$/basic/web/uploads/strip_html" />
+      <recent name="$PROJECT_DIR$/basic/web/uploads/json" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -434,20 +626,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/basic/models/logic/UploadsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/basic/controllers/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/basic/views/documents/view.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -499,7 +677,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#127#153#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -507,7 +687,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#127#153#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -530,6 +712,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -584,7 +767,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="52" column="0" selection-start-line="52" selection-start-column="0" selection-end-line="52" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#127#153#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -607,6 +792,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -661,7 +847,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#127#153#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -714,13 +902,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic/models/logic/UploadsModel.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-20.666666">
-          <caret line="39" column="24" selection-start-line="39" selection-start-column="24" selection-end-line="39" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/basic/models/ar/ExtractedEntityQuery.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -732,13 +913,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/basic/controllers/SiteController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -750,32 +925,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ps/sent.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="13" column="41" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/basic/controllers/DocumentsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/basic/controllers/UploadController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="39" selection-start-line="28" selection-start-column="39" selection-end-line="28" selection-end-column="39" />
-          <folding>
-            <element signature="e#35#61#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/basic/models/ar/Documents.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -784,17 +933,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic/models/logic/AlchemyAPI.php">
+    <entry file="file://$PROJECT_DIR$/ps/sent.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.068966">
+          <caret line="13" column="41" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <caret line="0" column="7" selection-start-line="0" selection-start-column="7" selection-end-line="0" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/web/uploads/json/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/web/uploads/strip_html/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/helpers/AppHelper.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.379311">
+          <caret line="32" column="48" selection-start-line="32" selection-start-column="48" selection-end-line="32" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/controllers/UploadController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0">
+          <caret line="30" column="34" selection-start-line="30" selection-start-column="34" selection-end-line="30" selection-end-column="34" />
+          <folding>
+            <element signature="e#35#61#0#PHP" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/controllers/SiteController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-5.3333335">
+          <caret line="8" column="27" selection-start-line="8" selection-start-column="27" selection-end-line="8" selection-end-column="27" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/basic/controllers/DocumentsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-14.740741">
+          <caret line="69" column="40" selection-start-line="69" selection-start-column="40" selection-end-line="69" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/basic/models/logic/Pdf2htmlExModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
+        <state vertical-scroll-proportion="-21.333334">
           <caret line="37" column="30" selection-start-line="37" selection-start-column="30" selection-end-line="37" selection-end-column="30" />
           <folding>
             <element signature="e#127#153#0#PHP" expanded="true" />
@@ -802,26 +1009,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/basic/models/logic/AlchemyAPI.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-37.333332">
+          <caret line="61" column="35" selection-start-line="61" selection-start-column="35" selection-end-line="61" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/basic/models/logic/ProcessModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
+        <state vertical-scroll-proportion="-0.074074075">
+          <caret line="54" column="71" selection-start-line="54" selection-start-column="71" selection-end-line="54" selection-end-column="71" />
+          <folding>
+            <element signature="e#127#153#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/basic/helpers/AppHelper.php">
+    <entry file="file://$PROJECT_DIR$/basic/models/logic/UploadsModel.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="37" column="45" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ps/worker.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.29933482">
-          <caret line="15" column="33" selection-start-line="15" selection-start-column="33" selection-end-line="15" selection-end-column="33" />
+        <state vertical-scroll-proportion="0.09977827">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
           <folding />
         </state>
       </provider>

@@ -31,9 +31,7 @@ class UploadsModel extends Model
     public function upload()
     {
         if ($this->validate()) {
-
             $pdfName = $this->pdf->baseName . '.' . $this->pdf->extension;
-
             $doc = new Documents();
             $doc->createDocumentByName($pdfName);
             $this->pdf->saveAs(__DIR__ . '/../../web/uploads/pdf/' . $doc->id . '.pdf');
