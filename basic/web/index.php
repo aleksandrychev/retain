@@ -11,3 +11,4 @@ require(__DIR__ . '/../helpers/AppHelper.php');
 $config = require(__DIR__ . '/../config/web.php');
 
 (new yii\web\Application($config))->run();
+
