@@ -43,7 +43,7 @@ class ProcessModel extends Model
     private function checkSentencesDocument(){
         $i = 0;
         while(!file_exists(__DIR__ . '/../../web/uploads/json/' . $this->document->id . '.html' )){
-            if($i++ > 15){
+            if($i++ > 610){
                 break;
             }
             sleep(1);

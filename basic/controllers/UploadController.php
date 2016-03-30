@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\helpers\AppHelper;
+
 use app\models\logic\Pdf2htmlExModel;
 use app\models\logic\ProcessModel;
 use yii\web\UploadedFile;
