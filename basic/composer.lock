@@ -256,6 +256,7 @@
             "time": "2015-03-06 05:28:07"
         },
         {
+<<<<<<< HEAD
             "name": "container-interop/container-interop",
             "version": "1.1.0",
             "source": {
@@ -274,13 +275,67 @@
                 "psr-4": {
                     "Interop\\Container\\": "src/Interop/Container/"
                 }
+=======
+            "name": "danielstjules/stringy",
+            "version": "1.10.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/danielstjules/Stringy.git",
+                "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/danielstjules/Stringy/zipball/4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
+                "reference": "4749c205db47ee5b32e8d1adf6d9aff8db6caf3b",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Stringy\\": "src/"
+                },
+                "files": [
+                    "src/Create.php"
+                ]
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
+<<<<<<< HEAD
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "time": "2014-12-30 15:22:37"
+=======
+            "authors": [
+                {
+                    "name": "Daniel St. Jules",
+                    "email": "danielst.jules@gmail.com",
+                    "homepage": "http://www.danielstjules.com"
+                }
+            ],
+            "description": "A string manipulation library with multibyte support",
+            "homepage": "https://github.com/danielstjules/Stringy",
+            "keywords": [
+                "UTF",
+                "helpers",
+                "manipulation",
+                "methods",
+                "multibyte",
+                "string",
+                "utf-8",
+                "utility",
+                "utils"
+            ],
+            "time": "2015-07-23 00:54:12"
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
         },
         {
             "name": "doctrine/inflector",
@@ -438,6 +493,7 @@
         },
         {
             "name": "illuminate/config",
+<<<<<<< HEAD
             "version": "v5.2.26",
             "source": {
                 "type": "git",
@@ -448,18 +504,29 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/illuminate/config/zipball/29d25fa086eac092a54859b3cbf7580299fc101e",
                 "reference": "29d25fa086eac092a54859b3cbf7580299fc101e",
+=======
+            "version": "v5.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/config.git",
+                "reference": "d50babe28caab658bf0a1bc8b1a85e5aaf80c96e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/config/zipball/d50babe28caab658bf0a1bc8b1a85e5aaf80c96e",
+                "reference": "d50babe28caab658bf0a1bc8b1a85e5aaf80c96e",
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
                 "shasum": ""
             },
             "require": {
-                "illuminate/contracts": "5.2.*",
-                "illuminate/filesystem": "5.2.*",
-                "illuminate/support": "5.2.*",
-                "php": ">=5.5.9"
+                "illuminate/contracts": "5.0.*",
+                "illuminate/support": "5.0.*",
+                "php": ">=5.4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -479,10 +546,11 @@
             ],
             "description": "The Illuminate Config package.",
             "homepage": "http://laravel.com",
-            "time": "2015-06-22 20:36:58"
+            "time": "2015-03-07 15:07:05"
         },
         {
             "name": "illuminate/contracts",
+<<<<<<< HEAD
             "version": "v5.2.26",
             "source": {
                 "type": "git",
@@ -493,15 +561,27 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/illuminate/contracts/zipball/411b851962c211078ade7664a6976e77a78cd2a5",
                 "reference": "411b851962c211078ade7664a6976e77a78cd2a5",
+=======
+            "version": "v5.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/contracts.git",
+                "reference": "b8b11d78724a6f8a62be3b1dfa20fa372f861398"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/contracts/zipball/b8b11d78724a6f8a62be3b1dfa20fa372f861398",
+                "reference": "b8b11d78724a6f8a62be3b1dfa20fa372f861398",
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.5.9"
+                "php": ">=5.4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -521,6 +601,7 @@
             ],
             "description": "The Illuminate Contracts package.",
             "homepage": "http://laravel.com",
+<<<<<<< HEAD
             "time": "2016-03-07 20:37:17"
         },
         {
@@ -585,11 +666,29 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/illuminate/support/zipball/f990b9c154b92bfa08dd83e4d792bc807213ab0c",
                 "reference": "f990b9c154b92bfa08dd83e4d792bc807213ab0c",
+=======
+            "time": "2015-05-15 07:22:28"
+        },
+        {
+            "name": "illuminate/support",
+            "version": "v5.0.33",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/support.git",
+                "reference": "32a12f97029b624fc0f9454e7ca69eaafef49c5d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/support/zipball/32a12f97029b624fc0f9454e7ca69eaafef49c5d",
+                "reference": "32a12f97029b624fc0f9454e7ca69eaafef49c5d",
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
                 "shasum": ""
             },
             "require": {
+                "danielstjules/stringy": "~1.8",
                 "doctrine/inflector": "~1.0",
                 "ext-mbstring": "*",
+<<<<<<< HEAD
                 "illuminate/contracts": "5.2.*",
                 "paragonie/random_compat": "~1.4",
                 "php": ">=5.5.9"
@@ -600,11 +699,19 @@
                 "symfony/polyfill-php56": "Required to use the hash_equals function on PHP 5.5 (~1.0).",
                 "symfony/process": "Required to use the composer class (2.8.*|3.0.*).",
                 "symfony/var-dumper": "Improves the dd function (2.8.*|3.0.*)."
+=======
+                "illuminate/contracts": "5.0.*",
+                "php": ">=5.4.0"
+            },
+            "suggest": {
+                "jeremeamia/superclosure": "Required to be able to serialize closures (~2.0).",
+                "symfony/var-dumper": "Required to use the dd function (2.6.*)."
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "5.2-dev"
+                    "dev-master": "5.0-dev"
                 }
             },
             "autoload": {
@@ -627,7 +734,11 @@
             ],
             "description": "The Illuminate Support package.",
             "homepage": "http://laravel.com",
+<<<<<<< HEAD
             "time": "2016-03-18 20:30:25"
+=======
+            "time": "2015-06-04 12:15:51"
+>>>>>>> 9785e1c9bc8f2f562af1d5be9f573e19055185fe
         },
         {
             "name": "paquettg/php-html-parser",
@@ -999,55 +1110,6 @@
                 "mailer"
             ],
             "time": "2015-06-06 14:19:39"
-        },
-        {
-            "name": "symfony/finder",
-            "version": "v3.0.3",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/finder.git",
-                "reference": "623bda0abd9aa29e529c8e9c08b3b84171914723"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/finder/zipball/623bda0abd9aa29e529c8e9c08b3b84171914723",
-                "reference": "623bda0abd9aa29e529c8e9c08b3b84171914723",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.5.9"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.0-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Finder\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Finder Component",
-            "homepage": "https://symfony.com",
-            "time": "2016-01-27 05:14:46"
         },
         {
             "name": "yiisoft/yii2",
