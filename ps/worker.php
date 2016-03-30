@@ -1,5 +1,5 @@
 <?php
-$worker = new GearmanWorker();
+$worker = new \GearmanWorker();
 $worker->addServer();
 
 $worker->addFunction('runruby', 'runruby');
@@ -17,5 +17,6 @@ function runruby($job)
     $data = json_decode($workload, true);
 var_dump($data);
     $e = 'cd '. $data['ps_path'] .'; ruby sent.rb '. $data['id'] .' '. $data['uploads_path'] .';';
-    system($e);
+    var_dump($e);
+    echo system($e);
 }
