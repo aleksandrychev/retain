@@ -52,6 +52,7 @@ class DocumentsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
         return $this->render('view', [
             'model' => $model,
             'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),

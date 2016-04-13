@@ -15,42 +15,43 @@ use yii\helpers\Url;
 class AppHelper
 {
 
-    private static $tempSent = [];
+    public static $tempSent = [];
 
     public static function getHtmlUrlById($id)
     {
         return Url::base('http') . Url::to('/documents/html/' . $id);
     }
 
-    public static function getSentenceByPhrase($phrase, $htmlFileName)
+    public static function getSentenceByPhrase($phrase, $htmlFileName, $d = false)
     {
         ini_set('memory_limit', '2048M');
         ini_set('pcre.backtrack_limit', '200M');
 
         $phrase = self::clearHtml($phrase);
+
         $sentences = file_get_contents(__DIR__ . '/../web/uploads/json/' . $htmlFileName);
         $sentences = str_replace(array('["','"]'),'',$sentences);
         $sentences = explode('", "',$sentences);
 
 
         if (array_key_exists($phrase, self::$tempSent)) {
-            $res = self::findInArray(self::$tempSent[$phrase], $phrase, false);
+            $res = self::findInArray(self::$tempSent[$phrase], $phrase, false,$d);
         } else {
-            $res = self::findInArray($sentences, $phrase, true);
+            $res = self::findInArray($sentences, $phrase, true ,$d);
         }
 
         return $res;
 
     }
 
-    public static function findInArray($sentences, $phrase, $merge)
+    public static function findInArray($sentences, $phrase, $merge, $d)
     {
         $tms = $sentences;
         foreach ($sentences as $k => $v) {
             if (stristr($v, $phrase)) {
                 unset($tms[$k]);
                 if ($merge) {
-                    self::$tempSent = array_merge(self::$tempSent, ["$phrase" => $tms]);
+                    self::$tempSent = array_replace(self::$tempSent, ["$phrase" => $tms]);
                 } else {
                     self::$tempSent[$phrase] = $tms;
                 }

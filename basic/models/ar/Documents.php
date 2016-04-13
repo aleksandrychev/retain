@@ -98,8 +98,6 @@ class Documents extends \yii\db\ActiveRecord
 
     public function createDocumentByName($pdfName)
     {
-
-
         $this->title = $pdfName;
         $this->user_ip = $_SERVER['REMOTE_ADDR'];
         $this->user_agent = $_SERVER['HTTP_USER_AGENT'];

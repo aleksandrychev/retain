@@ -20,12 +20,14 @@ $this->title = $model->title;
         <li><a data-toggle="tab" href="#sectionC">
                 <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy <span
                     class="badge"><?= $model->entitiesCount ?></span></a></li>
+        <li><a data-toggle="tab" href="#sectionD">
+                <span class="glyphicon glyphicon-tags"></span> Document tags<span
+                    class="badge">0</span></a></li>
 
     </ul>
     <div class="tab-content">
         <div id="sectionA" class="tab-pane fade in active">
-            <h3>Html View</h3>
-            <iframe src="<?= $url; ?>" name="topFrame" width="100%" height="700px"></iframe>
+            <?= Yii::$app->controller->renderPartial('html_view', ['url'=>$url, 'model'=>$model]); ?>
         </div>
         <div id="sectionC" class="tab-pane fade">
 
@@ -71,3 +73,8 @@ $this->title = $model->title;
 
 
     </div>
+    <div class='notifications top-right alert'></div>
+<?php
+$this->registerJsFile('/js/app.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerJsFile('/js/notify/bootstrap-notify.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerCssFile('/js/notify/css/bootstrap-notify.css');

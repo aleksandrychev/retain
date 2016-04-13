@@ -27,6 +27,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById($this->document->id);
+        $this->url = 'http://pdf2html.demo.relevant.software/documents/html/129';
 
     }
 
@@ -55,9 +56,10 @@ class ProcessModel extends Model
         $entities = $this->api->textGetRankedNamedEntities($this->url);
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
-                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file);
+                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file, false);
                 $this->saveEntity($entity);
             }
+
         }
 
 
@@ -66,13 +68,14 @@ class ProcessModel extends Model
     private function processDate()
     {
         $dates = $this->api->textExtractDates($this->url);
-
+        AppHelper::$tempSent = [];
         if ($dates && $dates->status == 'OK' && count($dates->dates) > 0) {
             foreach ($dates->dates as $date) {
 
-                $date->full_sentence = AppHelper::getSentenceByPhrase($date->text, $this->document->html_file);
+                $date->full_sentence = AppHelper::getSentenceByPhrase($date->text, $this->document->html_file, true);
                 $this->saveDate($date);
             }
+
         }
     }
 

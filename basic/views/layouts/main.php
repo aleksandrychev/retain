@@ -37,6 +37,7 @@ AppAsset::register($this);
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
+            ['label' => 'Tags editor', 'url' => ['/tags']],
             ['label' => 'Results Archive', 'url' => ['/documents']],
 
         ],
