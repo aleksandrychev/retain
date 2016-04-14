@@ -10,6 +10,7 @@ use Yii;
  * @property integer $result_id
  * @property string $type
  * @property integer $entity_id
+ * @property string $entity_title
  */
 class TagEntities extends \yii\db\ActiveRecord
 {
@@ -28,6 +29,7 @@ class TagEntities extends \yii\db\ActiveRecord
     {
         return [
             [['result_id', 'entity_id'], 'integer'],
+            [['entity_title'], 'string'],
             [['type'], 'string', 'max' => 20],
             [['result_id', 'entity_id', 'type'], 'unique', 'targetAttribute' => ['result_id', 'entity_id', 'type'], 'message' => 'The combination of Result ID, Type and Entity ID has already been taken.'],
             [['result_id'], 'exist', 'skipOnError' => true, 'targetClass' => TagsResult::className(), 'targetAttribute' => ['result_id' => 'id']],
@@ -43,6 +45,7 @@ class TagEntities extends \yii\db\ActiveRecord
             'result_id' => 'Result ID',
             'type' => 'Type',
             'entity_id' => 'Entity ID',
+            'entity_title' => 'Entity Title',
         ];
     }
 

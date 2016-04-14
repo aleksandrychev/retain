@@ -1,6 +1,51 @@
 ///**
 // * Created by ialeksandrychev on 07.04.16.
 // */
+
+function buildSidebar(data) {
+    $('.form-tag').html(data);
+    $('.update-badges-count').click();
+    $('.update-tags-table').click();
+}
+
+
+function saveAdditionalData(elem) {
+
+
+    var data = $(elem).attr('data-value');
+    if (data.length < 1) {
+        $.notify({
+            // options
+            message: 'The Note cannot be empty',
+            icon: 'glyphicon glyphicon-alert',
+        }, {
+            // settings
+            type: 'danger'
+        });
+
+        return false;
+    }
+
+    $.post("/tags/save-additional-data", {
+            'id': $(elem).attr('data-id'),
+            field: $(elem).attr('data-field'),
+            data: $(elem).attr('data-value')
+        })
+        .done(function (data) {
+            if (data.error) {
+                return false;
+            }
+            $.notify({
+                // options
+                message: $(elem).attr('data-field') + ' was successful saved',
+            }, {
+                // settings
+                type: 'success'
+            });
+        });
+
+}
+
 function getSelectionHtml(elem) {
     var html = "";
     if (typeof elem.getSelection != "undefined") {
@@ -8,7 +53,6 @@ function getSelectionHtml(elem) {
 
         oRange = sel.getRangeAt(0); //get the text range
         oRect = oRange.getBoundingClientRect();
-
 
 
         if (sel.rangeCount) {
@@ -23,32 +67,40 @@ function getSelectionHtml(elem) {
             html = document.selection.createRange().htmlText;
         }
     }
-    return {'html':html ,
-            position: oRect,
-            page: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no')
+    return {
+        'html': html,
+        position: oRect,
+        page: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no')
     };
 }
 
-$(document).ready(function(){
-    $('.tagProcess').click(function(){
+$(document).ready(function () {
+    $('.tagProcess').click(function () {
         var iframe = document.getElementsByTagName('iframe')[0];
         var iframeDoc = iframe.contentWindow.document;
         var selection = getSelectionHtml(iframeDoc);
-        if(selection.html.length > 1){
-            $.post( "/tags/selection-process", {
-                'selection': selection,
-                doc_id: $(this).attr('data-document-id'),
-                tag_id: $(this).attr('data-tag-id')
-            })
-                .done(function( data ) {
-                    alert( "Data Loaded: " + data );
+        if (selection.html.length > 1) {
+            $.post("/tags/selection-process", {
+                    'selection': selection,
+                    doc_id: $(this).attr('data-document-id'),
+                    tag_id: $(this).attr('data-tag-id')
+                })
+                .done(function (data) {
+                    buildSidebar(data);
+                    $.notify({
+                        // options
+                        message: 'Highlighting successful saved',
+                    }, {
+                        // settings
+                        type: 'success'
+                    });
                 });
         } else {
             $.notify({
                 // options
                 message: 'Selection not found',
                 icon: 'glyphicon glyphicon-alert',
-            },{
+            }, {
                 // settings
                 type: 'danger'
             });
@@ -56,8 +108,23 @@ $(document).ready(function(){
 
         console.log(selection);
     });
+
 });
 
+$('iframe').load(function () {
+
+    if (hlsettings) {
+        $('iframe').contents().find('#page-container').css('position', 'relative');
+        $('iframe').contents().find('.pc').css('display', 'block');
+        $('iframe').contents().find('#sidebar').css('display', 'none');
+
+        $('iframe').contents().find('body').scrollTop($('iframe').contents().find('#page-container').find('#pf' + hlsettings.page).position().top + parseInt(hlsettings.top))
+        var iframe = document.getElementsByTagName('iframe')[0];
+        var iframeDoc = iframe.contentWindow;
+        iframeDoc.find(hlsettings.text);
+
+    }
+});
 
 
 //document.getElementsByTagName('iframe')[0].contentWindow.find('That alone might produce $250,000 at age 65, Heritage Foundation found in its assessment of the program')

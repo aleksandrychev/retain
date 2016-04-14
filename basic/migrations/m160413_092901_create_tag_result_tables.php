@@ -10,6 +10,7 @@ class m160413_092901_create_tag_result_tables extends Migration
             'id' => $this->primaryKey(),
             'text' => $this->text(),
             'note' => $this->text(),
+            'date' => $this->string(50),
             'doc_id' => $this->integer(11),
             'tag_id' => $this->integer(11),
             'page_number' => $this->integer(7),
@@ -23,6 +24,7 @@ class m160413_092901_create_tag_result_tables extends Migration
             'result_id' => $this->integer(11),
             'type' => $this->string(20),
             'entity_id' => $this->integer(11),
+            'entity_title' => $this->text(),
         ]);
         $this->addForeignKey('fk-tag_entities', 'tag_entities', 'result_id', 'tags_result', 'id', 'CASCADE');
         $this->createIndex('tag_entities_result_id_I', 'tag_entities', 'result_id');

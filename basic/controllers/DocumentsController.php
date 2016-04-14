@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\AppHelper;
+use app\models\ar\TagsResult;
 use Yii;
 use app\models\ar\Documents;
 use yii\data\ActiveDataProvider;
@@ -52,10 +53,17 @@ class DocumentsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+        if (isset($_GET['resId']) && !empty($_GET['resId'])) {
+            $curHl = TagsResult::find()->where(['=', 'id', $_GET['resId']])->one();
+        } else {
+            $curHl = false;
+        }
 
         return $this->render('view', [
             'model' => $model,
             'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),
+            'tagResults' => TagsResult::find()->where(['=', 'doc_id', $model->id])->all(),
+            'curHl' => $curHl
 
         ]);
     }

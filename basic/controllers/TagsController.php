@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\helpers\AppHelper;
 use app\models\ar\TagsResult;
 use app\models\logic\HighlightModel;
 use Yii;
@@ -108,6 +109,27 @@ class TagsController extends Controller
         return $this->redirect(['index']);
     }
 
+    public function actionSaveAdditionalData()
+    {
+       if($_POST['id'] AND !empty($_POST['id'])){
+           $tagsResult = TagsResult::find()->where(['=','id',$_POST['id']])->one();
+       }else{
+           return json_encode(['error'=>'1' ]);
+       }
+        if($tagsResult && $_POST['field'] && $tagsResult->hasAttribute($_POST['field'])){
+            $tagsResult->$_POST['field'] = $_POST['data'];
+            if($tagsResult->save()){
+                return json_encode(['success'=>'true']);
+            } else {
+                return json_encode(['error'=>'2', 'message'=> $_POST['field'] . ' did\'nt saved']);
+            }
+        } else{
+            return json_encode(['error'=>'3']);
+        }
+
+
+    }
+
     public function actionSelectionProcess()
     {
         $selection = $_POST['selection'];
@@ -119,9 +141,13 @@ class TagsController extends Controller
             $tagsResult->text = $selection['html'];
             $tagsResult->page_number = $selection['page'];
             $tagsResult->positions = json_encode($selection['position']);
+
             if ($tagsResult->save()) {
-                $highlightModel = new HighlightModel();
-                $highlightModel->processHighlighting($tagsResult->id,$tagsResult->doc_id, $selection['html']);
+                $highlightModel = new HighlightModel($tagsResult->id,$tagsResult->doc_id, $selection['html']);
+                $highlightModel->processHighlighting();
+
+
+             echo $this->renderPartial('../documents/sidebar',['hlres'=>$tagsResult]);
             } else {
                 echo json_encode(['error' => 'Something went wrong']);
             }

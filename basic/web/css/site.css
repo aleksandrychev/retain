@@ -93,3 +93,18 @@ a.desc:after {
 #sectionA .btn {
     margin-bottom: 5px;
 }
+
+.ent-tag {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 6px 12px;
+    background-color: #eee;
+    vertical-align: middle;
+    display: inline-block;
+    margin: 0px 3px 5px 0px;
+}
+
+.side-tag {
+    background-color: #D3F3FD;
+
+}
