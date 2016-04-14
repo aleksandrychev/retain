@@ -128,7 +128,7 @@ $(document).ready(function () {
 
 $('iframe').load(function () {
 
-    if (hlsettings.length > 1) {
+    if (hlsettings.page > 0) {
         $('iframe').contents().find('#page-container').css('position', 'relative');
         $('iframe').contents().find('.pc').css('display', 'block');
         $('iframe').contents().find('#sidebar').css('display', 'none');
