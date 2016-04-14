@@ -43,17 +43,7 @@
     <button data-id="<?=  $hlres->id ?>" data-value="" data-field="note" class="save-note btn btn-success pull-right" onclick="saveAdditionalData(this);">save</button>
 </div>
 <?php
-$script = "  $(function () {
-                $('#datetimepicker1')
-                    .datetimepicker({format: 'DD/MM/YYYY', focusOnShow: false})
-                    .on('dp.change', function(){
-                        var elem = $('#datetimepicker1').find('input');
-                        elem.attr('data-value',elem.val());
-
-                        saveAdditionalData(elem);
-                    });
-
-            });";
+$script = "initDateP()";
 $this->registerJs($script);
 
 ?>

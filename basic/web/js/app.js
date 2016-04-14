@@ -4,10 +4,25 @@
 
 function buildSidebar(data) {
     $('.form-tag').html(data);
+
     $('.update-badges-count').click();
-    $('.update-tags-table').click();
+    setTimeout("$('.update-tags-table').click();", 1000)
+    initDateP();
 }
 
+function  initDateP(){
+    $(function () {
+        $('#datetimepicker1')
+            .datetimepicker({format: 'DD/MM/YYYY', focusOnShow: false})
+            .on('dp.hide', function(){
+                var elem = $('#datetimepicker1').find('input');
+                elem.attr('data-value',elem.val());
+
+                saveAdditionalData(elem);
+            });
+
+    });
+}
 
 function saveAdditionalData(elem) {
 
@@ -113,7 +128,7 @@ $(document).ready(function () {
 
 $('iframe').load(function () {
 
-    if (hlsettings) {
+    if (hlsettings.length > 1) {
         $('iframe').contents().find('#page-container').css('position', 'relative');
         $('iframe').contents().find('.pc').css('display', 'block');
         $('iframe').contents().find('#sidebar').css('display', 'none');

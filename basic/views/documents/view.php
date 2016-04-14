@@ -10,15 +10,18 @@ $this->title = $model->title;
 
 ?>
 
-<?php if ($curHl): ?>
+
     <script>
         var hlsettings = {
+            <?php if ($curHl): ?>
             top: '<?= json_decode($curHl->positions)->top - 100 ?>',
             text: '<?= strip_tags($curHl->text)?>',
             page: '<?= $curHl->page_number ?>',
+            <?php endif; ?>
         }
+
     </script>
-<?php endif; ?>
+
 
     <div class="documents-view">
 

@@ -26,7 +26,7 @@
 
         <div class="form-tag">
 <?php
-if(true){
+if($curHl){
 echo  Yii::$app->controller->renderPartial('../documents/sidebar',['hlres'=>$curHl]);
 }
 
