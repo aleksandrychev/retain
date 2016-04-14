@@ -4,9 +4,7 @@
 
 function buildSidebar(data) {
     $('.form-tag').html(data);
-
-    $('.update-badges-count').click();
-    setTimeout("$('.update-tags-table').click();", 1000)
+    updatePjax();
     initDateP();
 }
 
@@ -22,6 +20,12 @@ function  initDateP(){
             });
 
     });
+}
+
+function updatePjax(){
+    $('.update-badges-count').click();
+    setTimeout("$('.update-tags-table').click();", 1000)
+    initDateP();
 }
 
 function saveAdditionalData(elem) {
@@ -57,6 +61,7 @@ function saveAdditionalData(elem) {
                 // settings
                 type: 'success'
             });
+            updatePjax();
         });
 
 }
