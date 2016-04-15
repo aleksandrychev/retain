@@ -32,15 +32,17 @@
 </div>
 
 
-<button class="glyphicon glyphicon-plus add-note btn btn-default" data-toggle="collapse" data-target="#note-area">Add note</button>
-
-<div id="note-area" class="collapse">
+<button class="glyphicon glyphicon-<?=  $hlres->note == '' ? 'plus' : 'edit'  ?> add-note btn btn-default" data-toggle="collapse" data-target=".note-area"><?=  $hlres->note == '' ? 'Add note' : 'Edit note'  ?></button>
+    <div  class="collapse db-note note-area in">
+        <code><?=  $hlres->note ?></code>
+    </div>
+<div  class="collapse note-area ">
     <div class="form-group">
         <label for="comment">Note:</label>
         <textarea class="form-control" rows="5" onkeyup="$('.save-note').attr('data-value', $(this).val())" id="note"><?= strip_tags($hlres->note) ?></textarea>
 
     </div>
-    <button data-id="<?=  $hlres->id ?>" data-value="" data-field="note" class="save-note btn btn-success pull-right" onclick="saveAdditionalData(this);">save</button>
+    <button data-id="<?=  $hlres->id ?>" data-value="" data-field="note" class="save-note btn btn-success pull-right" onclick="saveAdditionalData(this, 'afterNoteSave(\''+ $(this).attr('data-value') +'\')');">save</button>
 </div>
 <?php
 $script = "initDateP()";

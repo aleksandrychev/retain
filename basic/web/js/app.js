@@ -16,7 +16,7 @@ function  initDateP(){
                 var elem = $('#datetimepicker1').find('input');
                 elem.attr('data-value',elem.val());
 
-                saveAdditionalData(elem);
+                saveAdditionalData(elem, '');
             });
 
     });
@@ -28,7 +28,14 @@ function updatePjax(){
     initDateP();
 }
 
-function saveAdditionalData(elem) {
+
+function afterNoteSave(val){
+    $('.add-note').html('Edit note').removeClass('glyphicon-plus ').addClass('glyphicon-edit');
+    $('.db-note').find('code').html(val);
+    $('.add-note').click();
+}
+
+function saveAdditionalData(elem, successfulCallback) {
 
 
     var data = $(elem).attr('data-value');
@@ -54,6 +61,9 @@ function saveAdditionalData(elem) {
             if (data.error) {
                 return false;
             }
+
+            eval(successfulCallback);
+
             $.notify({
                 // options
                 message: $(elem).attr('data-field') + ' was successful saved',
