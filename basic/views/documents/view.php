@@ -31,10 +31,9 @@ $this->title = $model->title;
     <ul class="nav nav-pills">
         <li class="active"><a data-toggle="tab" href="#sectionA">
                 <span class="glyphicon glyphicon-file"></span> Html View </a></li>
-        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted by
-                alchemy <span class="badge"><?= $model->datesCount ?></span></a></li>
+        <li><a data-toggle="tab" href="#sectionB"><span class="glyphicon glyphicon-calendar"></span> Dates extracted<span class="badge"><?= $model->datesCount ?></span></a></li>
         <li><a data-toggle="tab" href="#sectionC">
-                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted by Alchemy <span
+                <span class="glyphicon glyphicon-menu-hamburger"></span> Entities Extracted<span
                     class="badge"><?= $model->entitiesCount ?></span></a></li>
         <li><a data-toggle="tab" href="#sectionD">
 
