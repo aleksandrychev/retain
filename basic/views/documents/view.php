@@ -16,7 +16,7 @@ $this->title = $model->title;
             <?php if ($curHl): ?>
             top: '<?= json_decode($curHl->positions)->top - 100 ?>',
             text: '<?= strip_tags($curHl->text)?>',
-            page: '<?= $curHl->page_number ?>',
+            page: '<?= json_decode($curHl->positions)->selector ?>',
             <?php endif; ?>
         }
 
@@ -54,7 +54,7 @@ $this->title = $model->title;
         <?php Pjax::end(); ?>
     <div class="tab-content">
         <div id="sectionA" class="tab-pane fade in active">
-            <?= Yii::$app->controller->renderPartial('html_view', ['url' => $url, 'model' => $model, 'curHl' => $curHl]); ?>
+            <?= Yii::$app->controller->renderPartial('html_view', ['url' => $url, 'model' => $model, 'tagResults' => $tagResults]); ?>
         </div>
         <div id="sectionC" class="tab-pane fade">
 
@@ -108,5 +108,9 @@ $this->title = $model->title;
 $this->registerJsFile('/js/app.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('/js/notify/bootstrap-notify.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerJsFile('/js/moment-with-locales.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+
 $this->registerJsFile('/js/bootstrap-datetimepicker.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/css/bootstrap-datetimepicker.css');
+
+//$this->registerJsFile('/js/choosen/chosen.jquery.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+//$this->registerCssFile('/js/choosen/chosen.min.css');

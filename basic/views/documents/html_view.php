@@ -26,8 +26,8 @@
 
         <div class="form-tag">
 <?php
-if($curHl){
-echo  Yii::$app->controller->renderPartial('../documents/sidebar',['hlres'=>$curHl]);
+if($tagResults){
+echo  Yii::$app->controller->renderPartial('../documents/sidebar', ['docId' => $model->id]);
 }
 
 ?>

@@ -14,6 +14,8 @@ class m160413_092901_create_tag_result_tables extends Migration
             'doc_id' => $this->integer(11),
             'tag_id' => $this->integer(11),
             'page_number' => $this->integer(7),
+            'line_number' => $this->integer(7),
+            'paragraph_number' => $this->integer(7),
             'positions' => $this->string(200),
         ]);
         $this->addForeignKey('fk-tags-document-id', 'tags_result', 'doc_id', 'documents', 'id', 'CASCADE');

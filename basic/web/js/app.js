@@ -4,17 +4,28 @@
 
 function buildSidebar(data) {
     $('.form-tag').html(data);
-    updatePjax();
     initDateP();
+    updatePjax();
+    $('.save-note').click(function () {
+        saveAdditionalData(this);
+        afterNoteSave(this);
+    });
+
+    $('.pn-pn').find('input').focusout(function () {
+        var el = $(this);
+        el.attr('data-value', el.val());
+        saveAdditionalData(el);
+    });
 }
 
-function  initDateP(){
+function initDateP() {
     $(function () {
-        $('#datetimepicker1')
+        $('.datetimepicker')
             .datetimepicker({format: 'DD/MM/YYYY', focusOnShow: false})
-            .on('dp.hide', function(){
-                var elem = $('#datetimepicker1').find('input');
-                elem.attr('data-value',elem.val());
+            .on('dp.hide', function () {
+
+                var elem = $(this).find('input');
+                elem.attr('data-value', elem.val());
 
                 saveAdditionalData(elem, '');
             });
@@ -22,22 +33,21 @@ function  initDateP(){
     });
 }
 
-function updatePjax(){
+function updatePjax() {
     $('.update-badges-count').click();
     setTimeout("$('.update-tags-table').click();", 1000)
-    initDateP();
+
 }
 
 
-function afterNoteSave(val){
-    $('.add-note').html('Edit note').removeClass('glyphicon-plus ').addClass('glyphicon-edit');
-    $('.db-note').find('code').html(val);
-    $('.add-note').click();
+function afterNoteSave(elem) {
+    var val = $(elem).attr('data-value');
+    $(elem).closest('.hlrow').find('.add-note').html('Edit note').removeClass('glyphicon-plus ').addClass('glyphicon-edit');
+    $(elem).closest('.hlrow').find('.db-note').find('code').html(val);
+    $(elem).closest('.hlrow').find('.add-note').click();
 }
 
 function saveAdditionalData(elem, successfulCallback) {
-
-
     var data = $(elem).attr('data-value');
     if (data.length < 1) {
         $.notify({
@@ -97,10 +107,12 @@ function getSelectionHtml(elem) {
             html = document.selection.createRange().htmlText;
         }
     }
+
     return {
         'html': html,
         position: oRect,
-        page: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no')
+        page: $(sel.anchorNode.parentNode).closest('.pf').index()  + 1,
+        page_selector: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no'),
     };
 }
 
@@ -136,7 +148,20 @@ $(document).ready(function () {
             });
         }
 
-        console.log(selection);
+
+    });
+
+
+    $('.save-note').click(function () {
+        saveAdditionalData(this);
+        afterNoteSave(this);
+    });
+    initDateP();
+
+    $('.pn-pn').find('input').focusout(function () {
+        var el = $(this);
+        el.attr('data-value', el.val());
+        saveAdditionalData(el);
     });
 
 });
@@ -155,6 +180,3 @@ $('iframe').load(function () {
 
     }
 });
-
-
-//document.getElementsByTagName('iframe')[0].contentWindow.find('That alone might produce $250,000 at age 65, Heritage Foundation found in its assessment of the program')

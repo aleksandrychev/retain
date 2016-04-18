@@ -7,45 +7,59 @@
  */
 ?>
 
-<h3>Highlighting</h3>
-<div>
-    <span class="ent-tag side-tag"><?= strip_tags($hlres->tag->title) ?> </span>
+<?php foreach (\app\models\ar\TagsResult::find()->where(['=','doc_id', $docId])->orderBy('id DESC')->all() as $hlres) { ?>
+    <hr>
+    <div class="hlrow">
+        <div>
+            <span class="ent-tag side-tag"><?= strip_tags($hlres->tag->title) ?> </span>
+        </div>
 
-
-</div>
-
-
-
-
-            <div class="form-group">
-                <div class='input-group date' id='datetimepicker1'>
-                    <input data-id="<?=  $hlres->id ?>" data-value=""  data-field="date" value="<?=  $hlres->date ?>" type='text' class="form-control" />
+        <div class="form-group">
+            <div class='input-group date datetimepicker'>
+                <input data-id="<?= $hlres->id ?>" data-value="" data-field="date" value="<?= $hlres->date ?>"
+                       type='text'
+                       class="form-control"/>
                     <span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
-                </div>
             </div>
+        </div>
+
+        <div class="pn-pn">
+            <form class="form-inline">
+                <div class="form-group">
+                    <input data-id="<?= $hlres->id ?>" data-value="" data-field="line_number" type="number"
+                           class="form-control" value="<?= $hlres->line_number ?>" placeholder="Line">
+                </div>
+                <div class="form-group">
+                    <input data-id="<?= $hlres->id ?>" data-value="" data-field="paragraph_number" type="number"
+                           class="form-control"  value="<?= $hlres->paragraph_number ?>" placeholder="Paragraph"></div>
+                <div class="checkbox"></div>
+            </form>
+        </div>
 
 
-<div>
-    <pre><?= strip_tags($hlres->text) ?></pre>
-</div>
+        <div>
+            <div class="hl-area"><?= strip_tags($hlres->text) ?></div>
+        </div>
 
 
-<button class="glyphicon glyphicon-<?=  $hlres->note == '' ? 'plus' : 'edit'  ?> add-note btn btn-default" data-toggle="collapse" data-target=".note-area"><?=  $hlres->note == '' ? 'Add note' : 'Edit note'  ?></button>
-    <div  class="collapse db-note note-area in">
-        <code><?=  $hlres->note ?></code>
+        <button class="glyphicon glyphicon-<?= $hlres->note == '' ? 'plus' : 'edit' ?> add-note btn btn-default"
+                data-toggle="collapse"
+                data-target=".note-area<?= $hlres->id ?>"><?= $hlres->note == '' ? 'Add note' : 'Edit note' ?></button>
+        <div class="collapse db-note note-area<?= $hlres->id ?> in">
+            <code><?= $hlres->note ?></code>
+        </div>
+        <div class="collapse note-area<?= $hlres->id ?> ">
+            <div class="form-group">
+                <label for="comment">Note:</label>
+            <textarea class="form-control" rows="5" onkeyup="$('.save-note').attr('data-value', $(this).val())"
+                      id="note"><?= strip_tags($hlres->note) ?></textarea>
+            </div>
+            <button data-id="<?= $hlres->id ?>" data-value="" data-field="note"
+                    class="save-note btn btn-success pull-right">save
+            </button>
+        </div>
+        <div style="clear: both;"></div>
     </div>
-<div  class="collapse note-area ">
-    <div class="form-group">
-        <label for="comment">Note:</label>
-        <textarea class="form-control" rows="5" onkeyup="$('.save-note').attr('data-value', $(this).val())" id="note"><?= strip_tags($hlres->note) ?></textarea>
-
-    </div>
-    <button data-id="<?=  $hlres->id ?>" data-value="" data-field="note" class="save-note btn btn-success pull-right" onclick="saveAdditionalData(this, 'afterNoteSave(\''+ $(this).attr('data-value') +'\')');">save</button>
-</div>
-<?php
-$script = "initDateP()";
-$this->registerJs($script);
-
-?>
+<?php } ?>

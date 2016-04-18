@@ -140,6 +140,7 @@ class TagsController extends Controller
             $tagsResult->tag_id = $_POST['tag_id'];
             $tagsResult->text = $selection['html'];
             $tagsResult->page_number = $selection['page'];
+            $selection['position']['selector'] = $selection['page_selector'];
             $tagsResult->positions = json_encode($selection['position']);
 
             if ($tagsResult->save()) {
@@ -147,7 +148,7 @@ class TagsController extends Controller
                 $highlightModel->processHighlighting();
 
 
-             echo $this->renderPartial('../documents/sidebar',['hlres'=>$tagsResult]);
+             echo $this->renderPartial('../documents/sidebar', ['docId' => $tagsResult->doc_id ]);
             } else {
                 echo json_encode(['error' => 'Something went wrong']);
             }

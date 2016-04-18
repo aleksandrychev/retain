@@ -56,8 +56,8 @@ class Documents extends \yii\db\ActiveRecord
             'user_ip' => 'User Ip',
             'user_agent' => 'User Agent',
             'html_file' => 'Html File',
-            'datesCount' => 'Dates extracted by alchemy',
-            'entitiesCount' => 'Entities Extracted by Alchemy',
+            'datesCount' => 'Dates extracted',
+            'entitiesCount' => 'Entities Extracted',
         ];
     }
 
