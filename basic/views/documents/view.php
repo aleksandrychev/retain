@@ -37,7 +37,7 @@ $this->title = $model->title;
                     class="badge"><?= $model->entitiesCount ?></span></a></li>
         <li><a data-toggle="tab" href="#sectionD">
 
-                <span class="glyphicon glyphicon-tags"></span> Document tags
+                <span class="glyphicon glyphicon-tags"></span> Notes table
 
                 <span
                     class="badge">

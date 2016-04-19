@@ -21,7 +21,7 @@ function buildSidebar(data) {
 function initDateP() {
     $(function () {
         $('.datetimepicker')
-            .datetimepicker({format: 'DD/MM/YYYY', focusOnShow: false})
+            .datetimepicker({format: 'MMM YYYY', focusOnShow: false})
             .on('dp.hide', function () {
 
                 var elem = $(this).find('input');

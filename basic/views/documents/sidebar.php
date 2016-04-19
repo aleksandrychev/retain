@@ -14,7 +14,7 @@
             <span class="ent-tag side-tag"><?= strip_tags($hlres->tag->title) ?> </span>
         </div>
 
-        <div class="form-group">
+        <div class="form-group" >
             <div class='input-group date datetimepicker'>
                 <input data-id="<?= $hlres->id ?>" data-value="" data-field="date" value="<?= $hlres->date ?>"
                        type='text'
@@ -27,16 +27,14 @@
 
         <div class="pn-pn">
             <form class="form-inline">
-                <div class="form-group">
-                    <input data-id="<?= $hlres->id ?>" data-value="" data-field="line_number" type="number"
-                           class="form-control" value="<?= $hlres->line_number ?>" placeholder="Line">
-                </div>
-                <div class="form-group">
+                 <div class="form-group">
                     <input data-id="<?= $hlres->id ?>" data-value="" data-field="paragraph_number" type="number"
-                           class="form-control"  value="<?= $hlres->paragraph_number ?>" placeholder="Paragraph"></div>
-                <div class="checkbox"></div>
+                           class="form-control"  value="<?= $hlres->paragraph_number ?>" placeholder="Paragraph">
+                 </div>
+
             </form>
         </div>
+        <br />
 
 
         <div>
