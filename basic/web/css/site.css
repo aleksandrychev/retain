@@ -111,7 +111,7 @@ a.desc:after {
 
 .form-tag {
     max-height: 550px;
-    overflow-x: hidden;
+    overflow-x: visible;
     overflow-y: scroll;
     padding-right: 5px;
 }
@@ -133,3 +133,9 @@ a.desc:after {
 .pn-pn input{
     width: 167px !important;
 }
+
+.line_number {
+
+}
+
+

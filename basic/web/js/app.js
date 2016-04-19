@@ -112,6 +112,7 @@ function getSelectionHtml(elem) {
         'html': html,
         position: oRect,
         page: $(sel.anchorNode.parentNode).closest('.pf').index()  + 1,
+        line_number: $(sel.anchorNode.parentNode).closest('.pf').find('.t').index($(sel.anchorNode.parentElement))  + 1,
         page_selector: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no'),
     };
 }
@@ -179,4 +180,32 @@ $('iframe').load(function () {
         iframeDoc.find(hlsettings.text);
 
     }
+    buildLines();
 });
+
+
+function buildLines(){
+
+    $('iframe').contents().find('div.pc').append('<div class="line_number pull-right"></div>');
+
+    $.each( $('iframe').contents().find('div.pc') , function( key, pages ) {
+        $.each( $(pages).find('div.t') , function( key, div ) {
+            var lineElem = $(pages).find('.line_number');
+
+            var classList = $(div).attr('class').split(/\s+/);
+            var classString = '';
+            $.each(classList, function(index, item) {
+
+                if (item.indexOf("x") != 0 ) {
+                   classString = classString + ' ' + item;
+                }
+            });
+
+            eh = $(div).height();
+            fs = $(div).css('font-size');
+            key = key + 1;
+            lineElem.append('<div style="position: absolute;" class="'+ classString +'" >'+ key +'</div>');
+
+        });
+    });
+}

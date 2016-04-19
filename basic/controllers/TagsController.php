@@ -140,6 +140,7 @@ class TagsController extends Controller
             $tagsResult->tag_id = $_POST['tag_id'];
             $tagsResult->text = $selection['html'];
             $tagsResult->page_number = $selection['page'];
+            $tagsResult->line_number = $selection['line_number'];
             $selection['position']['selector'] = $selection['page_selector'];
             $tagsResult->positions = json_encode($selection['position']);
 
