@@ -11,7 +11,7 @@
     <hr>
     <div class="hlrow">
         <div>
-            <span class="ent-tag side-tag"><?= strip_tags(str_replace('div><div','div> <div',$hlres->tag->title)) ?> </span>
+            <span class="ent-tag side-tag"><?= strip_tags($hlres->tag->title) ?> </span>
         </div>
 
         <div class="form-group" >
@@ -38,7 +38,7 @@
 
 
         <div>
-            <div class="hl-area"><?= strip_tags($hlres->text) ?></div>
+            <div class="hl-area"><?= strip_tags(str_replace('</div><div','</div> <div',$$hlres->text)) ?></div>
         </div>
 
 
