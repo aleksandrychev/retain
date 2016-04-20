@@ -38,7 +38,7 @@
 
 
         <div>
-            <div class="hl-area"><?= strip_tags(str_replace('</div><div','</div> <div',$$hlres->text)) ?></div>
+            <div class="hl-area"><?= strip_tags(str_replace('</div><div','</div> <div',$hlres->text)) ?></div>
         </div>
 
 
