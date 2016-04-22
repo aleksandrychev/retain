@@ -187,7 +187,9 @@ $('iframe').load(function () {
 function buildLines(){
 
     $('iframe').contents().find('div.pc').append('<div class="line_number pull-right"></div>');
-
+    $('iframe').contents().find('#sidebar').remove();
+    return false;
+    
     $.each( $('iframe').contents().find('div.pc') , function( key, pages ) {
         $.each( $(pages).find('div.t') , function( key, div ) {
             var lineElem = $(pages).find('.line_number');

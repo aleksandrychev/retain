@@ -19,22 +19,22 @@ class UploadsModel extends Model
     /**
      * @var UploadedFile
      */
-    public $pdf;
+    public $file;
 
     public function rules()
     {
         return [
-            [['pdf'], 'file', 'skipOnEmpty' => false, 'extensions' => 'pdf'],
+            [['file'], 'file', 'skipOnEmpty' => false, 'extensions' => ['pdf','doc','docx']],
         ];
     }
 
     public function upload()
     {
         if ($this->validate()) {
-            $pdfName = $this->pdf->baseName . '.' . $this->pdf->extension;
+            $fileName = $this->file->baseName . '.' . $this->file->extension;
             $doc = new Documents();
-            $doc->createDocumentByName($pdfName);
-            $this->pdf->saveAs(__DIR__ . '/../../web/uploads/pdf/' . $doc->id . '.pdf');
+            $doc->createDocumentByName($fileName);
+            $this->file->saveAs(__DIR__ . '/../../web/uploads/'. $this->file->extension .'/' . $doc->id . '.' . $this->file->extension);
             return $doc;
         } else {
             return false;

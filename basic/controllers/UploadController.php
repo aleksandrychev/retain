@@ -3,7 +3,9 @@
 namespace app\controllers;
 
 
-use app\models\logic\Pdf2htmlExModel;
+use app\models\factories\ConvertStrategyFactory;
+use app\models\logic\Converter;
+use app\models\logic\ConverterManager;
 use app\models\logic\ProcessModel;
 use yii\web\UploadedFile;
 use Yii;
@@ -21,12 +23,17 @@ class UploadController extends \yii\web\Controller
         $model = new UploadsModel();
 
         if (Yii::$app->request->isPost) {
-            $model->pdf = UploadedFile::getInstance($model, 'pdf');
+
+            $model->file = UploadedFile::getInstance($model, 'file');
             $doc = $model->upload();
             if ($doc) {
-                $pdfToHtml = new Pdf2htmlExModel($doc->id);
-                $pdfToHtml->pdfToHtmlConvertion();
-                $pdfToHtml->htmlSaveWithoutTags();
+                $converter = new ConverterManager(ConvertStrategyFactory::getImplementation($model->file->extension));
+
+                $converter
+                    ->setDocId($doc->id)
+                    ->convertToHtml()
+                    ->htmlSaveWithoutTags();
+
                 $process = new ProcessModel($doc);
                 $process->startProcess();
 

@@ -3,7 +3,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 /* @var $this yii\web\View */
 
-$this->title = 'Retain - pdf to html';
+$this->title = 'Retain';
 ?>
 <div class="site-index">
     <h2>Upload Document/s</h2>
@@ -11,14 +11,14 @@ $this->title = 'Retain - pdf to html';
         <div class="row" style="margin-top: 30px;">
             <?php
             $form = ActiveForm::begin([
-                'id' => "pdf-$i",
-                'class' => 'pdf-form',
+                'id' => "file-$i",
+                'class' => 'file-form',
                 'options' => ['class' => 'form-horizontal', 'target' => "_blank", 'enctype' => 'multipart/form-data'],
                 'action' => '/upload/load'
             ]) ?>
             <div class="col-md-5">
-                <?= Html::label("Choose $i pdf file: ", 'uploadsmodel-pdf') ?>
-                <?= $form->field($modelUpload, 'pdf')->fileInput(['class'=>'pdfinput'])->label(false) ?>
+                <?= Html::label("Choose $i file: ", 'uploadsmodel-file') ?>
+                <?= $form->field($modelUpload, 'file')->fileInput(['class'=>'fileinput'])->label(false) ?>
             </div>
             <div class="col-md-1" >
                 <?= Html::submitButton('<span class="glyphicon glyphicon-cog"></span> &nbsp;Process', ['class' => 'btn btn-success btn-xs', 'style' => 'display: none;']) ?>
@@ -32,15 +32,16 @@ $this->title = 'Retain - pdf to html';
 $script = <<<JS
 $('.form-horizontal').unbind('submit');
 $('.form-horizontal').submit(function(){
-var ext = $(this).find('.pdfinput').val().split('.').pop().toLowerCase();
-if($.inArray(ext, ['pdf']) == -1) {
+var ext = $(this).find('.fileinput').val().split('.').pop().toLowerCase();
+
+if($.inArray(ext, ['pdf','doc','docx']) == -1) {
     alert('invalid extension!');
     return false;
 }
 });
-$('.pdfinput').change(function(){
+$('.fileinput').change(function(){
 var ext = $(this).val().split('.').pop().toLowerCase();
-if($.inArray(ext, ['pdf']) == -1) {
+if($.inArray(ext, ['pdf','doc','docx']) == -1) {
 $(this).closest('form').find('.btn').hide();
 
 } else{
