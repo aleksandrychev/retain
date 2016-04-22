@@ -8,48 +8,14 @@ use Yii;
  * This is the model class for table "tags".
  *
  * @property integer $id
+ * @property integer $user
  * @property string $title
  * @property integer $parent_id
+ *
+ * @property User $user0
+ * @property TagsResult[] $tagsResults
  */
-class Tags extends \yii\db\ActiveRecord
+class Tags extends \app\models\ar\base\Tags
 {
-    /**
-     * @inheritdoc
-     */
-    public static function tableName()
-    {
-        return 'tags';
-    }
 
-    /**
-     * @inheritdoc
-     */
-    public function rules()
-    {
-        return [
-            [['parent_id'], 'integer'],
-            [['title'], 'string', 'max' => 200],
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function attributeLabels()
-    {
-        return [
-            'id' => 'ID',
-            'title' => 'Title',
-            'parent_id' => 'Parent ID',
-        ];
-    }
-
-    /**
-     * @inheritdoc
-     * @return TagsQuery the active query used by this AR class.
-     */
-    public static function find()
-    {
-        return new TagsQuery(get_called_class());
-    }
 }

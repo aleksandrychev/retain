@@ -18,7 +18,7 @@
     </div>
     <div class="col-md-4">
         <div>
-            <?php foreach (\app\models\ar\Tags::find()->all() as $tag) { ?>
+            <?php foreach (\app\models\ar\Tags::find()->where(['user'=>Yii::$app->user->id])->all() as $tag) { ?>
                 <button data-document-id="<?= $model->id ?>" data-tag-id="<?= $tag->id ?>" type="button"
                         class="btn btn-primary tagProcess"><?= $tag->title ?></button>
             <?php } ?>

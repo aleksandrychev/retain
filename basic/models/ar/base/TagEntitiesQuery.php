@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models\ar;
+namespace app\models\ar\base;
 
 /**
- * This is the ActiveQuery class for [[TagsResult]].
+ * This is the ActiveQuery class for [[TagEntities]].
  *
- * @see TagsResult
+ * @see TagEntities
  */
-class TagsResultQuery extends \yii\db\ActiveQuery
+class TagEntitiesQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -16,7 +16,7 @@ class TagsResultQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return TagsResult[]|array
+     * @return TagEntities[]|array
      */
     public function all($db = null)
     {
@@ -25,7 +25,7 @@ class TagsResultQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return TagsResult|array|null
+     * @return TagEntities|array|null
      */
     public function one($db = null)
     {

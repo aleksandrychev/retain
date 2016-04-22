@@ -8,6 +8,7 @@ class m160314_124607_initial_migration extends Migration
     {
         $this->createTable('documents', [
             'id' => $this->primaryKey(),
+            'user' => $this->integer(11),
             'title' => $this->string(650),
             'uploaded_date' => $this->integer(11),
             'user_ip' => $this->string(20),
@@ -15,7 +16,7 @@ class m160314_124607_initial_migration extends Migration
             'html_file' => $this->string(100),
         ]);
         $this->createIndex('title', 'documents', 'title(3)');
-
+        $this->addForeignKey('fk-user-document', 'documents', 'user', 'user', 'id', 'CASCADE');
 
         $this->createTable('extracted_entity', [
             'id' => $this->primaryKey(),
@@ -47,6 +48,7 @@ class m160314_124607_initial_migration extends Migration
     {
         $this->dropForeignKey('fk-document-id','extracted_entity');
         $this->dropForeignKey('fk-document-id-ed','extracted_date');
+        $this->dropForeignKey('fk-user-document', 'tags');
 
 
         $this->dropIndex('date_I','extracted_date');

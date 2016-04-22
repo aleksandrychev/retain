@@ -39,7 +39,7 @@ class TagsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Tags::find(),
+            'query' => Tags::find()->where(['user'=>Yii::$app->user->id]),
         ]);
 
         return $this->render('index', [
@@ -54,8 +54,13 @@ class TagsController extends Controller
      */
     public function actionView($id)
     {
+        $model = $this->findModel($id);
+        if($model->user != Yii::$app->user->id){
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $model,
         ]);
     }
 
@@ -69,6 +74,8 @@ class TagsController extends Controller
         $model = new Tags();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            $model->user = Yii::$app->user->id;
+            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -87,6 +94,10 @@ class TagsController extends Controller
     {
         $model = $this->findModel($id);
 
+        if($model->user != Yii::$app->user->id){
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
@@ -104,7 +115,13 @@ class TagsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model =  $this->findModel($id);
+        if($model->user == Yii::$app->user->id){
+            $model->delete();
+        } else{
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+
 
         return $this->redirect(['index']);
     }

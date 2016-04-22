@@ -1,13 +1,13 @@
 <?php
 
-namespace app\models\ar;
+namespace app\models\ar\base;
 
 /**
- * This is the ActiveQuery class for [[ExtractedDate]].
+ * This is the ActiveQuery class for [[ExtractedEntity]].
  *
- * @see ExtractedDate
+ * @see ExtractedEntity
  */
-class ExtractedDateQuery extends \yii\db\ActiveQuery
+class ExtractedEntityQuery extends \yii\db\ActiveQuery
 {
     /*public function active()
     {
@@ -17,7 +17,7 @@ class ExtractedDateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return ExtractedDate[]|array
+     * @return ExtractedEntity[]|array
      */
     public function all($db = null)
     {
@@ -26,7 +26,7 @@ class ExtractedDateQuery extends \yii\db\ActiveQuery
 
     /**
      * @inheritdoc
-     * @return ExtractedDate|array|null
+     * @return ExtractedEntity|array|null
      */
     public function one($db = null)
     {

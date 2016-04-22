@@ -36,7 +36,7 @@ class DocumentsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Documents::find(),
+            'query' => Documents::find()->where(['user'=>Yii::$app->user->id]),
         ]);
 
         return $this->render('index', [
@@ -53,8 +53,14 @@ class DocumentsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
+
+        if($model->user != Yii::$app->user->id){
+            throw new NotFoundHttpException('The requested page does not exist.');
+            return false;
+        }
+
         if (isset($_GET['resId']) && !empty($_GET['resId'])) {
-            $curHl = TagsResult::find()->where(['=', 'id', $_GET['resId']])->one();
+            $curHl = TagsResult::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'id', $_GET['resId']])->one();
         } else {
             $curHl = false;
         }
@@ -62,7 +68,7 @@ class DocumentsController extends Controller
         return $this->render('view', [
             'model' => $model,
             'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),
-            'tagResults' => TagsResult::find()->where(['=', 'doc_id', $model->id])->all(),
+            'tagResults' => TagsResult::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'doc_id', $model->id])->all(),
             'curHl' => $curHl
 
         ]);

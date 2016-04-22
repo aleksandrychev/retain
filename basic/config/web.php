@@ -6,6 +6,25 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'modules' => [
+        'auth' => [
+            'class' => 'auth\Module',
+            'layout' => '/main', // Layout when not logged in yet
+            'layoutLogged' => '/main', // Layout for logged in users
+            'attemptsBeforeCaptcha' => 20, // Optional
+            'supportEmail' => 'support@mydomain.com', // Email for notifications
+            'passwordResetTokenExpire' => 3600, // Seconds for token expiration
+            'superAdmins' => ['admin'], // SuperAdmin users
+            'signupWithEmailOnly' => false, // false = signup with username + email, true = only email signup
+            'tableMap' => [ // Optional, but if defined, all must be declared
+                'User' => 'user',
+                'UserStatus' => 'user_status',
+                'ProfileFieldValue' => 'profile_field_value',
+                'ProfileField' => 'profile_field',
+                'ProfileFieldType' => 'profile_field_type',
+            ],
+        ],
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -14,8 +33,16 @@ $config = [
         'cache' => [
             'class' => 'yii\caching\FileCache',
         ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'ruleTable' => 'AuthRule', // Optional
+            'itemTable' => 'AuthItem',  // Optional
+            'itemChildTable' => 'AuthItemChild',  // Optional
+            'assignmentTable' => 'AuthAssignment',  // Optional
+        ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'auth\components\User',
+            'identityClass' => 'auth\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -23,10 +50,16 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
+            'viewPath' => '@app/mailer',
             'useFileTransport' => true,
+            'transport' => [
+                'class' => 'Swift_SmtpTransport',
+//                'host' => 'your-host-domain e.g. smtp.gmail.com',
+//                'username' => 'your-email-or-username',
+//                'password' => 'your-password',
+                'port' => '587',
+                'encryption' => 'tls',
+            ],
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -41,6 +74,7 @@ $config = [
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
+
             'rules' => [
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>'

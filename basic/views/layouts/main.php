@@ -34,13 +34,32 @@ AppAsset::register($this);
         ],
     ]);
 
+//    echo Nav::widget([
+//        'options' => ['class' => 'navbar-nav navbar-right'],
+//        'items' => [
+//            ['label' => 'Tags editor', 'url' => ['/tags']],
+//            ['label' => 'Results Archive', 'url' => ['/documents']],
+//            ['label' => 'Profile', 'url' => ['/users/updateprofile']],
+//
+//        ],
+//    ]);
+
+    $navItems=[
+        ['label' => 'Tags editor', 'url' => ['/tags']],
+        ['label' => 'Results Archive', 'url' => ['/documents']],
+        ['label' => 'Profile', 'url' => ['/auth/profile/view']],
+    ];
+    if (Yii::$app->user->isGuest) {
+        array_push($navItems,['label' => 'Sign In', 'url' => ['/auth/default/login']],['label' => 'Sign Up', 'url' => ['/auth/default/signup']]);
+    } else {
+        array_push($navItems,['label' => 'Logout (' . Yii::$app->user->identity->username . ')',
+                'url' => ['/auth/default/logout'],
+                'linkOptions' => ['data-method' => 'post']]
+        );
+    }
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
-        'items' => [
-            ['label' => 'Tags editor', 'url' => ['/tags']],
-            ['label' => 'Results Archive', 'url' => ['/documents']],
-
-        ],
+        'items' => $navItems,
     ]);
     NavBar::end();
     ?>
