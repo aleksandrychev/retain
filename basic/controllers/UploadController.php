@@ -4,6 +4,7 @@ namespace app\controllers;
 
 
 use app\models\factories\ConvertStrategyFactory;
+use yii\filters\AccessControl;
 use app\models\logic\Converter;
 use app\models\logic\ConverterManager;
 use app\models\logic\ProcessModel;
@@ -13,6 +14,24 @@ use app\models\logic\UploadsModel;
 
 class UploadController extends \yii\web\Controller
 {
+
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function () {
+                            return !\Yii::$app->user->getIsGuest();
+                        },
+                    ],
+                ],
+            ],
+        ];
+    }
+
     public function actionIndex()
     {
         return $this->render('index');

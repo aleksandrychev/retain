@@ -2,7 +2,7 @@
 
 namespace app\controllers;
 
-use app\helpers\AppHelper;
+use yii\filters\AccessControl;
 use app\models\ar\TagsResult;
 use app\models\logic\HighlightModel;
 use Yii;
@@ -27,6 +27,17 @@ class TagsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function () {
+                            return !\Yii::$app->user->getIsGuest();
+                        },
+                    ],
                 ],
             ],
         ];

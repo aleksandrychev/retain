@@ -19,17 +19,14 @@
         "yiisoft/yii2-bootstrap": "*",
         "yiisoft/yii2-swiftmailer": "*",
         "gufy/pdftohtml-php":"~2",
-        "yiisoft/yii2-swiftmailer": "*",
-        "dektrium/yii2-user": "*"
-
+        "yiisoft/yii2-swiftmailer": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
         "yiisoft/yii2-debug": "*",
         "yiisoft/yii2-gii": "*",
         "yiisoft/yii2-faker": "*",
-        "yiisoft/yii2-swiftmailer": "*",
-        "robregonm/yii2-auth": "*"
+        "yiisoft/yii2-swiftmailer": "*"
     },
     "config": {
         "process-timeout": 1800

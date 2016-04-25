@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\helpers\AppHelper;
 use app\models\ar\TagsResult;
+use yii\filters\AccessControl;
 use Yii;
 use app\models\ar\Documents;
 use yii\data\ActiveDataProvider;
@@ -24,6 +25,17 @@ class DocumentsController extends Controller
                 'class' => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['post'],
+                ],
+            ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function () {
+                            return !\Yii::$app->user->getIsGuest();
+                        },
+                    ],
                 ],
             ],
         ];
