@@ -11,8 +11,10 @@ namespace app\models\logic;
 
 use app\helpers\AppHelper;
 use app\models\ar\Documents;
+use app\models\ar\ExtractedConcepts;
 use app\models\ar\ExtractedDate;
 use app\models\ar\ExtractedEntity;
+use app\models\ar\ExtractedKeywords;
 use yii\base\Model;
 
 class ProcessModel extends Model
@@ -22,11 +24,24 @@ class ProcessModel extends Model
     private $api;
     private $url;
 
+    /*
+     * @Todo : make process more flexible, add save manager and process manager
+     *
+     */
+//    private $processes = [
+//        [ 'apiMethod' => 'textGetRankedNamedEntities', 'jsonEntity' => 'entities'],
+//        [ 'apiMethod' => 'textGetRankedNamedEntities', 'jsonEntity' => 'entities'],
+//        [ 'apiMethod' => 'textGetRankedNamedEntities', 'jsonEntity' => 'entities'],
+//        [ 'apiMethod' => 'textGetRankedNamedEntities', 'jsonEntity' => 'entities'],
+//    ];
+
     public function __construct(Documents $document)
     {
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById($this->document->id);
+        $this->url = "http://pdf2html.demo.relevant.software/documents/html/140";
+        $this->api->setUrl($this->url)->init();
 
     }
 
@@ -35,6 +50,8 @@ class ProcessModel extends Model
         $this->checkSentencesDocument();
         $this->processEntity();
         $this->processDate();
+        $this->processKeywords();
+        $this->processConcepts();
 
         header('location: /documents/view/' . $this->document->id);
         exit;
@@ -52,7 +69,7 @@ class ProcessModel extends Model
 
     private function processEntity()
     {
-        $entities = $this->api->textGetRankedNamedEntities($this->url);
+        $entities = $this->api->textGetRankedNamedEntities();
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
                 $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file, false);
@@ -66,7 +83,7 @@ class ProcessModel extends Model
 
     private function processDate()
     {
-        $dates = $this->api->textExtractDates($this->url);
+        $dates = $this->api->textExtractDates();
         AppHelper::$tempSent = [];
         if ($dates && $dates->status == 'OK' && count($dates->dates) > 0) {
             foreach ($dates->dates as $date) {
@@ -77,6 +94,25 @@ class ProcessModel extends Model
 
         }
     }
+
+    private function processKeywords(){
+        $keywords = $this->api->textExtractKeywords(); //keywords
+        if ($keywords && $keywords->status == 'OK' && count($keywords->keywords) > 0) {
+            foreach ($keywords->keywords as $k) {
+               $this->saveKC($k, new ExtractedKeywords());
+            }
+        }
+    }
+
+    private function processConcepts(){
+        $concepts = $this->api->textExtractConcepts(); //keywords
+        if ($concepts && $concepts->status == 'OK' && count($concepts->concepts) > 0) {
+            foreach ($concepts->concepts as $c) {
+                $this->saveKC($c, new ExtractedConcepts());
+            }
+        }
+    }
+
 
     private function saveEntity($entity)
     {
@@ -95,6 +131,15 @@ class ProcessModel extends Model
         $extractedEntity->date = $date->text;
         $extractedEntity->full_sentence = $date->full_sentence;
         $extractedEntity->save();
+    }
+
+    private function saveKC($res, $item)
+    {
+        $item->text = $res->text;
+        $item->relevance = $res->relevance;
+        $item->doc_id = $this->document->id;
+        $item->save();
+
     }
 
 

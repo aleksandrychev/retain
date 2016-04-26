@@ -11,41 +11,56 @@ namespace app\models\logic;
 
 class AlchemyAPI
 {
+    private $urlDoc;
     private $apiKey = '7ba9369c80e73f358e8d6ad4ac9d8f6cf796f9ec';
     private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLExtractDates';
     private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
+    private $keywordsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedKeywords';
+    private $conceptsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedConcepts';
+    private $data;
+
+    public function init()
+    {
+    $this->data    = [
+        'apikey' => $this->apiKey,
+        'outputMode' => 'json',
+        'maxRetrieve' => 500,
+        'showSourceText' => 0,
+        'url' => $this->urlDoc
+    ];
+        return $this;
+    }
 
     public function setApiKey($key)
     {
         $this->apiKey = $key;
     }
 
-    public function textGetRankedNamedEntities($url)
+    public function setUrl($url)
     {
-        $data = [
-            'apikey' => $this->apiKey,
-            'outputMode' => 'json',
-            'showSourceText' => 1,
-            'maxRetrieve' => 500,
-            'sentiment' => 1,
-            'url' => $url
-        ];
-
-        return $this->callAPI($this->entityApiUrl, $data);
+        $this->urlDoc = $url;
+        return $this;
     }
 
-    public function textExtractDates($url)
+    public function textGetRankedNamedEntities()
     {
+        return $this->callAPI($this->entityApiUrl, $this->data);
+    }
 
-        $data = [
-            'apikey' => $this->apiKey,
-            'outputMode' => 'json',
-            'maxRetrieve' => 500,
-            'showSourceText' => 1,
-            'url' => $url
-        ];
+    public function textExtractDates()
+    {
+        return $this->callAPI($this->dateApiUrl, $this->data);
+    }
 
-        return $this->callAPI($this->dateApiUrl, $data);
+
+    public function textExtractKeywords()
+    {
+               return $this->callAPI($this->keywordsApiUrl , $this->data);
+    }
+
+    public function textExtractConcepts()
+    {
+        return $this->callAPI($this->conceptsApiUrl , $this->data);
     }
 
 
