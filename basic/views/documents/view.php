@@ -49,6 +49,12 @@ $this->title = $model->title;
 
         </li>
 
+        <li>
+            <a data-toggle="tab" href="#sectionE">
+                <span class="glyphicon glyphicon-random"></span> Keywords and Concepts
+            </a>
+        </li>
+
     </ul>
         <?php Pjax::end(); ?>
     <div class="tab-content">
@@ -99,6 +105,11 @@ $this->title = $model->title;
         <div id="sectionD" class="tab-pane fade">
             <?= Yii::$app->controller->renderPartial('tags_table',
                 ['url' => $url, 'model' => $model, 'tagResults' => $tagResults]); ?>
+        </div>
+
+        <div id="sectionE" class="tab-pane fade">
+            <?= Yii::$app->controller->renderPartial('keyword_concept_table',
+                ['url' => $url, 'model' => $model]); ?>
         </div>
 
     </div>
