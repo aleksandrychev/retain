@@ -4,6 +4,7 @@ namespace app\models\ar\base;
 
 use app\models\ar\ExtractedConcepts;
 use app\models\ar\ExtractedKeywords;
+use app\models\ar\Projects;
 use Yii;
 
 /**
@@ -16,6 +17,7 @@ use Yii;
  * @property string $user_ip
  * @property string $user_agent
  * @property string $html_file
+ * @property string $project_id
  *
  * @property User $user0
  * @property ExtractedDate[] $extractedDates
@@ -24,6 +26,7 @@ use Yii;
  */
 class Documents extends \yii\db\ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -32,14 +35,17 @@ class Documents extends \yii\db\ActiveRecord
         return 'documents';
     }
 
+
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['user', 'uploaded_date'], 'integer'],
+            [['user', 'uploaded_date', 'project_id'], 'integer'],
             [['title'], 'string', 'max' => 650],
+            [['projectName'], 'safe'],
             [['user_ip'], 'string', 'max' => 20],
             [['user_agent'], 'string', 'max' => 400],
             [['html_file'], 'string', 'max' => 100],
@@ -60,15 +66,21 @@ class Documents extends \yii\db\ActiveRecord
             'user_ip' => 'User Ip',
             'user_agent' => 'User Agent',
             'html_file' => 'Html File',
+            'projectName' => 'Project',
         ];
     }
 
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getUser0()
+    public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user']);
+    }
+
+    public function getProject()
+    {
+        return $this->hasOne(Projects::className(), ['id' => 'project_id']);
     }
 
     /**
@@ -111,6 +123,8 @@ class Documents extends \yii\db\ActiveRecord
         return $this->hasMany(TagsResult::className(), ['doc_id' => 'id']);
     }
 
+
+
     /**
      * @inheritdoc
      * @return DocumentsQuery the active query used by this AR class.
@@ -119,4 +133,6 @@ class Documents extends \yii\db\ActiveRecord
     {
         return new DocumentsQuery(get_called_class());
     }
+
+
 }

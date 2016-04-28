@@ -28,16 +28,6 @@ $this->params['breadcrumbs'][] = Yii::t('auth.user', 'Update');
 
 		<?= $form->field($model, 'password')->passwordInput(['value'=>'']) ?>
 
-		<?php if ($model->getIsSuperAdmin()): // ToDo: Allow admins too ?>
-			<?=
-			$form->field($model, 'status')->dropDownList([
-				User::STATUS_INACTIVE => $model->getStatus(User::STATUS_INACTIVE),
-				User::STATUS_ACTIVE => $model->getStatus(User::STATUS_ACTIVE),
-				User::STATUS_SUSPENDED => $model->getStatus(User::STATUS_SUSPENDED),
-				User::STATUS_DELETED => $model->getStatus(User::STATUS_DELETED),
-			]) ?>
-		<?php endif; ?>
-
 		<div class="">
 		</div>
 

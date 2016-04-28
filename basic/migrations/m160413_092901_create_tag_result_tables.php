@@ -1,11 +1,14 @@
 <?php
 
 use yii\db\Migration;
-
+/*
+ * @todo: will be removed in older versions
+ */
 class m160413_092901_create_tag_result_tables extends Migration
 {
     public function up()
     {
+        return true;
         $this->createTable('tags_result', [
             'id' => $this->primaryKey(),
             'text' => $this->text(),
@@ -37,6 +40,7 @@ class m160413_092901_create_tag_result_tables extends Migration
 
     public function down()
     {
+        return true;
         $this->dropForeignKey('fk-tag_entities', 'tag_entities');
         $this->dropForeignKey('fk-tags-document-id', 'tags_result');
         $this->dropForeignKey('fk-tags-id', 'tags_result');

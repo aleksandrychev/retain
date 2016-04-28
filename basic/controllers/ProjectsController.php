@@ -2,21 +2,19 @@
 
 namespace app\controllers;
 
-use app\models\ar\SentencesPlusHl;
-use yii\filters\AccessControl;
-use app\models\ar\TagsResult;
-use app\models\logic\HighlightModel;
+use app\models\ar\Documents;
 use Yii;
-use app\models\ar\Tags;
+use app\models\ar\Projects;
 use yii\data\ActiveDataProvider;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TagsController implements the CRUD actions for Tags model.
+ * ProjectsController implements the CRUD actions for Projects model.
  */
-class TagsController extends Controller
+class ProjectsController extends Controller
 {
     /**
      * @inheritdoc
@@ -45,13 +43,13 @@ class TagsController extends Controller
     }
 
     /**
-     * Lists all Tags models.
+     * Lists all Projects models.
      * @return mixed
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Tags::find()->where(['user'=>Yii::$app->user->id]),
+            'query' => Projects::find()->where(['user'=>Yii::$app->user->id]),
         ]);
 
         return $this->render('index', [
@@ -60,34 +58,40 @@ class TagsController extends Controller
     }
 
     /**
-     * Displays a single Tags model.
+     * Displays a single Projects model.
      * @param integer $id
      * @return mixed
      */
     public function actionView($id)
     {
-        $model = $this->findModel($id);
+        $model =  $this->findModel($id);
         if($model->user != Yii::$app->user->id){
             throw new NotFoundHttpException('The requested page does not exist.');
+            return false;
         }
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Documents::find()->where(['user'=>Yii::$app->user->id, 'project_id' => $id ]),
+        ]);
+
 
         return $this->render('view', [
             'model' => $model,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
     /**
-     * Creates a new Tags model.
+     * Creates a new Projects model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new SentencesPlusHl();
+        $model = new Projects();
+
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            $model->user = Yii::$app->user->id;
-            $model->save();
             return $this->redirect(['view', 'id' => $model->id]);
         } else {
             return $this->render('create', [
@@ -97,7 +101,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Updates an existing Tags model.
+     * Updates an existing Projects model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -108,6 +112,7 @@ class TagsController extends Controller
 
         if($model->user != Yii::$app->user->id){
             throw new NotFoundHttpException('The requested page does not exist.');
+            return false;
         }
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
@@ -120,7 +125,7 @@ class TagsController extends Controller
     }
 
     /**
-     * Deletes an existing Tags model.
+     * Deletes an existing Projects model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -134,72 +139,19 @@ class TagsController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
-
         return $this->redirect(['index']);
     }
 
-    public function actionSaveAdditionalData()
-    {
-       if($_POST['id'] AND !empty($_POST['id'])){
-           $tagsResult = TagsResult::find()->where(['=','id',$_POST['id']])->one();
-       }else{
-           return json_encode(['error'=>'1' ]);
-       }
-        if($tagsResult && $_POST['field'] && $tagsResult->hasAttribute($_POST['field'])){
-            $tagsResult->$_POST['field'] = $_POST['data'];
-            if($tagsResult->save()){
-                return json_encode(['success'=>'true']);
-            } else {
-                return json_encode(['error'=>'2', 'message'=> $_POST['field'] . ' did\'nt saved']);
-            }
-        } else{
-            return json_encode(['error'=>'3']);
-        }
-
-
-    }
-
-    public function actionSelectionProcess()
-    {
-        $selection = $_POST['selection'];
-
-        if (!empty($selection) AND is_array($selection)) {
-            $tagsResult = new SentencesPlusHl();
-            $tagsResult->doc_id = $_POST['doc_id'];
-            $tagsResult->tag_id = $_POST['tag_id'];
-            $tagsResult->user_id = \Yii::$app->user->id;
-            $tagsResult->sent_hl = $selection['html'];
-            $tagsResult->page_number = $selection['page'];
-            $tagsResult->line_number = $selection['line_number'];
-            $selection['position']['selector'] = $selection['page_selector'];
-            $tagsResult->positions = json_encode($selection['position']);
-
-            if ($tagsResult->save()) {
-                $highlightModel = new HighlightModel($tagsResult,$tagsResult->doc_id, $selection['html']);
-                $highlightModel->processHighlighting();
-
-
-             echo $this->renderPartial('../documents/sidebar', ['docId' => $tagsResult->doc_id ]);
-            } else {
-                echo json_encode(['error' => 'Something went wrong']);
-            }
-
-        } else {
-            echo json_encode(['error' => 'Selection must be dosen\'t  empty']);
-        }
-
-    }
-
     /**
-     * Finds the Tags model based on its primary key value.
+     * Finds the Projects model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tags the loaded model
+     * @return Projects the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = SentencesPlusHl::findOne($id)) !== null) {
+        if (($model = Projects::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

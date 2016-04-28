@@ -6,8 +6,19 @@ class m160314_124607_initial_migration extends Migration
 {
     public function up()
     {
+
+        $this->createTable('projects', [
+            'id' => $this->primaryKey(),
+            'title' => $this->string(200),
+            'position' => $this->integer(4)->defaultValue(0),
+            'user' => $this->integer(11),
+        ]);
+        $this->createIndex('title-pr-I', 'projects', 'title(3)');
+        $this->addForeignKey('fk-user-project', 'projects', 'user', 'user', 'id', 'CASCADE');
+
         $this->createTable('documents', [
             'id' => $this->primaryKey(),
+            'project_id' => $this->integer(11),
             'user' => $this->integer(11),
             'title' => $this->string(650),
             'uploaded_date' => $this->integer(11),
@@ -17,6 +28,7 @@ class m160314_124607_initial_migration extends Migration
         ]);
         $this->createIndex('title', 'documents', 'title(3)');
         $this->addForeignKey('fk-user-document', 'documents', 'user', 'user', 'id', 'CASCADE');
+        $this->addForeignKey('fk-project-document', 'documents', 'project_id', 'projects', 'id', 'CASCADE');
 
         $this->createTable('extracted_entity', [
             'id' => $this->primaryKey(),
@@ -46,6 +58,8 @@ class m160314_124607_initial_migration extends Migration
 
     public function down()
     {
+        $this->dropForeignKey('fk-project-document', 'documents');
+        $this->dropForeignKey('fk-user-project', 'projects');
         $this->dropForeignKey('fk-document-id','extracted_entity');
         $this->dropForeignKey('fk-document-id-ed','extracted_date');
         $this->dropForeignKey('fk-user-document', 'tags');

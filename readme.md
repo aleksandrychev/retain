@@ -8,6 +8,7 @@ install uoconv
 give www-data user sudoers to scripts
 install auth module https://github.com/robregonm/yii2-auth
 
+php yii migrate/up --migrationPath=@app/modules/auth/migrations
 
 ---INSTALL RUBY-------
 cd

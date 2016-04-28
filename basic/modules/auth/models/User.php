@@ -88,7 +88,7 @@ class User extends ActiveRecord implements IdentityInterface
 	public static function findByUsername($username)
 	{
 		return static::find()
-					 ->andWhere(['and', ['or', ['username' => $username], ['email' => $username]], ['status' => static::STATUS_ACTIVE]])
+					 ->andWhere(['and', ['or', ['username' => $username], ['email' => $username]], ['status' => [static::STATUS_ACTIVE, static::STATUS_SUPERADMIN]]])
 					 ->one();
 	}
 
@@ -200,7 +200,7 @@ class User extends ActiveRecord implements IdentityInterface
             [
                 'status',
                 'in',
-                'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED, self::STATUS_INACTIVE, self::STATUS_SUSPENDED]
+                'range' => [self::STATUS_ACTIVE, self::STATUS_SUPERADMIN, self::STATUS_DELETED, self::STATUS_INACTIVE, self::STATUS_SUSPENDED]
             ],
 			['username', 'filter', 'filter' => 'trim'],
 			['username', 'required'],

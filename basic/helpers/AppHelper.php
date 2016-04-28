@@ -44,6 +44,14 @@ class AppHelper
 
     }
 
+    public static function getDocumentSentences($htmlFileName){
+        $sentences = file_get_contents(__DIR__ . '/../web/uploads/json/' . $htmlFileName);
+        $sentences = str_replace(array('["','"]'),'',$sentences);
+        return explode('", "',$sentences);
+    }
+
+
+
     public static function findInArray($sentences, $phrase, $merge, $d)
     {
         $tms = $sentences;

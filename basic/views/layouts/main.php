@@ -45,9 +45,11 @@ AppAsset::register($this);
 //    ]);
 
     $navItems=[
-        ['label' => 'Tags editor', 'url' => ['/tags']],
-        ['label' => 'Results Archive', 'url' => ['/documents']],
-        ['label' => 'Profile', 'url' => ['/auth/profile/view']],
+        ['label' => 'Projects', 'url' => ['/projects'], 'visible' =>  !Yii::$app->user->isGuest],
+        ['label' => 'Tags', 'url' => ['/tags'], 'visible' =>  !Yii::$app->user->isGuest],
+        ['label' => 'Results Archive', 'url' => ['/documents'] , 'visible' =>  !Yii::$app->user->isGuest],
+        ['label' => 'Profile', 'url' => ['/auth/profile/view'] , 'visible' =>  !Yii::$app->user->isGuest],
+        ['label' => 'Users', 'url' => ['/auth/user'] , 'visible' =>  Yii::$app->user->getIsSuperAdmin()],
     ];
     if (Yii::$app->user->isGuest) {
         array_push($navItems,['label' => 'Sign In', 'url' => ['/auth/default/login']],['label' => 'Sign Up', 'url' => ['/auth/default/signup']]);

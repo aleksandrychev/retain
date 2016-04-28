@@ -6,52 +6,15 @@ use yii\helpers\Html;
 $this->title = 'Retain';
 ?>
 <div class="site-index">
-    <h2>Upload Document/s</h2>
-    <?php for ($i = 1; $i < 4; $i++) { ?>
-        <div class="row" style="margin-top: 30px;">
-            <?php
-            $form = ActiveForm::begin([
-                'id' => "file-$i",
-                'class' => 'file-form',
-                'options' => ['class' => 'form-horizontal', 'target' => "_blank", 'enctype' => 'multipart/form-data'],
-                'action' => '/upload/load'
-            ]) ?>
-            <div class="col-md-5">
-                <?= Html::label("Choose $i file: ", 'uploadsmodel-file') ?>
-                <?= $form->field($modelUpload, 'file')->fileInput(['class'=>'fileinput'])->label(false) ?>
-            </div>
-            <div class="col-md-1" >
-                <?= Html::submitButton('<span class="glyphicon glyphicon-cog"></span> &nbsp;Process', ['class' => 'btn btn-success btn-xs', 'style' => 'display: none;']) ?>
-                <?= Html::hiddenInput('_csrf', Yii::$app->request->getCsrfToken()) ?>
-            </div>
-            <?php ActiveForm::end() ?>
-        </div>
+    <h2>Select Project</h2>
+<div class="row">
+<?php if($projects) {?>
+    <?php foreach($projects as $p){ ?>
+        <a  href="<?= \yii\helpers\Url::toRoute(['projects/view', 'id' => $p->id]) ?>" class="btn btn-primary"><?= $p->title ?></a>
     <?php } ?>
+    <a class="btn btn-success" href="/projects/create"><span class="glyphicon glyphicon-plus"></span> add new project</a>
+<?php } else { ?>
+<p>You have to <a href="/projects/create">create the project</a> of documents </p>
+<?php } ?>
 </div>
-<?php
-$script = <<<JS
-$('.form-horizontal').unbind('submit');
-$('.form-horizontal').submit(function(){
-var ext = $(this).find('.fileinput').val().split('.').pop().toLowerCase();
-
-if($.inArray(ext, ['pdf','doc','docx']) == -1) {
-    alert('invalid extension!');
-    return false;
-}
-});
-$('.fileinput').change(function(){
-var ext = $(this).val().split('.').pop().toLowerCase();
-if($.inArray(ext, ['pdf','doc','docx']) == -1) {
-$(this).closest('form').find('.btn').hide();
-
-} else{
-$(this).closest('form').find('.btn').show();
-}
-});
-JS;
-$this->registerJs($script);
-?>
-<style>
-    .form-group  {display: inline-block;vertical-align: top;}
-    label {display:inline-block;margin-right: 20px !important;}
-</style>
+</div>

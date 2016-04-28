@@ -18,6 +18,11 @@ class Documents extends \app\models\ar\base\Documents
         return count($this->extractedDates);
     }
 
+    public function getProjectName()
+    {
+          if($this->project)  return $this->project->title;
+    }
+
     public function createDocumentByName($pdfName)
     {
         $this->title = $pdfName;

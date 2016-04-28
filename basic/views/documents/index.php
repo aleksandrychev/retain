@@ -22,6 +22,13 @@ $this->title = 'Results Archive';
                     return $model->id;
                 },
             ],
+            'project' => [
+                'header' => 'Project',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return '<a target="_blank" href="' . \yii\helpers\Url::toRoute(['projects/view', 'id' => $model->project->id]) . '">' . $model->project->title . '</a>';
+                },
+            ],
             'title' => [
                 'header' => 'Document',
                 'format' => 'raw',

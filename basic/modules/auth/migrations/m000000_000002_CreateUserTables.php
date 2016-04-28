@@ -18,7 +18,7 @@ class m000000_000002_CreateUserTables extends \yii\db\Migration
 					 'password_hash' => Schema::TYPE_STRING . '(128) NOT NULL',
 					 'password_reset_token' => Schema::TYPE_STRING . '(32)',
 					 'auth_key' => Schema::TYPE_STRING . '(128)',
-					 'status' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT ' . \auth\models\User::STATUS_ACTIVE,
+					 'status' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT ' . auth\models\User::STATUS_ACTIVE,
 					 'last_visit_time' => Schema::TYPE_TIMESTAMP,
 					 'create_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
 					 'update_time' => Schema::TYPE_TIMESTAMP,
@@ -112,9 +112,15 @@ class m000000_000002_CreateUserTables extends \yii\db\Migration
 		$this->readStdinUser('Type Username', $adminUser, 'username', $adminUser->email);
 		$this->readStdinUser('Type Password', $adminUser, 'password', 'admin');
 
+
 		if (!$adminUser->save()) {
 			throw new \yii\console\Exception('Error when creating admin user.');
 		}
+		var_dump($adminUser);
+		$adminUser->status = 89;
+
+		$adminUser->save();
+		var_dump($adminUser);
 		echo 'User created successfully.' . PHP_EOL;
 	}
 

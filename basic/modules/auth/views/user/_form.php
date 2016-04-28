@@ -22,10 +22,10 @@ use auth\models\User;
 		<?= $form->field($model, 'password')->passwordInput(['maxlength' => 128]) ?>
 
 	<?=	$form->field($model, 'status')->dropDownList([
-		User::STATUS_INACTIVE => $model->getStatus(User::STATUS_INACTIVE),
 		User::STATUS_ACTIVE => $model->getStatus(User::STATUS_ACTIVE),
-		User::STATUS_SUSPENDED => $model->getStatus(User::STATUS_SUSPENDED),
-		User::STATUS_DELETED => $model->getStatus(User::STATUS_DELETED),
+		User::STATUS_INACTIVE => $model->getStatus(User::STATUS_INACTIVE),
+		User::STATUS_SUPERADMIN => $model->getStatus(User::STATUS_SUPERADMIN),
+
 	]) ?>
 
 	<div class="form-group">

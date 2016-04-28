@@ -15,6 +15,7 @@ use app\models\ar\ExtractedConcepts;
 use app\models\ar\ExtractedDate;
 use app\models\ar\ExtractedEntity;
 use app\models\ar\ExtractedKeywords;
+use app\models\ar\SentencesPlusHl;
 use yii\base\Model;
 
 class ProcessModel extends Model
@@ -52,18 +53,38 @@ class ProcessModel extends Model
         $this->processDate();
         $this->processKeywords();
         $this->processConcepts();
+        $this->writeSentenceToDb();
 
         header('location: /documents/view/' . $this->document->id);
         exit;
     }
 
-    private function checkSentencesDocument(){
+    private function checkSentencesDocument()
+    {
         $i = 0;
-        while(!file_exists(__DIR__ . '/../../web/uploads/json/' . $this->document->id . '.html' )){
-            if($i++ > 610){
+        while (!file_exists(__DIR__ . '/../../web/uploads/json/' . $this->document->id . '.html')) {
+            if ($i++ > 610) {
                 break;
             }
             sleep(1);
+        }
+    }
+
+    private function writeSentenceToDb()
+    {
+        $sentences = AppHelper::getDocumentSentences($this->document->html_file);
+
+        foreach($sentences as $s){
+            $sentHL = new SentencesPlusHl();
+            $sentHL->sent_hl = $s;
+            $sentHL->doc_id = $this->document->id;
+            $sentHL->user_id = \Yii::$app->user->id;
+            $sentHL->save();
+
+            /*
+             * search entity and write clone
+             */
+
         }
     }
 
@@ -72,7 +93,8 @@ class ProcessModel extends Model
         $entities = $this->api->textGetRankedNamedEntities();
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
-                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file, false);
+                $entity->full_sentence = AppHelper::getSentenceByPhrase($entity->text, $this->document->html_file,
+                    false);
                 $this->saveEntity($entity);
             }
 
@@ -95,16 +117,18 @@ class ProcessModel extends Model
         }
     }
 
-    private function processKeywords(){
+    private function processKeywords()
+    {
         $keywords = $this->api->textExtractKeywords(); //keywords
         if ($keywords && $keywords->status == 'OK' && count($keywords->keywords) > 0) {
             foreach ($keywords->keywords as $k) {
-               $this->saveKC($k, new ExtractedKeywords());
+                $this->saveKC($k, new ExtractedKeywords());
             }
         }
     }
 
-    private function processConcepts(){
+    private function processConcepts()
+    {
         $concepts = $this->api->textExtractConcepts(); //keywords
         if ($concepts && $concepts->status == 'OK' && count($concepts->concepts) > 0) {
             foreach ($concepts->concepts as $c) {

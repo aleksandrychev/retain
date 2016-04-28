@@ -14,7 +14,6 @@ $config = [
             'attemptsBeforeCaptcha' => 420, // Optional
             'supportEmail' => 'support@mydomain.com', // Email for notifications
             'passwordResetTokenExpire' => 7200, // Seconds for token expiration
-            'superAdmins' => '89', // SuperAdmin users
             'signupWithEmailOnly' => false, // false = signup with username + email, true = only email signup
             'tableMap' => [ // Optional, but if defined, all must be declared
                 'User' => 'user',
@@ -24,6 +23,14 @@ $config = [
                 'ProfileFieldType' => 'profile_field_type',
             ],
         ],
+        'gridview' =>  [
+            'class' => '\kartik\grid\Module'
+            // enter optional module parameters below - only if you need to
+            // use your own export download action or custom translation
+            // message source
+            // 'downloadAction' => 'gridview/export/download',
+            // 'i18n' => []
+        ]
     ],
     'components' => [
         'request' => [
@@ -77,6 +84,7 @@ $config = [
             'showScriptName' => false,
 
             'rules' => [
+                '' => 'projects/index',
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>'
             ],

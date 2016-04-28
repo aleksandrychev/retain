@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\ar\Projects;
 use app\models\logic\UploadsModel;
 use app\models\LoginForm;
 use Yii;
@@ -61,8 +62,8 @@ class SiteController extends Controller
     public function actionIndex()
     {
 
-        $mu = new UploadsModel();
-        return $this->render('index',['modelUpload' => $mu]);
+        $projects = Projects::find()->where(['user'=>Yii::$app->user->id])->all();
+        return $this->render('index',['projects' => $projects]);
     }
 
     public function actionLogin()

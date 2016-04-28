@@ -3,6 +3,7 @@
 namespace app\controllers;
 
 use app\helpers\AppHelper;
+use app\models\ar\search\DocumentSearch;
 use app\models\ar\TagsResult;
 use yii\filters\AccessControl;
 use Yii;
@@ -47,14 +48,15 @@ class DocumentsController extends Controller
      */
     public function actionIndex()
     {
-        $dataProvider = new ActiveDataProvider([
-            'query' => Documents::find()->where(['user'=>Yii::$app->user->id]),
-        ]);
+
+        $searchModel = new DocumentSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
+            'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-
         ]);
+
     }
 
     /**
