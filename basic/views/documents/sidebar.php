@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php foreach (\app\models\ar\TagsResult::find()->where(['=','doc_id', $docId])->orderBy('id DESC')->all() as $hlres) { ?>
+<?php foreach (\app\models\ar\SentencesPlusHl::find()->where(['=','doc_id', $docId])->where('tag_id IS NOT NULL')->orderBy('id DESC')->all() as $hlres) { ?>
     <hr>
     <div class="hlrow">
         <div>
@@ -16,7 +16,7 @@
 
         <div class="form-group" >
             <div class='input-group date datetimepicker'>
-                <input data-id="<?= $hlres->id ?>" data-value="" data-field="date" value="<?= $hlres->date ?>"
+                <input data-id="<?= $hlres->id ?>" data-value="" data-field="manual_date" value="<?= $hlres->manual_date ?>"
                        type='text'
                        class="form-control"/>
                     <span class="input-group-addon">
@@ -38,7 +38,7 @@
 
 
         <div>
-            <div class="hl-area"><?= strip_tags(str_replace('</div><div','</div> <div',$hlres->text)) ?></div>
+            <div class="hl-area"><?= strip_tags(str_replace('</div><div','</div> <div',$hlres->sent_hl)) ?></div>
         </div>
 
 

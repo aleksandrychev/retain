@@ -21,13 +21,13 @@ class AlchemyAPI
 
     public function init()
     {
-    $this->data    = [
-        'apikey' => $this->apiKey,
-        'outputMode' => 'json',
-        'maxRetrieve' => 500,
-        'showSourceText' => 0,
-        'url' => $this->urlDoc
-    ];
+        $this->data = [
+            'apikey' => $this->apiKey,
+            'outputMode' => 'json',
+            'maxRetrieve' => 500,
+            'showSourceText' => 0,
+            'url' => $this->urlDoc
+        ];
         return $this;
     }
 
@@ -55,12 +55,16 @@ class AlchemyAPI
 
     public function textExtractKeywords()
     {
-               return $this->callAPI($this->keywordsApiUrl , $this->data);
+        $data = $this->data;
+        $data['maxRetrieve'] = 5;
+        return $this->callAPI($this->keywordsApiUrl, $data);
     }
 
     public function textExtractConcepts()
     {
-        return $this->callAPI($this->conceptsApiUrl , $this->data);
+        $data = $this->data;
+        $data['maxRetrieve'] = 5;
+        return $this->callAPI($this->conceptsApiUrl, $data);
     }
 
 

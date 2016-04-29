@@ -8,12 +8,9 @@ use Yii;
  * This is the model class for table "sentences_plus_hl".
  *
  * @property integer $id
- * @property integer $doc_id
  * @property integer $tag_id
  * @property integer $user_id
  * @property integer $project_id
- * @property integer $entity_id
- * @property integer $date_id
  * @property string $note
  * @property string $manual_date
  * @property integer $page_number
@@ -22,13 +19,15 @@ use Yii;
  * @property string $positions
  * @property string $sent_hl
  * @property string $meta_data
+ * @property string $entity_type
+ * @property string $entity
  *
  * @property ExtractedDate $date
  * @property Documents $doc
- * @property ExtractedEntity $entity
  * @property Projects $project
  * @property Tags $tag
  * @property User $user
+ * @property integer $tag_type
  */
 class SentencesPlusHl extends \yii\db\ActiveRecord
 {
@@ -46,13 +45,13 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['doc_id', 'tag_id', 'user_id', 'project_id', 'entity_id', 'date_id', 'page_number', 'line_number', 'paragraph_number'], 'integer'],
-            [['note', 'sent_hl'], 'string'],
+            [['doc_id', 'tag_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number', 'tag_type'], 'integer'],
+            [['note', 'sent_hl','entity_type','entity'], 'string'],
             [['manual_date', 'meta_data'], 'string', 'max' => 50],
             [['positions'], 'string', 'max' => 200],
-            [['date_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedDate::className(), 'targetAttribute' => ['date_id' => 'id']],
+//            [['date_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedDate::className(), 'targetAttribute' => ['date_id' => 'id']],
             [['doc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Documents::className(), 'targetAttribute' => ['doc_id' => 'id']],
-            [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedEntity::className(), 'targetAttribute' => ['entity_id' => 'id']],
+//            [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedEntity::className(), 'targetAttribute' => ['entity_id' => 'id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Projects::className(), 'targetAttribute' => ['project_id' => 'id']],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
@@ -66,11 +65,11 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'doc_id' => 'Doc ID',
+//            'doc_id' => 'Doc ID',
             'tag_id' => 'Tag ID',
             'user_id' => 'User ID',
             'project_id' => 'Project ID',
-            'entity_id' => 'Entity ID',
+//            'entity_id' => 'Entity ID',
             'date_id' => 'Date ID',
             'note' => 'Note',
             'manual_date' => 'Manual Date',
@@ -80,16 +79,12 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
             'positions' => 'Positions',
             'sent_hl' => 'Sent Hl',
             'meta_data' => 'Meta Data',
+            'entity_type' => 'Entity Type',
+            'tag_type' => 'Tag Type',
+            'entity' => 'Entity',
         ];
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getDate()
-    {
-        return $this->hasOne(ExtractedDate::className(), ['id' => 'date_id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery
@@ -99,21 +94,6 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
         return $this->hasOne(Documents::className(), ['id' => 'doc_id']);
     }
 
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getEntity()
-    {
-        return $this->hasOne(ExtractedEntity::className(), ['id' => 'entity_id']);
-    }
-
-    /**
-     * @return \yii\db\ActiveQuery
-     */
-    public function getProject()
-    {
-        return $this->hasOne(Projects::className(), ['id' => 'project_id']);
-    }
 
     /**
      * @return \yii\db\ActiveQuery

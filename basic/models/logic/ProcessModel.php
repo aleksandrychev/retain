@@ -81,12 +81,13 @@ class ProcessModel extends Model
             $sentHL->user_id = \Yii::$app->user->id;
             $sentHL->save();
 
-            /*
-             * search entity and write clone
-             */
+            $entityDateSetter = new EntityDateSetter($sentHL,$this->document->id);
+            $entityDateSetter->process();
 
         }
     }
+
+
 
     private function processEntity()
     {

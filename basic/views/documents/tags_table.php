@@ -24,9 +24,9 @@ use yii\widgets\Pjax;
     <tbody>
     <?php foreach ($tagResults as $r) { ?>
         <tr>
-            <td><?= $r->date ?></td>
+            <td><?= $r->manual_date ?></td>
             <td><?= $r->tag->title ?></td>
-            <td><?= strip_tags(str_replace('</div><div','</div> <div',$r->text)) ?></td>
+            <td><?= strip_tags(str_replace('</div><div','</div> <div',$r->sent_hl)) ?></td>
             <td><?= $r->note ?></td>
             <td>Page: <?= $r->page_number ?>, <?php if($r->paragraph_number > 0){ ?>Para. <?= $r->paragraph_number ?>, <?php } ?> <?php if($r->line_number > 0){ ?>Line <?= $r->line_number ?>, <?php } ?> <a onclick="window.location = '?resId=<?= $r->id ?>'" href="?resId=<?= $r->id ?>">ref.</a></td>
         </tr>

@@ -12,14 +12,21 @@ use app\models\ar\SentencesPlusHl;
  */
 class SentencesPlusHlSearch extends SentencesPlusHl
 {
+
+    public $projectName;
+    public $reference;
+    public $docName;
+    public $keywordString;
+    public $conceptString;
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'doc_id', 'tag_id', 'user_id', 'project_id', 'entity_id', 'date_id', 'page_number', 'line_number', 'paragraph_number'], 'integer'],
-            [['note', 'manual_date', 'positions', 'sent_hl', 'meta_data'], 'safe'],
+            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number'], 'integer'],
+            [['note','entity', 'manual_date', 'positions', 'sent_hl', 'meta_data','projectName','docName','keywordString','conceptString','reference'], 'safe'],
         ];
     }
 
@@ -41,7 +48,21 @@ class SentencesPlusHlSearch extends SentencesPlusHl
      */
     public function search($params)
     {
-        $query = SentencesPlusHl::find();
+        $query = SentencesPlusHl::find()->groupBy('id');
+
+
+        $query->where('documents.title LIKE "%' . $this->docName . '%"');
+        $query->joinWith(['project' => function ($q) {
+            $q->where('projects.title LIKE "%' . $this->projectName . '%"');
+        }]);
+
+        $query->joinWith(['keywords' => function ($q) {
+            $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
+        }]);
+
+        $query->joinWith(['concepts' => function ($q) {
+            $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
+        }]);
 
         // add conditions that should always apply here
 
@@ -49,11 +70,36 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             'query' => $query,
         ]);
 
+        $dataProvider->sort->attributes['docName'] = [
+            'asc' => ['documents.title' => SORT_ASC],
+            'desc' => ['documents.title' => SORT_DESC],
+            'label' => 'Source Document'
+        ];
+
+        $dataProvider->sort->attributes['projectName'] = [
+            'asc' => ['projects.title' => SORT_ASC],
+            'desc' => ['projects.title' => SORT_DESC],
+            'label' => 'Project Name'
+        ];
+
+        $dataProvider->sort->attributes['keywordString'] = [
+            'asc' => ['extracted_concepts.text' => SORT_ASC],
+            'desc' => ['extracted_concepts.text' => SORT_DESC],
+            'label' => 'Document Keywords'
+        ];
+
+        $dataProvider->sort->attributes['conceptString'] = [
+            'asc' => ['extracted_concepts.text' => SORT_ASC],
+            'desc' => ['extracted_concepts.text' => SORT_DESC],
+            'label' => 'Document Concepts'
+        ];
+
+
+
         $this->load($params);
 
         if (!$this->validate()) {
-            // uncomment the following line if you do not want to return any records when validation fails
-            // $query->where('0=1');
+
             return $dataProvider;
         }
 
@@ -61,21 +107,26 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         $query->andFilterWhere([
             'id' => $this->id,
             'doc_id' => $this->doc_id,
-            'tag_id' => $this->tag_id,
             'user_id' => $this->user_id,
             'project_id' => $this->project_id,
-            'entity_id' => $this->entity_id,
-            'date_id' => $this->date_id,
             'page_number' => $this->page_number,
             'line_number' => $this->line_number,
             'paragraph_number' => $this->paragraph_number,
+            'entity' => $this->entity,
+            'documents.title' => $this->docName,
         ]);
 
-        $query->andFilterWhere(['like', 'note', $this->note])
+        $query
+            ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'manual_date', $this->manual_date])
             ->andFilterWhere(['like', 'positions', $this->positions])
             ->andFilterWhere(['like', 'sent_hl', $this->sent_hl])
-            ->andFilterWhere(['like', 'meta_data', $this->meta_data]);
+            ->andFilterWhere(['like', 'meta_data', $this->meta_data])
+            ->orFilterWhere(['like', 'entity', $this->entity])
+            ->orFilterWhere(['like', 'documents.title',  $this->docName  ])
+            ->andFilterWhere(['like', 'page_number',  $this->reference  ])
+            ->andFilterWhere(['like', 'line_number',  $this->reference  ])
+            ->andFilterWhere(['like', 'paragraph_number',  $this->reference  ]);
 
         return $dataProvider;
     }

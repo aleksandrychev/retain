@@ -5,7 +5,7 @@ namespace app\controllers;
 use app\models\ar\SentencesPlusHl;
 use yii\filters\AccessControl;
 use app\models\ar\TagsResult;
-use app\models\logic\HighlightModel;
+use app\models\logic\EntityDateSetter;
 use Yii;
 use app\models\ar\Tags;
 use yii\data\ActiveDataProvider;
@@ -51,7 +51,7 @@ class TagsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Tags::find()->where(['user'=>Yii::$app->user->id]),
+            'query' => Tags::find()->where(['user' => Yii::$app->user->id]),
         ]);
 
         return $this->render('index', [
@@ -67,7 +67,7 @@ class TagsController extends Controller
     public function actionView($id)
     {
         $model = $this->findModel($id);
-        if($model->user != Yii::$app->user->id){
+        if ($model->user != Yii::$app->user->id) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
@@ -83,7 +83,7 @@ class TagsController extends Controller
      */
     public function actionCreate()
     {
-        $model = new SentencesPlusHl();
+        $model = new Tags();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             $model->user = Yii::$app->user->id;
@@ -106,7 +106,7 @@ class TagsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if($model->user != Yii::$app->user->id){
+        if ($model->user != Yii::$app->user->id) {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
@@ -127,10 +127,10 @@ class TagsController extends Controller
      */
     public function actionDelete($id)
     {
-        $model =  $this->findModel($id);
-        if($model->user == Yii::$app->user->id){
+        $model = $this->findModel($id);
+        if ($model->user == Yii::$app->user->id) {
             $model->delete();
-        } else{
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 
@@ -140,20 +140,20 @@ class TagsController extends Controller
 
     public function actionSaveAdditionalData()
     {
-       if($_POST['id'] AND !empty($_POST['id'])){
-           $tagsResult = TagsResult::find()->where(['=','id',$_POST['id']])->one();
-       }else{
-           return json_encode(['error'=>'1' ]);
-       }
-        if($tagsResult && $_POST['field'] && $tagsResult->hasAttribute($_POST['field'])){
+        if ($_POST['id'] AND !empty($_POST['id'])) {
+            $tagsResult = SentencesPlusHl::find()->where(['=', 'id', $_POST['id']])->one();
+        } else {
+            return json_encode(['error' => '1']);
+        }
+        if ($tagsResult && $_POST['field'] && $tagsResult->hasAttribute($_POST['field'])) {
             $tagsResult->$_POST['field'] = $_POST['data'];
-            if($tagsResult->save()){
-                return json_encode(['success'=>'true']);
+            if ($tagsResult->save()) {
+                return json_encode(['success' => 'true']);
             } else {
-                return json_encode(['error'=>'2', 'message'=> $_POST['field'] . ' did\'nt saved']);
+                return json_encode(['error' => '2', 'message' => $_POST['field'] . ' did\'nt saved']);
             }
-        } else{
-            return json_encode(['error'=>'3']);
+        } else {
+            return json_encode(['error' => '3']);
         }
 
 
@@ -166,20 +166,24 @@ class TagsController extends Controller
         if (!empty($selection) AND is_array($selection)) {
             $tagsResult = new SentencesPlusHl();
             $tagsResult->doc_id = $_POST['doc_id'];
-            $tagsResult->tag_id = $_POST['tag_id'];
             $tagsResult->user_id = \Yii::$app->user->id;
             $tagsResult->sent_hl = $selection['html'];
             $tagsResult->page_number = $selection['page'];
             $tagsResult->line_number = $selection['line_number'];
+            $tagsResult->tag_type = 1;
+            $tagsResult->tag_id = $_POST['tag_id'];
             $selection['position']['selector'] = $selection['page_selector'];
             $tagsResult->positions = json_encode($selection['position']);
 
             if ($tagsResult->save()) {
-                $highlightModel = new HighlightModel($tagsResult,$tagsResult->doc_id, $selection['html']);
-                $highlightModel->processHighlighting();
+                $tagsResult->entity_type = $tagsResult->tag->title;
+                $tagsResult->save();
+
+                $highlightModel = new EntityDateSetter($tagsResult, $tagsResult->doc_id);
+                $highlightModel->process();
 
 
-             echo $this->renderPartial('../documents/sidebar', ['docId' => $tagsResult->doc_id ]);
+                echo $this->renderPartial('../documents/sidebar', ['docId' => $tagsResult->doc_id]);
             } else {
                 echo json_encode(['error' => 'Something went wrong']);
             }
@@ -199,7 +203,7 @@ class TagsController extends Controller
      */
     protected function findModel($id)
     {
-        if (($model = SentencesPlusHl::findOne($id)) !== null) {
+        if (($model = Tags::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
