@@ -2,9 +2,7 @@
 
 namespace app\models\ar\base;
 
-use app\models\ar\ExtractedConcepts;
-use app\models\ar\ExtractedKeywords;
-use app\models\ar\Projects;
+
 use Yii;
 
 /**
@@ -80,7 +78,7 @@ class Documents extends \yii\db\ActiveRecord
 
     public function getProject()
     {
-        return $this->hasOne(Projects::className(), ['id' => 'project_id']);
+        return $this->hasOne(\app\models\ar\Projects::className(), ['id' => 'project_id']);
     }
 
     /**
@@ -88,7 +86,7 @@ class Documents extends \yii\db\ActiveRecord
      */
     public function getExtractedDates()
     {
-        return $this->hasMany(ExtractedDate::className(), ['document_id' => 'id']);
+        return $this->hasMany(\app\models\ar\ExtractedDate::className(), ['document_id' => 'id']);
     }
 
     /**
@@ -96,7 +94,7 @@ class Documents extends \yii\db\ActiveRecord
      */
     public function getExtractedEntities()
     {
-        return $this->hasMany(ExtractedEntity::className(), ['document_id' => 'id']);
+        return $this->hasMany(\app\models\ar\ExtractedEntity::className(), ['document_id' => 'id']);
     }
 
     /**
@@ -104,7 +102,7 @@ class Documents extends \yii\db\ActiveRecord
      */
     public function getExtractedKeywords()
     {
-        return $this->hasMany(ExtractedKeywords::className(), ['doc_id' => 'id']);
+        return $this->hasMany(\app\models\ar\ExtractedKeywords::className(), ['doc_id' => 'id']);
     }
 
     /**
@@ -112,7 +110,7 @@ class Documents extends \yii\db\ActiveRecord
      */
     public function getExtractedConcepts()
     {
-        return $this->hasMany(ExtractedConcepts::className(), ['doc_id' => 'id']);
+        return $this->hasMany(\app\models\ar\ExtractedConcepts::className(), ['doc_id' => 'id']);
     }
 
     /**
@@ -120,7 +118,7 @@ class Documents extends \yii\db\ActiveRecord
      */
     public function getTagsResults()
     {
-        return $this->hasMany(TagsResult::className(), ['doc_id' => 'id']);
+        return $this->hasMany(\app\models\ar\TagsResult::className(), ['doc_id' => 'id']);
     }
 
 
