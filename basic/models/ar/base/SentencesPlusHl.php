@@ -45,16 +45,52 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['doc_id', 'tag_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number', 'tag_type'], 'integer'],
-            [['note', 'sent_hl','entity_type','entity'], 'string'],
+            [
+                [
+                    'doc_id',
+                    'tag_id',
+                    'user_id',
+                    'project_id',
+                    'page_number',
+                    'line_number',
+                    'paragraph_number',
+                    'tag_type'
+                ],
+                'integer'
+            ],
+            [['note', 'sent_hl', 'entity_type', 'entity', 'selection'], 'string'],
             [['manual_date', 'meta_data'], 'string', 'max' => 50],
             [['positions'], 'string', 'max' => 200],
 //            [['date_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedDate::className(), 'targetAttribute' => ['date_id' => 'id']],
-            [['doc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Documents::className(), 'targetAttribute' => ['doc_id' => 'id']],
+            [
+                ['doc_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Documents::className(),
+                'targetAttribute' => ['doc_id' => 'id']
+            ],
 //            [['entity_id'], 'exist', 'skipOnError' => true, 'targetClass' => ExtractedEntity::className(), 'targetAttribute' => ['entity_id' => 'id']],
-            [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Projects::className(), 'targetAttribute' => ['project_id' => 'id']],
-            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
-            [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
+            [
+                ['project_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Projects::className(),
+                'targetAttribute' => ['project_id' => 'id']
+            ],
+            [
+                ['tag_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Tags::className(),
+                'targetAttribute' => ['tag_id' => 'id']
+            ],
+            [
+                ['user_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => User::className(),
+                'targetAttribute' => ['user_id' => 'id']
+            ],
         ];
     }
 
@@ -65,6 +101,7 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'selection' => 'Selection',
 //            'doc_id' => 'Doc ID',
             'tag_id' => 'Tag ID',
             'user_id' => 'User ID',

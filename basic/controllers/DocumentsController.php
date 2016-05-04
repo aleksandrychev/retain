@@ -75,7 +75,7 @@ class DocumentsController extends Controller
         }
 
         if (isset($_GET['resId']) && !empty($_GET['resId'])) {
-            $curHl = SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'tag_id', $_GET['resId']])->one();
+            $curHl = SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'id', $_GET['resId']])->one();
         } else {
             $curHl = false;
         }
@@ -83,7 +83,7 @@ class DocumentsController extends Controller
         return $this->render('view', [
             'model' => $model,
             'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),
-            'tagResults' => SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'doc_id', $model->id])->where('tag_id IS NOT NULL')->all(),
+            'tagResults' => SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'doc_id', $model->id])->andWhere('tag_id IS NOT NULL')->all(),
             'curHl' => $curHl
 
         ]);

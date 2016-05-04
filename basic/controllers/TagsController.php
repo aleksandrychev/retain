@@ -167,7 +167,8 @@ class TagsController extends Controller
             $tagsResult = new SentencesPlusHl();
             $tagsResult->doc_id = $_POST['doc_id'];
             $tagsResult->user_id = \Yii::$app->user->id;
-            $tagsResult->sent_hl = $selection['html'];
+            $tagsResult->sent_hl = strip_tags(str_replace('div></div', 'div> </div',$selection['html']));
+            $tagsResult->selection = $selection['html'];
             $tagsResult->page_number = $selection['page'];
             $tagsResult->line_number = $selection['line_number'];
             $tagsResult->tag_type = 1;

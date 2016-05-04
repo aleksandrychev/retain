@@ -21,30 +21,82 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'user_id',
-            'projectName',
-            'docName',
+            'projectName'=>[
+                'attribute' => 'projectName',
+                'value' => 'projectName',
+                'filter' => Html::activeDropDownList($searchModel, 'projectName', \yii\helpers\ArrayHelper::map(\app\models\ar\Projects::find()->where(['user'=>Yii::$app->user->id])->asArray()->all(), 'title', 'title'),['class'=>'form-control','prompt' => 'Select Project']),
+            ],
+            'docName'=>[
+                'attribute' => 'docName',
+                'format' => 'raw',
+                'value' =>function ($model) {
+                    return Html::a($model->doc->title,['documents/view/' .  $model->doc->id]) ;
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'docName', \yii\helpers\ArrayHelper::map(\app\models\ar\Documents::find()->where(['user'=>Yii::$app->user->id])->asArray()->all(), 'title', 'title'),['class'=>'form-control','prompt' => 'Select Document']),
+            ],
             'note:ntext',
             'sent_hl:ntext',
             'meta_data',
             'reference',
-            'tag_type',
-            'entity_type',
+            'tag_type'=>[
+                'attribute' => 'tag_type',
+                'value' => 'tag_type',
+                'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0'=>'Auto', '1' => 'Manual'] ,['class'=>'form-control','prompt' => 'Select Tag Type']),
+            ],
+            'entity_type' => [
+            'attribute' => 'entity_type',
+            'value' => 'entity_type',
+            'filter' => Html::activeDropDownList($searchModel, 'entity_type', \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id'=>Yii::$app->user->id])->asArray()->all(), 'entity_type', 'entity_type') ,['class'=>'form-control','prompt' => 'Select Tag Type']),
+        ],
             'entity',
             'keywordString',
             'conceptString'
-
-            // 'entity_id',
-            // 'date_id',
-
-            // 'manual_date',
-            // 'page_number',
-            // 'line_number',
-            // 'paragraph_number',
-            // 'positions',
-
-            // 'meta_data',
-
-
-        ],
+         ],
     ]); ?>
 </div>
+
+<?php
+$js = '
+
+ var gridview_id = ""; // specific gridview
+ var columns = [5]; // index column that will grouping, start 1
+
+
+var column_data = [];
+column_start = [];
+rowspan = [];
+
+for (var i = 0; i < columns.length; i++) {
+    column = columns[i];
+    column_data[column] = "";
+    column_start[column] = null;
+    rowspan[column] = 1;
+}
+
+var row = 1;
+$(gridview_id+" table > tbody  > tr").each(function() {
+    var col = 1;
+    $(this).find("td").each(function(){
+        for (var i = 0; i < columns.length; i++) {
+            if(col==columns[i]){
+                if(column_data[columns[i]] == $(this).html()){
+                    $(this).remove();
+                    rowspan[columns[i]]++;
+                    $(column_start[columns[i]]).attr("rowspan",rowspan[columns[i]]);
+                }
+                else{
+                    column_data[columns[i]] = $(this).html();
+                    rowspan[columns[i]] = 1;
+                    column_start[columns[i]] = $(this);
+                }
+            }
+        }
+        col++;
+    })
+    row++;
+});';
+
+$this->registerJs($js);
+
+?>
+

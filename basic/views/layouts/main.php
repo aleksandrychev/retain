@@ -48,6 +48,7 @@ AppAsset::register($this);
         ['label' => 'Projects', 'url' => ['/projects'], 'visible' =>  !Yii::$app->user->isGuest],
         ['label' => 'Tags', 'url' => ['/tags'], 'visible' =>  !Yii::$app->user->isGuest],
         ['label' => 'Results Archive', 'url' => ['/documents'] , 'visible' =>  !Yii::$app->user->isGuest],
+        ['label' => 'Master Report', 'url' => ['/master-report'] , 'visible' =>  !Yii::$app->user->isGuest],
         ['label' => 'Profile', 'url' => ['/auth/profile/view'] , 'visible' =>  !Yii::$app->user->isGuest],
         ['label' => 'Users', 'url' => ['/auth/user'] , 'visible' =>  Yii::$app->user->getIsSuperAdmin()],
     ];

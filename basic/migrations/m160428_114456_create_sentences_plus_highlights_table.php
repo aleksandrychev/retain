@@ -21,6 +21,7 @@ class m160428_114456_create_sentences_plus_highlights_table extends Migration
             'paragraph_number' => $this->integer(7),
             'positions' => $this->string(200),
             'sent_hl' => $this->text(),
+            'selection' => $this->text(),
             'meta_data' =>  $this->string(50),
             'tag_type' =>  $this->boolean()->defaultValue(false),
 

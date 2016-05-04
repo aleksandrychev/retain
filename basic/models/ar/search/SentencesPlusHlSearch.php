@@ -25,8 +25,8 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public function rules()
     {
         return [
-            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number'], 'integer'],
-            [['note','entity', 'manual_date', 'positions', 'sent_hl', 'meta_data','projectName','docName','keywordString','conceptString','reference'], 'safe'],
+            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number','tag_type'], 'integer'],
+            [['note','entity', 'entity_type', 'manual_date', 'positions', 'sent_hl', 'meta_data','projectName','docName','keywordString','conceptString','reference'], 'safe'],
         ];
     }
 
@@ -114,6 +114,8 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             'paragraph_number' => $this->paragraph_number,
             'entity' => $this->entity,
             'documents.title' => $this->docName,
+            'tag_type' => $this->tag_type,
+            'entity_type' => $this->entity_type,
         ]);
 
         $query
@@ -126,7 +128,9 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             ->orFilterWhere(['like', 'documents.title',  $this->docName  ])
             ->andFilterWhere(['like', 'page_number',  $this->reference  ])
             ->andFilterWhere(['like', 'line_number',  $this->reference  ])
-            ->andFilterWhere(['like', 'paragraph_number',  $this->reference  ]);
+            ->andFilterWhere(['like', 'paragraph_number',  $this->reference  ])
+            ->andFilterWhere(['like', 'entity_type',  $this->entity_type  ])
+            ->andFilterWhere(['like', 'tag_type',  $this->tag_type  ]);
 
         return $dataProvider;
     }

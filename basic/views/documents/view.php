@@ -15,7 +15,7 @@ $this->title = $model->title;
         var hlsettings = {
             <?php if ($curHl): ?>
             top: '<?= json_decode($curHl->positions)->top - 100 ?>',
-            text: '<?= strip_tags($curHl->text)?>',
+            text: '<?= strip_tags($curHl->selection)?>',
             page: '<?= json_decode($curHl->positions)->selector ?>',
             <?php endif; ?>
         }

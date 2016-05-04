@@ -12,7 +12,7 @@ $config = [
             'layout' => '/main', // Layout when not logged in yet
             'layoutLogged' => '/main', // Layout for logged in users
             'attemptsBeforeCaptcha' => 420, // Optional
-            'supportEmail' => 'support@mydomain.com', // Email for notifications
+            'supportEmail' => 'admin@pdf2html.demo.relevant.software', // Email for notifications
             'passwordResetTokenExpire' => 7200, // Seconds for token expiration
             'signupWithEmailOnly' => false, // false = signup with username + email, true = only email signup
             'tableMap' => [ // Optional, but if defined, all must be declared
@@ -62,11 +62,11 @@ $config = [
             'useFileTransport' => true,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'localhost',
-                'username' => 'root',
-                'password' => '',
-                'port' => '587',
-                'encryption' => 'tls',
+                'host' => '127.0.0.1',
+//                'username' => '',
+//                'password' => '',
+                'port' => '25',
+//                'encryption' => 'tls',
             ],
         ],
         'log' => [
