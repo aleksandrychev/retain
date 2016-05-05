@@ -56,11 +56,11 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             $q->where('projects.title LIKE "%' . $this->projectName . '%"');
         }]);
 
-        $query->joinWith(['keywords' => function ($q) {
+        $query->with(['keywords' => function ($q) {
             $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
         }]);
 
-        $query->joinWith(['concepts' => function ($q) {
+        $query->with(['concepts' => function ($q) {
             $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
         }]);
 
