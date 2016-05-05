@@ -50,7 +50,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'reference',
             'tag_type' => [
                 'attribute' => 'tag_type',
-                'value' => 'tag_type',
+                'value' => function ($model) {
+                    return $model->tag_type == 1 ? 'Manual' : 'Auto';
+                },
+
                 'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0' => 'Auto', '1' => 'Manual'],
                     ['class' => 'form-control', 'prompt' => 'Select Tag Type']),
             ],
