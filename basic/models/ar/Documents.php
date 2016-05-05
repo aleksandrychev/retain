@@ -23,9 +23,7 @@ class Documents extends \app\models\ar\base\Documents
           if($this->project)  return $this->project->title;
     }
 
-    public function getUuid(){
-        return $this->uuid;
-    }
+
 
     public function afterSave($insert, $changedAttributes)
     {

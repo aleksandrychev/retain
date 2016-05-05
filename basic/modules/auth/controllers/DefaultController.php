@@ -14,6 +14,8 @@ use auth\models\User;
 
 class DefaultController extends Controller
 {
+
+
 	/**
 	 * @var \auth\Module
 	 */
@@ -99,6 +101,7 @@ class DefaultController extends Controller
 
 	public function actionLogout()
 	{
+
 		Yii::$app->user->logout();
 		return $this->goHome();
 	}

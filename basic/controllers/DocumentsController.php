@@ -91,12 +91,12 @@ class DocumentsController extends Controller
         ]);
     }
 
-    public function actionHtml($uuid)
+    public function actionHtml()
     {
         ini_set('memory_limit', '2048M');
         ini_set('pcre.backtrack_limit', '200M');
 
-        $model = Documents::find()->where(['uuid' => $uuid])->one();
+        $model = Documents::find()->where(['uuid' => $_GET['uuid']])->one();
 
         $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' . $model->html_file);
         $htmlContent = AppHelper::clearHtml($htmlContent);
