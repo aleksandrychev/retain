@@ -7,7 +7,7 @@
  */
 ?>
 
-<?php foreach (\app\models\ar\SentencesPlusHl::find()->where(['=','doc_id', $docId])->andWhere('tag_id IS NOT NULL')->orderBy('id DESC')->all() as $hlres) { ?>
+<?php foreach (\app\models\ar\SentencesPlusHl::find()->where(['=','doc_id', $docId])->andWhere('tag_type = 1')->orderBy('id DESC')->all() as $hlres) { ?>
     <hr>
     <div class="hlrow">
         <div>

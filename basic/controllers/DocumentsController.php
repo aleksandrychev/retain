@@ -85,7 +85,7 @@ class DocumentsController extends Controller
         return $this->render('view', [
             'model' => $model,
             'url' => Url::base('http') . Url::to('/uploads/html/' . $model->html_file),
-            'tagResults' => SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'doc_id', $model->id])->andWhere('tag_id IS NOT NULL')->all(),
+            'tagResults' => SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'doc_id', $model->id])->andWhere('tag_type = 1')->all(),
             'curHl' => $curHl
 
         ]);
