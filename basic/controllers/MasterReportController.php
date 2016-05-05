@@ -26,6 +26,17 @@ class MasterReportController extends Controller
                     'delete' => ['POST'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'matchCallback' => function () {
+                            return !\Yii::$app->user->getIsGuest();
+                        },
+                    ],
+                ],
+            ],
         ];
     }
 

@@ -50,7 +50,7 @@ class  EntityDateSetter extends Model
                 if ($this->shl->entity_type) {
                     $tagEntity = new SentencesPlusHl();
                     $tagEntity->attributes = $this->shl->attributes;
-//                    $tagEntity->entity_id = $en->id;
+                    $tagEntity->tag_type = 0;
                     $tagEntity->entity_type = $en->type;
                     $tagEntity->entity = $en->entity;
                     $tagEntity->save();
@@ -77,7 +77,7 @@ class  EntityDateSetter extends Model
                 if ($this->shl->entity_type) {
                     $tagEntity = new SentencesPlusHl();
                     $tagEntity->attributes = $this->shl->attributes;
-//                    $tagEntity->date_id = $d->id;
+                    $tagEntity->tag_type = 0;
                     $tagEntity->entity_type = 'Date';
                     $tagEntity->entity =  $d->date;
                     $tagEntity->save();
