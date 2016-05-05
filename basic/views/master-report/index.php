@@ -23,7 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'user_id',
             'projectName' => [
                 'attribute' => 'projectName',
-                'value' => 'projectName',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::a($model->project->title, ['projects/view/' . $model->project->id]);
+                },
                 'filter' => Html::activeDropDownList($searchModel, 'projectName',
                     \yii\helpers\ArrayHelper::map(\app\models\ar\Projects::find()->where(['user' => Yii::$app->user->id])->asArray()->all(),
                         'title', 'title'), ['class' => 'form-control', 'prompt' => 'Select Project']),
