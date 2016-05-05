@@ -31,6 +31,7 @@ class DocumentsController extends Controller
             ],
             'access' => [
                 'class' => AccessControl::className(),
+                'only' => ['index','view'],
                 'rules' => [
                     [
                         'allow' => true,
