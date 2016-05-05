@@ -12,7 +12,7 @@ namespace app\models\logic;
 class AlchemyAPI
 {
     private $urlDoc;
-    private $apiKey = '7ba9369c80e73f358e8d6ad4ac9d8f6cf796f9ec';
+    private $apiKey;
     private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLExtractDates';
     private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
     private $keywordsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedKeywords';
@@ -30,7 +30,7 @@ class AlchemyAPI
             'showSourceText' => 0,
             'url' => $this->urlDoc
         ];
-   
+
         return $this;
     }
 

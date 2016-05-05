@@ -91,6 +91,7 @@ class ProcessModel extends Model
 
     private function processEntity()
     {
+
         $entities = $this->api->textGetRankedNamedEntities();
         if ($entities && $entities->status == 'OK' && count($entities->entities) > 0) {
             foreach ($entities->entities as $entity) {
@@ -112,6 +113,7 @@ class ProcessModel extends Model
             foreach ($dates->dates as $date) {
 
                 $date->full_sentence = AppHelper::getSentenceByPhrase($date->text, $this->document->html_file, true);
+
                 $this->saveDate($date);
             }
 
