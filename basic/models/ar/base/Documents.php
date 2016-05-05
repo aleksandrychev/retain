@@ -16,6 +16,7 @@ use Yii;
  * @property string $user_agent
  * @property string $html_file
  * @property string $project_id
+ * @property string $uuid
  *
  * @property User $user0
  * @property ExtractedDate[] $extractedDates
@@ -46,7 +47,7 @@ class Documents extends \yii\db\ActiveRecord
             [['projectName'], 'safe'],
             [['user_ip'], 'string', 'max' => 20],
             [['user_agent'], 'string', 'max' => 400],
-            [['html_file'], 'string', 'max' => 100],
+            [['html_file', 'uuid'], 'string', 'max' => 100],
             [['user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user' => 'id']],
         ];
     }
@@ -58,6 +59,7 @@ class Documents extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'uuid' => 'UUID',
             'user' => 'User',
             'title' => 'Title',
             'uploaded_date' => 'Uploaded Date',

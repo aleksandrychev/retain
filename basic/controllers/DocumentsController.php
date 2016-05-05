@@ -68,6 +68,7 @@ class DocumentsController extends Controller
      */
     public function actionView($id)
     {
+
         $model = $this->findModel($id);
 
         if($model->user != Yii::$app->user->id){
@@ -90,12 +91,12 @@ class DocumentsController extends Controller
         ]);
     }
 
-    public function actionHtml($id)
+    public function actionHtml($uuid)
     {
         ini_set('memory_limit', '2048M');
         ini_set('pcre.backtrack_limit', '200M');
 
-        $model = $this->findModel($id);
+        $model = Documents::find()->where(['uuid' => $uuid])->one();
 
         $htmlContent = file_get_contents(__DIR__ . '/../web/uploads/html/' . $model->html_file);
         $htmlContent = AppHelper::clearHtml($htmlContent);

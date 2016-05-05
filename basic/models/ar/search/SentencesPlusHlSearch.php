@@ -19,13 +19,14 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public $keywordString;
     public $conceptString;
 
+
     /**
      * @inheritdoc
      */
     public function rules()
     {
         return [
-            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number','tag_type'], 'integer'],
+            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number','tag_type','send_to_final_report'], 'integer'],
             [['note','entity', 'entity_type', 'manual_date', 'positions', 'sent_hl', 'meta_data','projectName','docName','keywordString','conceptString','reference'], 'safe'],
         ];
     }
@@ -48,10 +49,10 @@ class SentencesPlusHlSearch extends SentencesPlusHl
      */
     public function search($params)
     {
-        $query = SentencesPlusHl::find()->groupBy('id');
+        $query = SentencesPlusHl::find()->where(['user_id'=>Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
 
 
-        $query->where('documents.title LIKE "%' . $this->docName . '%"');
+
         $query->joinWith(['project' => function ($q) {
             $q->where('projects.title LIKE "%' . $this->projectName . '%"');
         }]);

@@ -4,6 +4,7 @@ $params = require(__DIR__ . '/params.php');
 
 $config = [
     'id' => 'basic',
+    'name' => 'Retain',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'modules' => [
@@ -86,7 +87,8 @@ $config = [
             'rules' => [
                 '' => 'projects/index',
                 '<controller>/<action>' => '<controller>/<action>',
-                '<controller>/<action>/<id:\d+>' => '<controller>/<action>'
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+                '<controller>/<action>/<uuid>' => '<controller>/<action>'
             ],
         ],
 

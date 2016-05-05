@@ -21,37 +21,63 @@ $this->params['breadcrumbs'][] = $this->title;
         'filterModel' => $searchModel,
         'columns' => [
             'user_id',
-            'projectName'=>[
+            'projectName' => [
                 'attribute' => 'projectName',
                 'value' => 'projectName',
-                'filter' => Html::activeDropDownList($searchModel, 'projectName', \yii\helpers\ArrayHelper::map(\app\models\ar\Projects::find()->where(['user'=>Yii::$app->user->id])->asArray()->all(), 'title', 'title'),['class'=>'form-control','prompt' => 'Select Project']),
+                'filter' => Html::activeDropDownList($searchModel, 'projectName',
+                    \yii\helpers\ArrayHelper::map(\app\models\ar\Projects::find()->where(['user' => Yii::$app->user->id])->asArray()->all(),
+                        'title', 'title'), ['class' => 'form-control', 'prompt' => 'Select Project']),
             ],
-            'docName'=>[
+            'docName' => [
                 'attribute' => 'docName',
                 'format' => 'raw',
-                'value' =>function ($model) {
-                    return Html::a($model->doc->title,['documents/view/' .  $model->doc->id]) ;
+                'value' => function ($model) {
+                    return Html::a($model->doc->title, ['documents/view/' . $model->doc->id]);
                 },
-                'filter' => Html::activeDropDownList($searchModel, 'docName', \yii\helpers\ArrayHelper::map(\app\models\ar\Documents::find()->where(['user'=>Yii::$app->user->id])->asArray()->all(), 'title', 'title'),['class'=>'form-control','prompt' => 'Select Document']),
+                'filter' => Html::activeDropDownList($searchModel, 'docName',
+                    \yii\helpers\ArrayHelper::map(\app\models\ar\Documents::find()->where(['user' => Yii::$app->user->id])->asArray()->all(),
+                        'title', 'title'), ['class' => 'form-control', 'prompt' => 'Select Document']),
             ],
             'note:ntext',
             'sent_hl:ntext',
-            'meta_data',
+            'meta_data' => [
+                'attribute' => 'meta_data',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return 'tbc';
+                },
+            ],
             'reference',
-            'tag_type'=>[
+            'tag_type' => [
                 'attribute' => 'tag_type',
                 'value' => 'tag_type',
-                'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0'=>'Auto', '1' => 'Manual'] ,['class'=>'form-control','prompt' => 'Select Tag Type']),
+                'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0' => 'Auto', '1' => 'Manual'],
+                    ['class' => 'form-control', 'prompt' => 'Select Tag Type']),
             ],
             'entity_type' => [
-            'attribute' => 'entity_type',
-            'value' => 'entity_type',
-            'filter' => Html::activeDropDownList($searchModel, 'entity_type', \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id'=>Yii::$app->user->id])->asArray()->all(), 'entity_type', 'entity_type') ,['class'=>'form-control','prompt' => 'Select Tag Type']),
-        ],
+                'attribute' => 'entity_type',
+                'value' => 'entity_type',
+                'filter' => Html::activeDropDownList($searchModel, 'entity_type',
+                    \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->asArray()->all(),
+                        'entity_type', 'entity_type'), ['class' => 'form-control', 'prompt' => 'Select Tag Type']),
+            ],
             'entity',
             'keywordString',
-            'conceptString'
-         ],
+            'conceptString',
+            'send_to_final_report' => [
+                'attribute' => 'send_to_final_report',
+                'format' => 'raw',
+                'value' => function ($model) {
+                    return Html::checkbox('send_to_final_report' , $model->send_to_final_report, [
+                        'id' =>   $model->id,
+                        'class' => 'send_to_final_report',
+                        'data-on-color' => 'success',
+                        'data-size' => 'small'
+                    ]);
+                },
+
+            ],
+        ],
     ]); ?>
 </div>
 
@@ -98,5 +124,9 @@ $(gridview_id+" table > tbody  > tr").each(function() {
 
 $this->registerJs($js);
 
+$this->registerJsFile('/js/bootstrap-switch.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerCssFile('/css/bootstrap-switch.css');
+$this->registerJs('$(".send_to_final_report").bootstrapSwitch();');
 ?>
+
 

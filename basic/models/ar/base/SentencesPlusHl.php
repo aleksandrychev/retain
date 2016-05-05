@@ -54,7 +54,8 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
                     'page_number',
                     'line_number',
                     'paragraph_number',
-                    'tag_type'
+                    'tag_type',
+                    'send_to_final_report'
                 ],
                 'integer'
             ],
@@ -102,6 +103,7 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'selection' => 'Selection',
+            'docName' => 'Source Document',
 //            'doc_id' => 'Doc ID',
             'tag_id' => 'Tag ID',
             'user_id' => 'User ID',
@@ -114,11 +116,14 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
             'line_number' => 'Line Number',
             'paragraph_number' => 'Paragraph Number',
             'positions' => 'Positions',
-            'sent_hl' => 'Sent Hl',
+            'sent_hl' => 'Highlight + Sentence',
             'meta_data' => 'Meta Data',
-            'entity_type' => 'Entity Type',
+            'entity_type' => 'Entity 1 Type',
             'tag_type' => 'Tag Type',
-            'entity' => 'Entity',
+            'entity' => 'Entity 1',
+            'keywordString'  => 'Documents Keywords',
+            'conceptString' => 'Documents Concepts',
+            'send_to_final_report' => 'Send to final report'
         ];
     }
 

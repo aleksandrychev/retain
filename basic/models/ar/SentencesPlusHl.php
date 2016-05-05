@@ -26,6 +26,7 @@ class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
         return $this->project->title;
     }
 
+
     public function getReference()
     {
         $ref = '';
