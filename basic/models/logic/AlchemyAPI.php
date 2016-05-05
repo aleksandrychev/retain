@@ -21,13 +21,16 @@ class AlchemyAPI
 
     public function init()
     {
+
+
         $this->data = [
-            'apikey' => $this->apiKey,
+            'apikey' => \Yii::$app->params['alchemyApi'],
             'outputMode' => 'json',
             'maxRetrieve' => 500,
             'showSourceText' => 0,
             'url' => $this->urlDoc
         ];
+   
         return $this;
     }
 
