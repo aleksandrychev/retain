@@ -54,28 +54,38 @@ class m160314_124607_initial_migration extends Migration
         $this->createIndex('date_I', 'extracted_date', 'date');
         $this->addForeignKey('fk-document-id-ed', 'extracted_date', 'document_id', 'documents', 'id', 'CASCADE');
 
+        $this->createTable('tags', [
+            'id' => $this->primaryKey(),
+            'user' => $this->integer(11),
+            'title' => $this->string(200),
+            'parent_id' => $this->integer(11),
+        ]);
+        $this->addForeignKey('fk-user-tag', 'tags', 'user', 'user', 'id', 'CASCADE');
+
     }
 
     public function down()
     {
         $this->dropForeignKey('fk-project-document', 'documents');
         $this->dropForeignKey('fk-user-project', 'projects');
-        $this->dropForeignKey('fk-document-id','extracted_entity');
-        $this->dropForeignKey('fk-document-id-ed','extracted_date');
+        $this->dropForeignKey('fk-document-id', 'extracted_entity');
+        $this->dropForeignKey('fk-document-id-ed', 'extracted_date');
         $this->dropForeignKey('fk-user-document', 'tags');
 
 
-        $this->dropIndex('date_I','extracted_date');
-        $this->dropIndex('extracted_date_I','extracted_date');
-        $this->dropIndex('type_I','extracted_entity');
-        $this->dropIndex('extracted_entity_I','extracted_entity');
-        $this->dropIndex('entity_I','extracted_entity');
+        $this->dropIndex('date_I', 'extracted_date');
+        $this->dropIndex('extracted_date_I', 'extracted_date');
+        $this->dropIndex('type_I', 'extracted_entity');
+        $this->dropIndex('extracted_entity_I', 'extracted_entity');
+        $this->dropIndex('entity_I', 'extracted_entity');
 
 
+        $this->dropTable('documents');
+        $this->dropTable('extracted_entity');
+        $this->dropTable('extracted_date');
 
-       $this->dropTable('documents');
-       $this->dropTable('extracted_entity');
-       $this->dropTable('extracted_date');
+        $this->dropForeignKey('fk-user-tag', 'tags');
+        $this->dropTable('tags');
     }
 
 
