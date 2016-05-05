@@ -71,7 +71,7 @@ class m160314_124607_initial_migration extends Migration
         $this->dropForeignKey('fk-document-id', 'extracted_entity');
         $this->dropForeignKey('fk-document-id-ed', 'extracted_date');
         $this->dropForeignKey('fk-user-document', 'documents');
-
+        $this->dropForeignKey('fk-user-tag', 'tags');
 
         $this->dropIndex('date_I', 'extracted_date');
         $this->dropIndex('extracted_date_I', 'extracted_date');
@@ -83,8 +83,7 @@ class m160314_124607_initial_migration extends Migration
         $this->dropTable('documents');
         $this->dropTable('extracted_entity');
         $this->dropTable('extracted_date');
-
-        $this->dropForeignKey('fk-user-tag', 'tags');
+        $this->dropTable('projects');
         $this->dropTable('tags');
     }
 
