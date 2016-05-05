@@ -17,10 +17,11 @@ class ConvertFromDoc extends AbstractConverterBase
         $uploadsDir = __DIR__ . '/../../web/uploads';
         $command = "cd $uploadsDir;";
         putenv('PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/opt/node/bin:/usr/lib64/libreoffice');
-        $command .= 'unoconv --listener 2>&1;  /usr/bin/unoconv  -o "pdf/'. $this->docID .'.pdf" -fpdf doc/'. $this->docID .'.doc;';
-        $command .= 'pdf2htmlEX  --dest-dir ./html ./pdf/' . $this->docID . '.pdf';
-
+        $command .= '/usr/bin/unoconv  -o "pdf/'. $this->docID .'.pdf" -fpdf doc/'. $this->docID .'.doc;';
+        $command .= 'pdf2htmlEX --tounicode 1   --dest-dir ./html ./pdf/' . $this->docID . '.pdf';
+        exec('unoconv --listener &');
         exec($command, $output, $return_var);
+
 
     }
 }
