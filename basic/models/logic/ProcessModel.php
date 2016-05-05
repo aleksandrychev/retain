@@ -41,7 +41,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById($this->document->id);
-        $this->url = "http://pdf2html.demo.relevant.software/documents/html/140";
+//        $this->url = "http://pdf2html.demo.relevant.software/documents/html/140";
         $this->api->setUrl($this->url)->init();
 
     }
