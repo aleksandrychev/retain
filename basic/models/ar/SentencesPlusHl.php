@@ -8,9 +8,6 @@
 
 namespace app\models\ar;
 
-
-use app\models\ar\base\ExtractedKeywords;
-
 class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
 {
 
@@ -86,13 +83,13 @@ class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
 
     public function getKeywords()
     {
-        return $this->hasMany(ExtractedKeywords::className(),
+        return $this->hasMany(\app\models\ar\ExtractedKeywords::className(),
             ['doc_id' => 'doc_id']);
     }
 
     public function getConcepts()
     {
-        return $this->hasMany(ExtractedConcepts::className(),
+        return $this->hasMany(\app\models\ar\ExtractedConcepts::className(),
             ['doc_id' => 'doc_id']);
     }
 
