@@ -70,7 +70,7 @@ class m160314_124607_initial_migration extends Migration
         $this->dropForeignKey('fk-user-project', 'projects');
         $this->dropForeignKey('fk-document-id', 'extracted_entity');
         $this->dropForeignKey('fk-document-id-ed', 'extracted_date');
-        $this->dropForeignKey('fk-user-document', 'tags');
+        $this->dropForeignKey('fk-user-document', 'documents');
 
 
         $this->dropIndex('date_I', 'extracted_date');
