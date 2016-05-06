@@ -173,7 +173,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             ->andFilterWhere(['like', 'positions', $this->positions])
             ->andFilterWhere(['like', 'sent_hl', $this->sent_hl])
             ->andFilterWhere(['like', 'meta_data', $this->meta_data])
-//            ->orFilterWhere(['like', 'entity', $this->entity])
+            ->orFilterWhere(['like', 'entity', $this->entity])
             ->andFilterWhere(['like', 'page_number', $this->reference])
             ->andFilterWhere(['like', 'line_number', $this->reference])
             ->andFilterWhere(['like', 'paragraph_number', $this->reference])
