@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1>Master Report</h1>
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
-
+    <?php \yii\widgets\Pjax::begin(); ?>
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,9 +27,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
                     return Html::a($model->project->title, ['projects/view/' . $model->project->id]);
                 },
-                'filter' => Html::activeDropDownList($searchModel, 'projectName',
+                'filter' =>  Html::activeDropDownList($searchModel, 'projectName',
                     \yii\helpers\ArrayHelper::map(\app\models\ar\Projects::find()->where(['user' => Yii::$app->user->id])->asArray()->all(),
-                        'title', 'title'), ['class' => 'form-control', 'prompt' => 'Select Project']),
+                        'title', 'title'), ['class' => 'form-control multiselect' ,  'multiple' => true]),
+
             ],
             'docName' => [
                 'attribute' => 'docName',
@@ -39,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
                 'filter' => Html::activeDropDownList($searchModel, 'docName',
                     \yii\helpers\ArrayHelper::map(\app\models\ar\Documents::find()->where(['user' => Yii::$app->user->id])->asArray()->all(),
-                        'title', 'title'), ['class' => 'form-control', 'prompt' => 'Select Document']),
+                        'title', 'title'), ['class' => 'form-control multiselect' , 'multiple' => true]),
             ],
             'note:ntext',
             'sent_hl:ntext',
@@ -58,14 +59,14 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
 
                 'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0' => 'Auto', '1' => 'Manual'],
-                    ['class' => 'form-control', 'prompt' => 'Select Tag Type']),
+                    ['class' => 'form-control multiselect', 'prompt' => 'Select Tag Type' ,  'multiple' => true]),
             ],
             'entity_type' => [
                 'attribute' => 'entity_type',
                 'value' => 'entity_type',
                 'filter' => Html::activeDropDownList($searchModel, 'entity_type',
-                    \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->asArray()->all(),
-                        'entity_type', 'entity_type'), ['class' => 'form-control', 'prompt' => 'Select Tag Type']),
+                    \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->asArray()->all(),
+                        'entity_type', 'entity_type'), ['class' => 'form-control multiselect', 'prompt' => 'Select Tag Type' ,  'multiple' => true]),
             ],
             'entity',
             'keywordString',
@@ -88,6 +89,7 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php
+
 $js = '
 
  var gridview_id = ""; // specific gridview
@@ -133,6 +135,12 @@ $this->registerJs($js);
 $this->registerJsFile('/js/bootstrap-switch.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/css/bootstrap-switch.css');
 $this->registerJs('$(".send_to_final_report").bootstrapSwitch();');
-?>
 
+$this->registerJsFile('/js/bootstrap-multiselect.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+$this->registerCssFile('/css/bootstrap-multiselect.css');
+$this->registerJs('$(".multiselect").multiselect({
+            numberDisplayed: 1
+        });');
+?>
+<?php \yii\widgets\Pjax::end(); ?>
 

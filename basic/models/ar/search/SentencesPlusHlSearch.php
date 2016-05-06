@@ -26,8 +26,37 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public function rules()
     {
         return [
-            [['id', 'doc_id', 'user_id', 'project_id', 'page_number', 'line_number', 'paragraph_number','tag_type','send_to_final_report'], 'integer'],
-            [['note','entity', 'entity_type', 'manual_date', 'positions', 'sent_hl', 'meta_data','projectName','docName','keywordString','conceptString','reference'], 'safe'],
+            [
+                [
+                    'id',
+                    'doc_id',
+                    'user_id',
+                    'project_id',
+                    'page_number',
+                    'line_number',
+                    'paragraph_number',
+                    'tag_type',
+                    'send_to_final_report'
+                ],
+                'integer'
+            ],
+            [
+                [
+                    'note',
+                    'entity',
+                    'entity_type',
+                    'manual_date',
+                    'positions',
+                    'sent_hl',
+                    'meta_data',
+                    'projectName',
+                    'docName',
+                    'keywordString',
+                    'conceptString',
+                    'reference'
+                ],
+                'safe'
+            ],
         ];
     }
 
@@ -49,21 +78,29 @@ class SentencesPlusHlSearch extends SentencesPlusHl
      */
     public function search($params)
     {
-        $query = SentencesPlusHl::find()->where(['user_id'=>Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
+
+        $query = SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
 
 
+        $query->joinWith([
+            'project' => function ($q) {
+                if ($this->projectName != '') {
+                    $q->where(['IN', 'projects.title', $this->projectName]);
+                }
+            }
+        ]);
 
-        $query->joinWith(['project' => function ($q) {
-            $q->where('projects.title LIKE "%' . $this->projectName . '%"');
-        }]);
+        $query->with([
+            'keywords' => function ($q) {
+                $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
+            }
+        ]);
 
-        $query->with(['keywords' => function ($q) {
-            $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
-        }]);
-
-        $query->with(['concepts' => function ($q) {
-            $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
-        }]);
+        $query->with([
+            'concepts' => function ($q) {
+                $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
+            }
+        ]);
 
         // add conditions that should always apply here
 
@@ -96,13 +133,12 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         ];
 
 
-
         $this->load($params);
 
-        if (!$this->validate()) {
-
-            return $dataProvider;
-        }
+//        if (!$this->validate()) {
+//
+//            return $dataProvider;
+//        }
 
         // grid filtering conditions
         $query->andFilterWhere([
@@ -114,10 +150,22 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             'line_number' => $this->line_number,
             'paragraph_number' => $this->paragraph_number,
             'entity' => $this->entity,
-            'documents.title' => $this->docName,
-            'tag_type' => $this->tag_type,
-            'entity_type' => $this->entity_type,
+
         ]);
+
+        if ($this->docName != '') {
+            $query->andFilterWhere(['IN', 'documents.title', $this->docName]);
+        }
+
+        if ($this->entity_type != '') {
+        $query->andFilterWhere(['IN', 'entity_type', $this->entity_type]);
+        }
+
+        if ($this->tag_type != '') {
+
+            $query->andFilterWhere(['IN', 'tag_type', $this->tag_type]);
+        }
+
 
         $query
             ->andFilterWhere(['like', 'note', $this->note])
@@ -125,13 +173,11 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             ->andFilterWhere(['like', 'positions', $this->positions])
             ->andFilterWhere(['like', 'sent_hl', $this->sent_hl])
             ->andFilterWhere(['like', 'meta_data', $this->meta_data])
-            ->orFilterWhere(['like', 'entity', $this->entity])
-            ->andFilterWhere(['like', 'documents.title',  $this->docName  ])
-            ->andFilterWhere(['like', 'page_number',  $this->reference  ])
-            ->andFilterWhere(['like', 'line_number',  $this->reference  ])
-            ->andFilterWhere(['like', 'paragraph_number',  $this->reference  ])
-            ->andFilterWhere(['like', 'entity_type',  $this->entity_type  ])
-            ->andFilterWhere(['like', 'tag_type',  $this->tag_type  ]);
+//            ->orFilterWhere(['like', 'entity', $this->entity])
+            ->andFilterWhere(['like', 'page_number', $this->reference])
+            ->andFilterWhere(['like', 'line_number', $this->reference])
+            ->andFilterWhere(['like', 'paragraph_number', $this->reference])
+        ;
 
         return $dataProvider;
     }
