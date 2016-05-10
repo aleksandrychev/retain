@@ -138,4 +138,7 @@ a.desc:after {
 
 }
 
-
+.multiselect-container {
+    max-height: 550px;
+    overflow-y: scroll;
+}

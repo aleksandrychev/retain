@@ -59,16 +59,22 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
 
                 'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0' => 'Auto', '1' => 'Manual'],
-                    ['class' => 'form-control multiselect', 'prompt' => 'Select Tag Type' ,  'multiple' => true]),
+                    ['class' => 'form-control multiselect',   'multiple' => true]),
             ],
             'entity_type' => [
                 'attribute' => 'entity_type',
                 'value' => 'entity_type',
                 'filter' => Html::activeDropDownList($searchModel, 'entity_type',
                     \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->asArray()->all(),
-                        'entity_type', 'entity_type'), ['class' => 'form-control multiselect', 'prompt' => 'Select Tag Type' ,  'multiple' => true]),
+                        'entity_type', 'entity_type'), ['class' => 'form-control multiselect'  ,  'multiple' => true]),
             ],
-            'entity',
+            'entity'=> [
+                'attribute' => 'entity',
+                'value' => 'entity',
+                'filter' => Html::activeDropDownList($searchModel, 'entity',
+                    \yii\helpers\ArrayHelper::map(\app\models\ar\SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity IS NOT NULL')->asArray()->all(),
+                        'entity', 'entity'), ['class' => 'form-control multiselect'  ,  'multiple' => true]),
+            ],
             'keywordString',
             'conceptString',
             'send_to_final_report' => [
@@ -139,7 +145,9 @@ $this->registerJs('$(".send_to_final_report").bootstrapSwitch();');
 $this->registerJsFile('/js/bootstrap-multiselect.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/css/bootstrap-multiselect.css');
 $this->registerJs('$(".multiselect").multiselect({
-            numberDisplayed: 1
+            numberDisplayed: 1,
+            enableFiltering: true,
+            filterBehavior: "value",
         });');
 ?>
 <?php \yii\widgets\Pjax::end(); ?>

@@ -23,7 +23,7 @@ class m160428_114456_create_sentences_plus_highlights_table extends Migration
             'sent_hl' => $this->text(),
             'selection' => $this->text(),
             'meta_data' =>  $this->string(50),
-            'tag_type' =>  $this->boolean()->defaultValue(false),
+            'tag_type' =>  $this->boolean()->defaultValue(0),
 
         ]);
         $this->addForeignKey('fk-shl-document-id', 'sentences_plus_hl', 'doc_id', 'documents', 'id', 'CASCADE');
