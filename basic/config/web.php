@@ -18,10 +18,6 @@ $config = [
             'signupWithEmailOnly' => false, // false = signup with username + email, true = only email signup
             'tableMap' => [ // Optional, but if defined, all must be declared
                 'User' => 'user',
-                'UserStatus' => 'user_status',
-                'ProfileFieldValue' => 'profile_field_value',
-                'ProfileField' => 'profile_field',
-                'ProfileFieldType' => 'profile_field_type',
             ],
         ],
 
@@ -45,6 +41,12 @@ $config = [
             'class' => 'auth\components\User',
             'identityClass' => 'auth\models\User',
             'enableAutoLogin' => true,
+        ],
+        'sphinx' => [
+            'class' => 'yii\sphinx\Connection',
+            'dsn' => 'mysql:host=127.0.0.1;port=9306;',
+            'username' => '',
+            'password' => '',
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',

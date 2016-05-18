@@ -18,6 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
 			<?= Html::a('<i class="glyphicon glyphicon-pencil"></i>', ['update'], ['class' => 'pull-right']) ?>
 		</h3>
 	</div>
+
 	<?php echo DetailView::widget([
 		'model' => $model,
 		'attributes' => [
@@ -28,7 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 				'attribute' => 'status',
 				'value' => $model->getStatus()
 			],
-//			'last_visit_time',
+
 //			'create_time',
 //			'update_time',
 		],

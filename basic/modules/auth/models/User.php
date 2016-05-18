@@ -247,10 +247,11 @@ class User extends ActiveRecord implements IdentityInterface
 
 	/**
 	 * @return \yii\db\ActiveRelation
+	 * @deprecated
 	 */
 	public function getProfileFieldValue()
 	{
-		return $this->hasOne(ProfileFieldValue::className(), ['id' => 'user_id']);
+//		return $this->hasOne(ProfileFieldValue::className(), ['id' => 'user_id']);
 	}
 
 	public function beforeValidate()
