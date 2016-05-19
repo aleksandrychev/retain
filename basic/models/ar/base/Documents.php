@@ -110,6 +110,14 @@ class Documents extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
+    public function getExtractedTaxonomy()
+    {
+        return $this->hasMany(\app\models\ar\ExtractedTaxonomy::className(), ['doc_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
     public function getExtractedConcepts()
     {
         return $this->hasMany(\app\models\ar\ExtractedConcepts::className(), ['doc_id' => 'id']);

@@ -22,13 +22,15 @@ class m160518_140059_createViewForSphinx extends Migration
            hls.tag_type,
            documents.title AS document_title,
            projects.title AS project_title,
-           GROUP_CONCAT(extracted_keywords.text, " ") AS keywords,
+            GROUP_CONCAT(extracted_keywords.text, " ") AS keywords,
+            GROUP_CONCAT(extracted_taxonomy.text, " ") AS taxonomy,
             GROUP_CONCAT(extracted_concepts.text, " ") AS concepts
             FROM `sentences_plus_hl` AS hls
             LEFT JOIN documents ON documents.id = hls.`doc_id`
             LEFT JOIN projects ON projects.id = documents.`project_id`
             LEFT JOIN extracted_keywords ON extracted_keywords.doc_id= hls.`doc_id`
             LEFT JOIN extracted_concepts ON extracted_concepts.doc_id= hls.`doc_id`
+            LEFT JOIN extracted_taxonomy ON extracted_taxonomy.doc_id= hls.`doc_id`
             GROUP BY hls.id
             '
         );

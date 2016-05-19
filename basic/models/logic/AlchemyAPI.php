@@ -17,6 +17,7 @@ class AlchemyAPI
     private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
     private $keywordsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedKeywords';
     private $conceptsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedConcepts';
+    private $taxonomyApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedTaxonomy';
     private $data;
 
     public function init()
@@ -69,6 +70,14 @@ class AlchemyAPI
         $data['maxRetrieve'] = 5;
         return $this->callAPI($this->conceptsApiUrl, $data);
     }
+
+    public function getTaxonomy()
+    {
+        $data = $this->data;
+        $data['maxRetrieve'] = 5;
+        return $this->callAPI($this->taxonomyApiUrl, $data);
+    }
+
 
 
     private function callAPI($url, $data)

@@ -70,6 +70,7 @@ $columns =
         ],
         'keywordString',
         'conceptString',
+        'taxonomyString',
         'send_to_final_report' => [
             'attribute' => 'send_to_final_report',
             'format' => 'raw',

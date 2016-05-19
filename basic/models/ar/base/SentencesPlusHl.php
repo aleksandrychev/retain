@@ -115,6 +115,7 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
             'tag_type' => 'Tag Type',
             'entity' => 'Entity 1',
             'keywordString'  => 'Documents Keywords',
+            'taxonomyString' => 'Documents Taxonomy',
             'conceptString' => 'Documents Concepts',
             'send_to_final_report' => 'Send to final report'
         ];

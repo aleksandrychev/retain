@@ -15,6 +15,7 @@ use app\models\ar\ExtractedConcepts;
 use app\models\ar\ExtractedDate;
 use app\models\ar\ExtractedEntity;
 use app\models\ar\ExtractedKeywords;
+use app\models\ar\ExtractedTaxonomy;
 use app\models\ar\SentencesPlusHl;
 use yii\base\Model;
 
@@ -41,6 +42,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById(Documents::findOne($this->document->id)->uuid);
+        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
 
         $this->api->setUrl($this->url)->init();
 
@@ -53,6 +55,7 @@ class ProcessModel extends Model
         $this->processDate();
         $this->processKeywords();
         $this->processConcepts();
+        $this->processTaxonomy();
         $this->writeSentenceToDb();
 
         header('location: /documents/view/' . $this->document->id);
@@ -140,6 +143,16 @@ class ProcessModel extends Model
         }
     }
 
+    private function processTaxonomy()
+    {
+        $tax = $this->api->getTaxonomy();
+        if ($tax && $tax->status == 'OK' && count($tax->taxonomy) > 0) {
+            foreach ($tax->taxonomy as $c) {
+                $this->saveKC($c, new ExtractedTaxonomy(), ['text'=>'label','relevance'=>'score']);
+            }
+        }
+    }
+
 
     private function saveEntity($entity)
     {
@@ -160,10 +173,10 @@ class ProcessModel extends Model
         $extractedEntity->save();
     }
 
-    private function saveKC($res, $item)
+    private function saveKC($res, $item, $fields = ['text'=>'text','relevance'=>'relevance'])
     {
-        $item->text = $res->text;
-        $item->relevance = $res->relevance;
+        $item->text = $res->$fields['text'];
+        $item->relevance = $res->$fields['relevance'];
         $item->doc_id = $this->document->id;
         $item->save();
 

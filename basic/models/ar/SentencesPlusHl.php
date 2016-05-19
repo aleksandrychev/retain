@@ -76,6 +76,19 @@ class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
         return $ks;
     }
 
+    public function getTaxonomyString()
+    {
+        $ks = '';
+        if ($this->taxonomy) {
+
+            foreach ($this->taxonomy as $k) {
+                $ks .= $k->text . ', ';
+            }
+            $ks = substr($ks, 0, -2);
+        }
+        return $ks;
+    }
+
     public function getProject()
     {
         return $this->hasOne(Projects::className(),
@@ -91,6 +104,13 @@ class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
     public function getConcepts()
     {
         return $this->hasMany(\app\models\ar\ExtractedConcepts::className(),
+            ['doc_id' => 'doc_id']);
+    }
+
+
+    public function getTaxonomy()
+    {
+        return $this->hasMany(\app\models\ar\ExtractedTaxonomy::className(),
             ['doc_id' => 'doc_id']);
     }
 

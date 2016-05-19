@@ -22,6 +22,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public $docName;
     public $keywordString;
     public $conceptString;
+    public $taxonomyString;
     public $searchText;
 
 
@@ -58,6 +59,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
                     'docName',
                     'keywordString',
                     'conceptString',
+                    'taxonomyString',
                     'reference',
                     'searchText',
                 ],
@@ -115,15 +117,27 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             }
         ]);
 
-        $query->with([
+        $query->joinWith([
             'keywords' => function ($q) {
-                $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
+                if($this->keywordString){
+                    $q->where('extracted_keywords.text LIKE "%' . $this->keywordString . '%"');
+                }
             }
         ]);
 
-        $query->with([
+        $query->joinWith([
             'concepts' => function ($q) {
-                $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
+                if($this->conceptString) {
+                    $q->where('extracted_concepts.text LIKE "%' . $this->conceptString . '%"');
+                }
+            }
+        ]);
+
+        $query->joinWith([
+            'taxonomy' => function ($q) {
+                if($this->taxonomyString) {
+                    $q->where('extracted_taxonomy.text LIKE "%' . $this->taxonomyString . '%"');
+                }
             }
         ]);
 
@@ -146,8 +160,8 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         ];
 
         $dataProvider->sort->attributes['keywordString'] = [
-            'asc' => ['extracted_concepts.text' => SORT_ASC],
-            'desc' => ['extracted_concepts.text' => SORT_DESC],
+            'asc' => ['extracted_keywords.text' => SORT_ASC],
+            'desc' => ['extracted_keywords.text' => SORT_DESC],
             'label' => 'Document Keywords'
         ];
 
@@ -155,6 +169,12 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             'asc' => ['extracted_concepts.text' => SORT_ASC],
             'desc' => ['extracted_concepts.text' => SORT_DESC],
             'label' => 'Document Concepts'
+        ];
+
+        $dataProvider->sort->attributes['taxonomyString'] = [
+            'asc' => ['extracted_taxonomy.text' => SORT_ASC],
+            'desc' => ['extracted_taxonomy.text' => SORT_DESC],
+            'label' => 'Document Taxonomy'
         ];
 
 

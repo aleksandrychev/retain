@@ -27,6 +27,7 @@ class MasterReportSettings extends \app\models\ar\base\MasterReportSettings
             'entity' => 'Entity 1',
             'keywordString' => 'Documents Keywords	',
             'conceptString' => 'Documents Concepts',
+            'taxonomyString' => 'Documents Taxonomy',
             'send_to_final_report' => 'Send to final report',
         ];
     }

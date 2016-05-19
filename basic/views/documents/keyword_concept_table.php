@@ -7,7 +7,7 @@
  */
 ?>
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-4">
         <?php if ($model->getExtractedKeywords()) { ?>
             <table class="table">
                 <thead>
@@ -29,7 +29,7 @@
             </table>
         <?php } ?>
     </div>
-    <div class="col-md-6">
+    <div class="col-md-4">
         <?php if ($model->getExtractedConcepts()) { ?>
             <table class="table">
                 <thead>
@@ -41,6 +41,29 @@
                 <tbody>
 
                 <?php foreach ($model->getExtractedConcepts()->limit(5)->all() as $keyword) { ?>
+                    <tr>
+                        <td><?= $keyword->text ?></td>
+                        <td><?= $keyword->relevance ?></td>
+                    </tr>
+                <?php } ?>
+
+                </tbody>
+            </table>
+        <?php } ?>
+    </div>
+
+    <div class="col-md-4">
+        <?php if ($model->getExtractedTaxonomy()) { ?>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Taxonomy</th>
+                    <th>Relevance</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                <?php foreach ($model->getExtractedTaxonomy()->limit(5)->all() as $keyword) { ?>
                     <tr>
                         <td><?= $keyword->text ?></td>
                         <td><?= $keyword->relevance ?></td>
