@@ -42,7 +42,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById(Documents::findOne($this->document->id)->uuid);
-        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
+//        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
 
         $this->api->setUrl($this->url)->init();
 
@@ -77,19 +77,18 @@ class ProcessModel extends Model
     {
         $sentences = AppHelper::getDocumentSentences($this->document->html_file);
 
-        foreach($sentences as $s){
+        foreach ($sentences as $s) {
             $sentHL = new SentencesPlusHl();
             $sentHL->sent_hl = $s;
             $sentHL->doc_id = $this->document->id;
             $sentHL->user_id = \Yii::$app->user->id;
             $sentHL->save();
 
-            $entityDateSetter = new EntityDateSetter($sentHL,$this->document->id);
+            $entityDateSetter = new EntityDateSetter($sentHL, $this->document->id);
             $entityDateSetter->process();
 
         }
     }
-
 
 
     private function processEntity()
@@ -102,10 +101,7 @@ class ProcessModel extends Model
                     false);
                 $this->saveEntity($entity);
             }
-
         }
-
-
     }
 
     private function processDate()
@@ -148,7 +144,7 @@ class ProcessModel extends Model
         $tax = $this->api->getTaxonomy();
         if ($tax && $tax->status == 'OK' && count($tax->taxonomy) > 0) {
             foreach ($tax->taxonomy as $c) {
-                $this->saveKC($c, new ExtractedTaxonomy(), ['text'=>'label','relevance'=>'score']);
+                $this->saveKC($c, new ExtractedTaxonomy(), ['text' => 'label', 'relevance' => 'score']);
             }
         }
     }
@@ -173,7 +169,7 @@ class ProcessModel extends Model
         $extractedEntity->save();
     }
 
-    private function saveKC($res, $item, $fields = ['text'=>'text','relevance'=>'relevance'])
+    private function saveKC($res, $item, $fields = ['text' => 'text', 'relevance' => 'relevance'])
     {
         $item->text = $res->$fields['text'];
         $item->relevance = $res->$fields['relevance'];
