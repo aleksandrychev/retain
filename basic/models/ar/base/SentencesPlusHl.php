@@ -101,20 +101,13 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-//            'id' => 'ID',
             'selection' => 'Selection',
             'docName' => 'Source Document',
-//            'doc_id' => 'Doc ID',
             'tag_id' => 'Tag ID',
             'user_id' => 'User ID',
             'project_id' => 'Project ID',
-//            'entity_id' => 'Entity ID',
             'date_id' => 'Date ID',
             'note' => 'Note',
-//            'manual_date' => 'Manual Date',
-//            'page_number' => 'Page Number',
-//            'line_number' => 'Line Number',
-//            'paragraph_number' => 'Paragraph Number',
             'positions' => 'Positions',
             'sent_hl' => 'Highlight + Sentence',
             'meta_data' => 'Meta Data',

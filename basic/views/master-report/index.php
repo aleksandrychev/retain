@@ -16,7 +16,7 @@ $this->params['breadcrumbs'][] = $this->title;
             </a></h1>
 
         <?= $this->render('settings', ['model' => $model, 'settings' => $settings]) ?>
-        <?php //echo $this->render('_search', ['model' => $searchModel]); ?>
+        <?= $this->render('_search', ['model' => $searchModel]); ?>
 
         <?php \yii\widgets\Pjax::begin(); ?>
         <?= $this->render('table',

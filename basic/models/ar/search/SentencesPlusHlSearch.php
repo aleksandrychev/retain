@@ -2,10 +2,14 @@
 
 namespace app\models\ar\search;
 
+
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
 use app\models\ar\SentencesPlusHl;
+use yii\db\Expression;
+use yii\sphinx\Query;
+
 
 /**
  * SentencesPlusHlSearch represents the model behind the search form about `app\models\ar\SentencesPlusHl`.
@@ -18,6 +22,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public $docName;
     public $keywordString;
     public $conceptString;
+    public $searchText;
 
 
     /**
@@ -53,7 +58,8 @@ class SentencesPlusHlSearch extends SentencesPlusHl
                     'docName',
                     'keywordString',
                     'conceptString',
-                    'reference'
+                    'reference',
+                    'searchText',
                 ],
                 'safe'
             ],
@@ -78,8 +84,24 @@ class SentencesPlusHlSearch extends SentencesPlusHl
      */
     public function search($params)
     {
-
+        $this->load($params);
         $query = SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
+
+        $querySphinx = new Query;
+        $ids = [];
+        if ($this->searchText) {
+            $rows = $querySphinx->from('sh_search')
+                ->select('ids')
+                ->match(new Expression(':match', [':match' =>  $this->GetSphinxKeyword($this->searchText)]))
+                ->all();
+            if (count($rows) > 0) {
+                foreach ($rows as $row) {
+                    $ids[] = $row['ids'];
+                }
+            }else{
+                $ids[] = 'nothing';
+            }
+        }
 
 
         $query->joinWith([
@@ -133,7 +155,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         ];
 
 
-        $this->load($params);
+
 
 //        if (!$this->validate()) {
 //
@@ -156,8 +178,12 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             $query->andFilterWhere(['IN', 'documents.title', $this->docName]);
         }
 
+        if ($this->searchText) {
+            $query->andFilterWhere(['IN', 'sentences_plus_hl.id', $ids]);
+        }
+
         if ($this->entity_type != '') {
-        $query->andFilterWhere(['IN', 'entity_type', $this->entity_type]);
+            $query->andFilterWhere(['IN', 'entity_type', $this->entity_type]);
         }
 
         if ($this->entity != '') {
@@ -178,9 +204,27 @@ class SentencesPlusHlSearch extends SentencesPlusHl
             ->andFilterWhere(['like', 'meta_data', $this->meta_data])
             ->andFilterWhere(['like', 'page_number', $this->reference])
             ->andFilterWhere(['like', 'line_number', $this->reference])
-            ->andFilterWhere(['like', 'paragraph_number', $this->reference])
-        ;
+            ->andFilterWhere(['like', 'paragraph_number', $this->reference]);
 
         return $dataProvider;
+    }
+
+
+    private  function GetSphinxKeyword($sQuery)
+    {
+        $aKeyword = '';
+        $sQuery = str_replace('/', ' ', $sQuery);
+
+        $aRequestString = preg_split('/[\s,-]+/', $sQuery, 5);
+
+        if ($aRequestString) {
+            foreach ($aRequestString as $sValue) {
+                if (strlen($sValue) > 0) {
+                    $aKeyword[] = "(" . $sValue . " | *" . $sValue . "*)";
+                }
+            }
+            $sSphinxKeyword = implode(" | ", $aKeyword);
+        }
+        return $sSphinxKeyword;
     }
 }

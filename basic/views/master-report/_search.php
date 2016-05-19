@@ -8,22 +8,23 @@ use yii\widgets\ActiveForm;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<div class="sentences-plus-hl-search">
+<div  class="sentences-plus-hl-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+
         'method' => 'get',
     ]); ?>
+    <div style="display: inline-block" class="form-group ">
+    <?= $form->field($model, 'searchText')->textInput(['placeholder'=>'type text to search'])->label(false)  ?>
+    </div>
 
-    <?= $form->field($model, 'id') ?>
+    <?php //$form->field($model, 'doc_id') ?>
 
-    <?= $form->field($model, 'doc_id') ?>
+    <?php //$form->field($model, 'tag_id') ?>
 
-    <?= $form->field($model, 'tag_id') ?>
+    <?php //$form->field($model, 'user_id') ?>
 
-    <?= $form->field($model, 'user_id') ?>
-
-    <?= $form->field($model, 'project_id') ?>
+    <?php //$form->field($model, 'project_id') ?>
 
     <?php // echo $form->field($model, 'entity_id') ?>
 
@@ -45,9 +46,9 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'meta_data') ?>
 
-    <div class="form-group">
+    <div style="display: inline-block" class="form-group">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
+        <?php // Html::resetButton('Reset', ['class' => 'btn btn-default']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
