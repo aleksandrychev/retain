@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m160519_120718_addTaxonomy extends Migration
+class m160518_140059_addTaxonomy extends Migration
 {
     public function up()
     {

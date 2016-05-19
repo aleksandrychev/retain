@@ -2,7 +2,7 @@
 
 use yii\db\Migration;
 
-class m160518_140059_createViewForSphinx extends Migration
+class m160519_120718_createViewForSphinx extends Migration
 {
     public function up()
     {
