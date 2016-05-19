@@ -92,7 +92,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         if ($this->searchText) {
             $rows = $querySphinx->from('sh_search')
                 ->select('ids')
-                ->where('user_id = ' . \Yii::$app->user->id)
+                ->where(['`user_id`' => \Yii::$app->user->id])
                 ->limit(99999)
                 ->match(new Expression(':match', [':match' =>  $this->GetSphinxKeyword($this->searchText)]))
                 ->all();

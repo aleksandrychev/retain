@@ -28,8 +28,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 $js = '
 
- var gridview_id = ""; // specific gridview
- var columns = [5]; // index column that will grouping, start 1
+ var coln = parseInt($(\'#datatable thead th a\').index($(\'#datatable thead a[data-sort="sent_hl"]\'))) + 1;
+ var gridview_id = "#datatable"; // specific gridview
+ var columns = [coln]; // index column that will grouping, start 1
 
 
 var column_data = [];

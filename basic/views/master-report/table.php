@@ -106,6 +106,7 @@ $columns = \app\models\ar\MasterReportSettings::clearColumns($columns);
 
 <?= GridView::widget([
     'dataProvider' => $dataProvider,
+    'id' => 'datatable',
     'summary' => '',
     'columns' => $columns,
 ]); ?>

@@ -15,7 +15,7 @@ class SentencesPlusHl extends \app\models\ar\base\SentencesPlusHl
     {
         $rules = parent::rules();
         array_push($rules,
-            [['projectName', 'docName','searchText'], 'safe']
+            [['projectName', 'docName'], 'safe']
         );
         return $rules;
 
