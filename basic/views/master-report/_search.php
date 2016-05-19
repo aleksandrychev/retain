@@ -11,7 +11,7 @@ use yii\widgets\ActiveForm;
 <div  class="sentences-plus-hl-search">
 
     <?php $form = ActiveForm::begin([
-
+        'action' => '/master-report',
         'method' => 'get',
     ]); ?>
     <div style="display: inline-block" class="form-group ">
