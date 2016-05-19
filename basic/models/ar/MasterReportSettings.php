@@ -62,6 +62,10 @@ class MasterReportSettings extends \app\models\ar\base\MasterReportSettings
         $tmp = [];
         $settings = self::getSettings();
 
+        if(!$settings){
+            return $columns;
+        }
+
         foreach ($settings as $key => $v) {
             if (isset($columns[$key])) {
                 $tmp[$key] = $columns[$key];
