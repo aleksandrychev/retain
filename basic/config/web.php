@@ -82,7 +82,7 @@ $config = [
             'rules' => [
                 '' => 'projects/index',
                 '<controller>/<action>' => '<controller>/<action>',
-                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+                '<controller>/<action>/<id>' => '<controller>/<action>',
             ],
         ],
 
