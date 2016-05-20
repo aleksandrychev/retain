@@ -43,7 +43,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById(Documents::findOne($this->document->id)->uuid);
-        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
+//        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
 
         $this->api->setUrl($this->url)->init();
 
