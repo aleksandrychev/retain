@@ -24,18 +24,17 @@ class IntellexerApiClient
     {
         $data = [
             'apikey' => $this->apiKey,
-            'url' => $url,
+            'url' => urldecode($url),
             'conceptsRestriction' => '20',
             'fullTextTrees' => 'true',
-            'useCache' => 'true',
             'loadSentences' => 'true',
-            'wrapConcepts' => 'true'
         ];
+ 
 
         $response = \Httpful\Request::get('http://api.intellexer.com/' . $apiMethod . '?' . http_build_query($data))
             ->expectsJson()
             ->send();
-
+ 
         return $response->body;
 
     }
