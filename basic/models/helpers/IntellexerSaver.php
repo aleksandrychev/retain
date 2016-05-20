@@ -19,7 +19,9 @@ class IntellexerSaver
     public static function save($doc_id, $clusters)
     {
         self::$doc_id = $doc_id;
+       if(isset($clusters->sentences)){
         self::saveSentences($clusters->sentences);
+        } 
         self::clusterizeProcess($clusters);
     }
 
