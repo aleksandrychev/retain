@@ -10,6 +10,7 @@ namespace app\models\logic;
 
 
 use app\helpers\AppHelper;
+use app\models\helpers\IntellexerSaver;
 use app\models\ar\Documents;
 use app\models\ar\ExtractedConcepts;
 use app\models\ar\ExtractedDate;
@@ -42,7 +43,7 @@ class ProcessModel extends Model
         $this->document = $document;
         $this->api = new AlchemyAPI();
         $this->url = AppHelper::getHtmlUrlById(Documents::findOne($this->document->id)->uuid);
-//        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
+        $this->url = 'http://test.pdf2html.demo.relevant.software/documents/html?uuid=637bf693-12c6-11e6-a0ac-061c72b17085';
 
         $this->api->setUrl($this->url)->init();
 
@@ -51,6 +52,7 @@ class ProcessModel extends Model
     public function startProcess()
     {
         $this->checkSentencesDocument();
+        $this->processClusterize();
         $this->processEntity();
         $this->processDate();
         $this->processKeywords();
@@ -147,6 +149,16 @@ class ProcessModel extends Model
                 $this->saveKC($c, new ExtractedTaxonomy(), ['text' => 'label', 'relevance' => 'score']);
             }
         }
+    }
+
+    private function processClusterize()
+    {
+        $intellexer = new IntellexerApiClient();
+        $clusters = $intellexer->clusterize($this->url);
+        if ($clusters) {
+            IntellexerSaver::save($this->document->id,$clusters);
+        }
+
     }
 
 
