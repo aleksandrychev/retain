@@ -12,12 +12,16 @@ $config = [
             'class' => 'auth\Module',
             'layout' => '/main', // Layout when not logged in yet
             'layoutLogged' => '/main', // Layout for logged in users
-            'attemptsBeforeCaptcha' => 420, // Optional
+            'attemptsBeforeCaptcha' => 9999, // Optional
             'supportEmail' => 'admin@pdf2html.demo.relevant.software', // Email for notifications
             'passwordResetTokenExpire' => 7200, // Seconds for token expiration
             'signupWithEmailOnly' => false, // false = signup with username + email, true = only email signup
             'tableMap' => [ // Optional, but if defined, all must be declared
                 'User' => 'user',
+                'UserStatus' => 'user_status',
+                'ProfileFieldValue' => 'profile_field_value',
+                'ProfileField' => 'profile_field',
+                'ProfileFieldType' => 'profile_field_type',
             ],
         ],
 
@@ -82,7 +86,7 @@ $config = [
             'rules' => [
                 '' => 'projects/index',
                 '<controller>/<action>' => '<controller>/<action>',
-                '<controller>/<action>/<id>' => '<controller>/<action>',
+                '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
             ],
         ],
 
