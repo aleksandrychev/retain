@@ -55,6 +55,12 @@ $this->title = $model->title;
             </a>
         </li>
 
+        <li>
+            <a data-toggle="tab" href="#sectionF">
+                <span class="glyphicon glyphicon-random"></span> Clusterizer
+            </a>
+        </li>
+
     </ul>
         <?php Pjax::end(); ?>
     <div class="tab-content">
@@ -112,6 +118,11 @@ $this->title = $model->title;
                 ['url' => $url, 'model' => $model]); ?>
         </div>
 
+        <div id="sectionF" class="tab-pane fade">
+            <?= Yii::$app->controller->renderPartial('clusterize_table',
+                ['url' => $url, 'model' => $model]); ?>
+        </div>
+
     </div>
     <div class='notifications top-right alert'></div>
 <?php
@@ -122,5 +133,3 @@ $this->registerJsFile('/js/moment-with-locales.js', ['depends' => [\yii\web\Jque
 $this->registerJsFile('/js/bootstrap-datetimepicker.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/css/bootstrap-datetimepicker.css');
 
-//$this->registerJsFile('/js/choosen/chosen.jquery.min.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
-//$this->registerCssFile('/js/choosen/chosen.min.css');

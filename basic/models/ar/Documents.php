@@ -23,6 +23,23 @@ class Documents extends \app\models\ar\base\Documents
           if($this->project)  return $this->project->title;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIntellexerSentences()
+    {
+        return $this->hasMany(\app\models\ar\IntellexerSentences::className(), ['doc_id' => 'id']);
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getIntellexerClusters()
+    {
+        return $this->hasMany(\app\models\ar\IntellexerClusterize::className(), ['doc_id' => 'id']);
+    }
+
+
 
 
     public function afterSave($insert, $changedAttributes)
