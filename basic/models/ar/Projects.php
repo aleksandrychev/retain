@@ -8,9 +8,6 @@
 
 namespace app\models\ar;
 
-
-use app\models\ar\base\SentencesPlusHl;
-
 class Projects extends \app\models\ar\base\Projects
 {
 
@@ -27,7 +24,7 @@ class Projects extends \app\models\ar\base\Projects
             }
         }
         $itemsToReturn = [];
-        $entityToAutocomplite = SentencesPlusHl::find()->where(['doc_id' => $docIds])->andWhere('(entity IS NOT NULL OR entity_type IS NOT NULL OR manual_date IS NOT NULL)')->select('entity,entity_type,manual_date')->asArray()->all();
+        $entityToAutocomplite = parent::find()->where(['doc_id' => $docIds])->andWhere('(entity IS NOT NULL OR entity_type IS NOT NULL OR manual_date IS NOT NULL)')->select('entity,entity_type,manual_date')->asArray()->all();
         if($entityToAutocomplite){
             foreach($entityToAutocomplite as $items){
                 foreach ($items as $item) {
