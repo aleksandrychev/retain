@@ -12,6 +12,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-index">
     <h2><?= $model->title ?></h2>
 
+        <label for="autocomplite">Autocomplited text:</label>
+        <textarea   class="form-control" rows="5" id="autocomplite">
+        </textarea>
+
 
         <div class="row" style="margin-top: 30px;">
             <?php
@@ -56,6 +60,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
+
+
+
+
 </div>
 <?php
 $script = <<<JS
@@ -79,6 +87,30 @@ $(this).closest('form').find('.btn').show();
 });
 JS;
 $this->registerJs($script);
+
+
+
+$this->registerJsFile('/js/jquery.textcomplete.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
+
+$this->registerJs("
+
+$('textarea').textcomplete([{
+    match: /(^|\b)(\w{2,})$/,
+    search: function (term, callback) {
+        var words = ". $model->getEntityForAutocomplete() .";
+        callback($.map(words, function (word) {
+            return word.indexOf(term) === 0 ? word : null;
+        }));
+    },
+    replace: function (word) {
+        return word + ' ';
+    }
+  }]);
+
+
+
+");
+
 ?>
 <style>
     .form-group  {display: inline-block;vertical-align: top;}

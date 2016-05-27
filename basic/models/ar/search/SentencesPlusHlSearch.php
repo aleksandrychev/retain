@@ -89,7 +89,10 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         $this->load($params);
         $query = SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
 
+
+
         $querySphinx = new Query;
+
         $ids = [];
         if ($this->searchText) {
             $rows = $querySphinx->from('sh_search')
