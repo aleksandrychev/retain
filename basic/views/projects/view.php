@@ -99,7 +99,7 @@ $('textarea').textcomplete([{
     search: function (term, callback) {
         var words = ". $model->getEntityForAutocomplete() .";
         callback($.map(words, function (word) {
-            return word.indexOf(term) === 0 ? word : null;
+             return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
         }));
     },
     replace: function (word) {
