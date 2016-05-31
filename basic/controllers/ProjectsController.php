@@ -49,7 +49,7 @@ class ProjectsController extends Controller
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Projects::find()->where(['user'=>Yii::$app->user->id]),
+            'query' => Projects::find()->where(['user' => Yii::$app->user->id]),
         ]);
 
         return $this->render('index', [
@@ -64,14 +64,14 @@ class ProjectsController extends Controller
      */
     public function actionView($id)
     {
-        $model =  $this->findModel($id);
-        if($model->user != Yii::$app->user->id){
+        $model = $this->findModel($id);
+        if ($model->user != Yii::$app->user->id) {
             throw new NotFoundHttpException('The requested page does not exist.');
             return false;
         }
 
         $dataProvider = new ActiveDataProvider([
-            'query' => Documents::find()->where(['user'=>Yii::$app->user->id, 'project_id' => $id ]),
+            'query' => Documents::find()->where(['user' => Yii::$app->user->id, 'project_id' => $id]),
         ]);
 
 
@@ -110,7 +110,7 @@ class ProjectsController extends Controller
     {
         $model = $this->findModel($id);
 
-        if($model->user != Yii::$app->user->id){
+        if ($model->user != Yii::$app->user->id) {
             throw new NotFoundHttpException('The requested page does not exist.');
             return false;
         }
@@ -124,6 +124,15 @@ class ProjectsController extends Controller
         }
     }
 
+    public function actionSetText()
+    {
+
+        $model = $this->findModel((int)\Yii::$app->request->post('id'));
+        $model->text = \Yii::$app->request->post('text');
+        $model->save();
+    }
+
+
     /**
      * Deletes an existing Projects model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -132,10 +141,10 @@ class ProjectsController extends Controller
      */
     public function actionDelete($id)
     {
-        $model =  $this->findModel($id);
-        if($model->user == Yii::$app->user->id){
+        $model = $this->findModel($id);
+        if ($model->user == Yii::$app->user->id) {
             $model->delete();
-        } else{
+        } else {
             throw new NotFoundHttpException('The requested page does not exist.');
         }
 

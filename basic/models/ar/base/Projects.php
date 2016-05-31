@@ -32,6 +32,7 @@ class Projects extends \yii\db\ActiveRecord
     {
         return [
             [['position', 'user'], 'integer'],
+            [['text'], 'safe'],
             [['title'], 'string', 'max' => 200],
             [['user'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user' => 'id']],
         ];
@@ -44,6 +45,7 @@ class Projects extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
+            'text' => 'Autocompleted Text',
             'title' => 'Title',
             'position' => 'Position',
             'user' => 'User',
