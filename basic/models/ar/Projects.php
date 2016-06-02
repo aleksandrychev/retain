@@ -21,6 +21,7 @@ class Projects extends \app\models\ar\base\Projects
     }
 
     public function getEntityForAutocomplete(){
+        $docIds[] = 0;
         if($this->documents){
             foreach($this->documents as $doc){
               $docIds[] = $doc->id;
