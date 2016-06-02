@@ -97,7 +97,7 @@ $this->registerJsFile('/js/jquery.textcomplete.js', ['depends' => [\yii\web\Jque
 $this->registerJs("
 
 $('textarea').textcomplete([{
-    match: /(^|\b)(\w{4,})$/,
+    match: /(^|\b)(\w{2,})$/,
     search: function (term, callback) {
         var words = " . $model->getEntityForAutocomplete() . ";
         callback($.map(words, function (word) {
