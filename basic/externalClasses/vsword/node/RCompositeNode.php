@@ -20,8 +20,8 @@ class RCompositeNode extends EmptyCompositeNode implements INodeTextAdded, ILine
 	* @param string $text
 	* @return INode
 	*/
-	public function addText($text) {    
-		$this->addNode( new TextNode($text)); 
+	public function addText($text) {
+		$this->addNode( new TextNode($text));
 		return $this;
 	}
         

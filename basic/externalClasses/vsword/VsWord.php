@@ -1,6 +1,5 @@
 <?php
 
-
  
  require_once 'interfaces.php';
 
@@ -118,8 +117,7 @@ class VsWord {
     */
 	public function saveAs($to = 'document.docx') {
 		$zip = new ZipArchive();
-		$res = $zip->open( $to, ZipArchive::CREATE | ZipArchive::OVERWRITE | ZipArchive::CM_STORE );
-
+		$zip->open($to, ZipArchive::CREATE | ZipArchive::OVERWRITE | ZipArchive::CM_STORE );
 		$this->putToZip($zip, $this->structure);
 		//attach files
 		foreach($this->stackAttach as $attach) {

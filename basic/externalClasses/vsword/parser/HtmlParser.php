@@ -27,7 +27,8 @@ class HtmlParser extends Parser {
 	* @param string $html
 	*/
 	public function parse($html) {
-		$html = $this->stripString($html); 
+		$html = $this->stripString($html);
+
 		$loader = new HTMLLoader();
 		$dom = $loader->parse($html);  
 		//echo '<pre>'.$dom->look().'</pre>';

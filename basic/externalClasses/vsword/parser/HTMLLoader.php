@@ -53,8 +53,10 @@ class HTMLLoader {
 		    
 		while($length > $i) {
 		    $char = substr($html, $i ++, 1);
-		    if($char == '<') { 
-				if($this->noEmptyText($content)) { 
+		    if($char == '<') {
+
+				if($this->noEmptyText($content)) {
+
 					$target->addNode(new StringNode($content));
 				}
 				$content = '';
@@ -65,7 +67,7 @@ class HTMLLoader {
 				    $i ++;
 				}
 		    } else if($open  && $char == '>') {
-				 
+
 				if($end ) { //close tag 
 					if($this->noEmptyText($content)) {
 						$target->addNode(new StringNode($content));
@@ -97,6 +99,7 @@ class HTMLLoader {
 		    }  else if($open) {
 				$eatAttr = true;
 				$attributeStr .= $char;
+
 		    } else if(!$open) {
 				$content .= $char; 
 		    }

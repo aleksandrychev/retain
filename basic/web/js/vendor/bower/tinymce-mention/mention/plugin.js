@@ -40,13 +40,13 @@ var string = '';
                                 '<span id="autocomplete-searchtext"><span class="dummy">\uFEFF</span></span>' +
                             '</span>';
 
-            delimiterLength = this.options.delimiter.length - 1;
+            delimiterLength = this.options.delimiter.length;
             while(delimiterLength!=0){
                 this.editor.execCommand('Delete', false, null);
                 delimiterLength = delimiterLength - 1;
             }
 
-            this.editor.execCommand('mceInsertContent', false, rawHtml);
+            this.editor.execCommand('mceInsertContent', false, ' ' + rawHtml);
 
             this.editor.focus();
             this.editor.selection.select(this.editor.selection.dom.select('span#autocomplete-searchtext span')[0]);
