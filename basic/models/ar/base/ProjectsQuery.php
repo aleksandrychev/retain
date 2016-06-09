@@ -9,10 +9,10 @@ namespace app\models\ar\base;
  */
 class ProjectsQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
+      public function byUser()
     {
-        return $this->andWhere('[[status]]=1');
-    }*/
+        return $this->andWhere(['user' => \Yii::$app->user->id]);
+    }
 
     /**
      * @inheritdoc
