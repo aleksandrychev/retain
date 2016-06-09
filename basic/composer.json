@@ -21,7 +21,7 @@
         "gufy/pdftohtml-php":"~2",
         "yiisoft/yii2-swiftmailer": "*",
         "yiisoft/yii2-sphinx": "~2.0.0",
-        "nategood/httpful": "*",
+        "nategood/httpful": "*"
     },
     "require-dev": {
         "yiisoft/yii2-codeception": "*",
