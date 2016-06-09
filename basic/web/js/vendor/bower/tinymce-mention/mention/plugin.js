@@ -12,7 +12,7 @@ var string = '';
             source: [],
             delay: 500,
             queryBy: 'name',
-            items: 10
+            items: 20
         }, options);
 
         this.matcher = this.options.matcher || this.matcher;
@@ -135,7 +135,10 @@ var string = '';
             case 27:
                 e.preventDefault();
                 break;
-
+                //SPace
+            case 32:
+             this.cleanUp(true);
+                break;
             //UP ARROW
             case 38:
                 e.preventDefault();
@@ -298,6 +301,7 @@ var string = '';
             this.editor.focus();
             var selection = this.editor.dom.select('span#autocomplete')[0];
             this.editor.dom.remove(selection);
+            string = '';
             this.editor.execCommand('mceInsertContent', false, this.insert(item));
         },
 
@@ -376,7 +380,7 @@ var string = '';
                 {
                     for( var i = 0; i < a.length; ++i ) {
 
-                        if (a[i].indexOf(s) == 0) {
+                        if (a[i].toLowerCase().indexOf(s.toLowerCase()) == 0) {
                             return true;
                         }
                     }
@@ -391,6 +395,7 @@ var string = '';
 
                 if(e.which == 32 ){
                     string = '';
+
                 }
 
               if(string.length > 1 && findPartial( entitiesArr, string )){
@@ -405,7 +410,7 @@ var string = '';
                 if (delimiterIndex > -1) {
                     if (autoComplete === undefined || (autoComplete.hasFocus !== undefined && !autoComplete.hasFocus)) {
                         e.preventDefault();
-
+                        console.log(string);
                         autoComplete = new AutoComplete(ed, $.extend({}, autoCompleteData, { delimiter: autoCompleteData.delimiter[delimiterIndex] }));
                     }
                 }

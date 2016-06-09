@@ -1,7 +1,7 @@
 <?php
-use dosamigos\tinymce\TinyMce;
 use \yii\widgets\ActiveForm;
 
+$this->title = 'Project Report';
 /* @var $this yii\web\View */
 ?>
 <h1>Project's report</h1>
@@ -43,7 +43,8 @@ $this->registerJsFile('/js/notify/bootstrap-notify.js', ['depends' => [\yii\web\
 $this->registerJsFile('/js/vendor/bower/tinymce-mention/mention/plugin.js
 ', ['depends' => [\yii\web\JqueryAsset::className()]]);
 $this->registerCssFile('/js/vendor/bower/tinymce-mention/css/autocomplete.css');
-$this->registerJsFile('//cdn.tinymce.com/4/tinymce.min.js');
+//$this->registerJsFile('//cdn.tinymce.com/4/tinymce.min.js');
+$this->registerJsFile('/js/vendor/bower/tinymce-dist/tinymce.js');
 
 ?>
 
@@ -57,7 +58,7 @@ $this->registerJs("
                 var toReturn = []
                     for( var i = 0; i < a.length; ++i ) {
 
-                        if (a[i].indexOf(s) == 0) {
+                        if (a[i].toLowerCase().indexOf(s.toLowerCase()) == 0) {
                             toReturn.push({\"name\": a[i]});
                         }
                     }
@@ -73,9 +74,24 @@ window.location = '/autocomplete?project_id=' + $(this).val();
 
 tinymce.init({
         selector: 'textarea',
-        plugins :  'mention',
+        theme : 'modern',
+        setup : function(ed) {
+
+       ed.on('keydown', function( e ) {
+
+          if(e.which == 8) {
+          string = string.slice(0, -1);
+          }
+
+        }),
+          ed.on('change', function () {
+            ed.save();
+        });
+    },
+        plugins :  'mention,fullscreen',
+         toolbar: 'insertfile undo redo | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | fullscreen',
         mentions:{
-        delimiter:  ['>parties','>company','>person','>£','>%','>Location'],
+        delimiter:  ['>parties','>company','>person','>date','>£','>$','>%','>location','>quantity'],
         source: function (query, process, delimiter) {
 
         var sourceArr = findKeysByPartValue(entitiesArr, delimiter );
@@ -87,7 +103,7 @@ $.post({
   dataType: 'json',
   method: 'POST',
   url: '/autocomplete/mentions',
-  data: {text: delimiter},
+  data: {text: delimiter, project_id:" . $model->project_id . "},
   success:  function (data) {
 
           process(data)
@@ -105,8 +121,9 @@ $.post({
 });
 
 
-$(\".savedoc\").on(\"click\", function(e){
-    e.preventDefault();
+$('.savedoc').on('click', function(e){
+   e.preventDefault();
+
     $('#textform').attr('action', '').submit();
 });
 
