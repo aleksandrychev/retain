@@ -48,7 +48,7 @@ $this->registerJsFile('/js/vendor/bower/tinymce-dist/tinymce.js');
 
 ?>
 
-<?php } ?>
+
 
 <?php
 $this->registerJs("
@@ -67,9 +67,7 @@ $this->registerJs("
 
 
 
-$('#autocompleteform-project_id').change(function(){
-window.location = '/autocomplete?project_id=' + $(this).val();
-});
+
 
 
 tinymce.init({
@@ -137,3 +135,7 @@ $('#textform').attr('action', '/autocomplete/get-doc').submit();
 
 
 ?>
+<?php } ?>
+<?php $this->registerJs("$('#autocompleteform-project_id').change(function(){
+window.location = '/autocomplete?project_id=' + $(this).val();
+});") ?>
