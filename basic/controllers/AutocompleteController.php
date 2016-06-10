@@ -2,8 +2,8 @@
 
 namespace app\controllers;
 
-use app\models\ar\base\Documents;
-use app\models\ar\base\SentencesPlusHl;
+use app\models\ar\Documents;
+use app\models\ar\SentencesPlusHl;
 use app\models\ar\Projects;
 use app\models\logic\AutocompleteForm;
 

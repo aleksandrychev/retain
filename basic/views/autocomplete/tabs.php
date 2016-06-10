@@ -32,23 +32,26 @@
             </tr>
             </thead>
             <tbody>
-            <?php $notes = $selectedProject->getNotes(); $docId = ''; ?>
-            <?php if($notes) { ?>
-            <?php foreach ($notes as $r) { ?>
-            <?php if($docId !=  $r->doc_id) {?>
+            <?php $notes = $selectedProject->getNotes();
+            $docId = ''; ?>
+            <?php if ($notes) { ?>
+                <?php foreach ($notes as $r) { ?>
+                    <?php if ($docId != $r->doc_id) { ?>
                         <tr>
                             <th><?= $r->doc->title ?></th>
-                        <th></th>
-                        <th></th>
+                            <th></th>
+                            <th></th>
                         </tr>
-             <?php }?>
-                <tr>
-                    <td title="↩️ Click to insert to text redactor" class="toEditor" data-document="<?= $r->doc->title ?>"><?= strip_tags(str_replace('</div><div','</div> <div',$r->sent_hl)) ?></td>
-                    <td><?= $r->note ?></td>
-                    <td><?= $r->tag->title ?></td>
-                </tr>
-            <?php $docId = $r->doc_id; ?>
-            <?php } ?>
+                    <?php } ?>
+                    <tr>
+                        <td title="↩️ Click to insert to text redactor" class="toEditor"
+                            data-document="<?= $r->doc->title ?>"><?= strip_tags(str_replace('</div><div',
+                                '</div> <div', $r->sent_hl)) ?></td>
+                        <td><?= $r->note ?></td>
+                        <td><?= $r->tag->title ?></td>
+                    </tr>
+                    <?php $docId = $r->doc_id; ?>
+                <?php } ?>
             <?php } ?>
 
             </tbody>
@@ -57,14 +60,35 @@
     </div>
 
 
-
-
-
     <div class="tab-pane" id="entities">Entities</div>
-    <div class="tab-pane" id="articles">Project's articles</div>
+    <div class="tab-pane" id="articles">
+
+        <?php if ($selectedProject->documents) { ?>
+            <br />
+            <div class="btn-group" role="group" aria-label="Default button group">
+            <?php foreach ($selectedProject->documents as $doc) { ?>
+
+                <button type="button" data-url="<?= $doc->getUrlToView() ?>" class="documentOfProject btn btn-default"><?= $doc->title ?></button>
+            <?php } ?>
+        </div>
+            <br />  <br />
+        <?php } ?>
+
+
+    </div>
+
+    <iframe style="display: none" id="frame" src="" name="topFrame" width="100%"
+            height="700px"></iframe>
 </div>
 
 <style>
-    .toEditor:hover {text-decoration: underline; cursor: pointer}
-    #notes {max-height: 700px; overflow-y: scroll}
+    .toEditor:hover {
+        text-decoration: underline;
+        cursor: pointer
+    }
+
+    #notes {
+        max-height: 700px;
+        overflow-y: scroll
+    }
 </style>

@@ -30,17 +30,20 @@ tinymce.init({
             ed.on('change', function () {
                 ed.save()
             }) ,
-        ed.on('init',function(ed) {
-            setCarretToEnd();
-        });
+            ed.on('init', function (ed) {
+                setCarretToEnd();
+            });
     },
     plugins: 'mention,fullscreen',
     toolbar: 'insertfile undo redo | html | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | fullscreen',
-    'formats' : {
-        'alignleft' : {'selector' : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align":  'left'}},
-        'aligncenter' : {'selector' : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align":  'center'}},
-        'alignright' : {'selector' : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align":  'right'}},
-        'alignfull' : {'selector' : 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align":  'justify'}},
+    'formats': {
+        'alignleft': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align": 'left'}},
+        'aligncenter': {
+            'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img',
+            attributes: {"align": 'center'}
+        },
+        'alignright': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align": 'right'}},
+        'alignfull': {'selector': 'p,h1,h2,h3,h4,h5,h6,td,th,div,ul,ol,li,table,img', attributes: {"align": 'justify'}},
 
     },
     mentions: {
@@ -82,7 +85,7 @@ $('.htmtodocx').click(function () {
 
 });
 
-function setCarretToEnd(){
+function setCarretToEnd() {
     var ed = tinymce.activeEditor;
     var endId = tinymce.DOM.uniqueId();
     ed.dom.add(ed.getBody(), 'span', {'id': endId}, '');
@@ -90,12 +93,106 @@ function setCarretToEnd(){
     ed.selection.select(newNode[0]);
 }
 
-$(document).ready(function(){
 
-    $('.toEditor').click(function(){
+function getIframeSelection() {
+    var iframe = document.getElementById('frame');
+    var iframeDoc = iframe.contentWindow.document;
+
+
+    var selection = getSelectionHtml(iframeDoc);
+    if (selection.html.length > 1) {
+        $('.ite').attr('data-text', selection.html).fadeIn('slow');
+
+    } else {
+        $('.ite').hide();
+    }
+}
+
+
+$(document).ready(function () {
+
+    $('#frame').contents().find('body').mouseup(function () {
+        alert(1);
+        getIframeSelection();
+    });
+
+    $('.toEditor').click(function () {
         var text = ' ' + $(this).html() + ' <i>(' + $(this).attr('data-document') + ')</i>.&nbsp;';
-        tinymce.execCommand('mceInsertContent',false, text);
+        tinymce.execCommand('mceInsertContent', false, text);
+    });
+
+    $('.documentOfProject').click(function () {
+        $('#frame').attr('src', $(this).attr('data-url')).show();
+
+        setTimeout(function () {
+            $('#frame').contents().find('#sidebar').remove();
+            $('#frame').contents().find('body').mouseup(function (event) {
+
+                getIframeSelection();
+                var iframeoffset = $('#frame').offset();
+                $('.ite').css({
+                    'top': event.pageY + iframeoffset.top,
+                    'left': event.pageX + iframeoffset.left,
+                    'position': 'absolute'
+                });
+            });
+
+
+        }, 1000);
+    });
+
+    $('.ite').click(function () {
+        tinymce.execCommand('mceInsertContent', false, ' ' + $(this).attr('data-text'));
+        $(this).hide();
+        clearIframeSelection();
     });
 
 
 });
+
+function clearIframeSelection() {
+    var iframe = document.getElementById('frame');
+    var iframeDoc = iframe.contentWindow.document;
+
+    if (iframeDoc.getSelection) {
+        if (iframeDoc.getSelection().empty) {  // Chrome
+            iframeDoc.getSelection().empty();
+        } else if (iframeDoc.getSelection().removeAllRanges) {  // Firefox
+            iframeDoc.getSelection().removeAllRanges();
+        }
+    } else if (iframeDoc.selection) {  // IE?
+        iframeDoc.selection.empty();
+    }
+}
+
+function getSelectionHtml(elem) {
+    var html = "";
+    if (typeof elem.getSelection != "undefined") {
+        var sel = elem.getSelection();
+
+        oRange = sel.getRangeAt(0); //get the text range
+        oRect = oRange.getBoundingClientRect();
+
+
+        if (sel.rangeCount) {
+            var container = document.createElement("div");
+            for (var i = 0, len = sel.rangeCount; i < len; ++i) {
+                container.appendChild(sel.getRangeAt(i).cloneContents());
+            }
+            //html = container.innerText;
+            html = $(container.innerHTML.replace(new RegExp('/div><div', 'g'), '/div> <div')).text();
+        }
+    } else if (typeof document.selection != "undefined") {
+        if (document.selection.type == "Text") {
+            html = document.selection.createRange();
+        }
+    }
+
+    return {
+        'html': html,
+        position: oRect,
+        page: $(sel.anchorNode.parentNode).closest('.pf').index() + 1,
+        line_number: $(sel.anchorNode.parentNode).closest('.pf').find('.t').index($(sel.anchorNode.parentElement)) + 1,
+        page_selector: $(sel.anchorNode.parentNode).closest('.pf').attr('data-page-no'),
+    };
+}

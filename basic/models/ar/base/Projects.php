@@ -1,7 +1,7 @@
 <?php
 
 namespace app\models\ar\base;
-
+use app\models\ar\Documents;
 use Yii;
 
 /**

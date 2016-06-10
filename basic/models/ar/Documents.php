@@ -3,6 +3,7 @@
 namespace app\models\ar;
 
 use Yii;
+use yii\helpers\Url;
 
 class Documents extends \app\models\ar\base\Documents
 {
@@ -21,6 +22,10 @@ class Documents extends \app\models\ar\base\Documents
     public function getProjectName()
     {
           if($this->project)  return $this->project->title;
+    }
+
+    public function getUrlToView(){
+      return  Url::base('http') . Url::to('/uploads/html/' . $this->html_file);
     }
 
     /**

@@ -6,7 +6,7 @@ $this->title = 'Project Report';
 ?>
 <h1>Project's report</h1>
 <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-6">
 
         <?= \yii\bootstrap\Html::activeDropDownList($model, 'project_id',
             \yii\helpers\ArrayHelper::map($projects, 'id', 'title'), ['prompt' => 'Select Project']); ?>
@@ -23,13 +23,13 @@ $this->title = 'Project Report';
         <?= \yii\helpers\Html::button('Download .docx', ['class' => 'btn btn-info htmtodocx']) ?>
         <?php ActiveForm::end(); ?>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-6">
         <?= $this->render('tabs', ['selectedProject' => $selectedProject]) ?>
     </div>
 
 
 </div>
-
+    <button style="display: none;" class="btn ite btn-warning">insert to editor</button>
 <?php
 
 $this->registerJs("
@@ -50,3 +50,7 @@ $this->registerJsFile("/js/autocomplete.js", ['depends' => [\yii\web\JqueryAsset
 <?php $this->registerJs("$('#autocompleteform-project_id').change(function(){
 window.location = '/autocomplete?project_id=' + $(this).val();
 });") ?>
+
+<style>
+    .container {width: 98% !important;}
+</style>
