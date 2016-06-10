@@ -57,6 +57,14 @@ class Projects extends \app\models\ar\base\Projects
         return $Ids;
     }
 
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getDocuments()
+    {
+        return $this->hasMany(Documents::className(), ['project_id' => 'id']);
+    }
+
     public function getNotes()
     {
         $docIds = $this->getDocumentsId();
