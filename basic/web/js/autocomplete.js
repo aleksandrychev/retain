@@ -123,6 +123,7 @@ $(document).ready(function () {
 
     $('.documentOfProject').click(function () {
         $('#frame').attr('src', $(this).attr('data-url')).show();
+        $('.ite').attr('data-document', $(this).html());
 
         setTimeout(function () {
             $('#frame').contents().find('#sidebar').remove();
@@ -142,7 +143,7 @@ $(document).ready(function () {
     });
 
     $('.ite').click(function () {
-        tinymce.execCommand('mceInsertContent', false, ' ' + $(this).attr('data-text'));
+        tinymce.execCommand('mceInsertContent', false, ' ' + $(this).attr('data-text') + ' <i>('+ $(this).attr('data-document') + ')</i>');
         $(this).hide();
         clearIframeSelection();
     });
@@ -179,8 +180,7 @@ function getSelectionHtml(elem) {
             for (var i = 0, len = sel.rangeCount; i < len; ++i) {
                 container.appendChild(sel.getRangeAt(i).cloneContents());
             }
-            //html = container.innerText;
-            html = $(container.innerHTML.replace(new RegExp('/div><div', 'g'), '/div> <div')).text();
+             html = $(container.innerHTML.replace(new RegExp('/div><div', 'g'), '/div> <div')).text();
         }
     } else if (typeof document.selection != "undefined") {
         if (document.selection.type == "Text") {
