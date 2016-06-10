@@ -28,8 +28,11 @@ tinymce.init({
 
         }),
             ed.on('change', function () {
-                ed.save();
-            });
+                ed.save()
+            }) ,
+        ed.on('init',function(ed) {
+            setCarretToEnd();
+        });
     },
     plugins: 'mention,fullscreen',
     toolbar: 'insertfile undo redo | html | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | fullscreen',
@@ -67,7 +70,6 @@ tinymce.init({
     }
 });
 
-
 $('.savedoc').on('click', function (e) {
     e.preventDefault();
 
@@ -91,9 +93,9 @@ function setCarretToEnd(){
 $(document).ready(function(){
 
     $('.toEditor').click(function(){
-        setCarretToEnd();
         var text = ' ' + $(this).html() + ' <i>(' + $(this).attr('data-document') + ')</i>.&nbsp;';
         tinymce.execCommand('mceInsertContent',false, text);
     });
+
 
 });
