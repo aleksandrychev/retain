@@ -77,4 +77,41 @@ class Projects extends \app\models\ar\base\Projects
     }
 
 
+    public function getEntity()
+    {
+        $docIds = $this->getDocumentsId();
+
+        if (!$docIds) {
+            return false;
+        }
+
+        return SentencesPlusHl::find()
+            ->select([
+                'id',
+                'doc_id',
+                'tag_type',
+                'selection',
+                'sent_hl',
+                'manual_date',
+                'entity',
+                'entity_type',
+                'note'
+            ])
+            ->orderBy('doc_id')
+            ->where(['user' => \Yii::$app->user->id])
+            ->where(['doc_id' => $docIds])
+            ->andWhere('entity IS NOT NULL OR entity_type IS NOT NULL')
+            ->all();
+    }
+
+
+    public function extraFields()
+    {
+        return [
+            'documents',
+            'entity'
+        ];
+    }
+
+
 }

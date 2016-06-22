@@ -97,7 +97,9 @@ class User extends ActiveRecord implements IdentityInterface
 	 */
 	public static function findIdentityByAccessToken($token, $type = null)
 	{
-		throw new \yii\base\NotSupportedException('"findIdentityByAccessToken" is not implemented.');
+		return static::find()
+			->andWhere(['auth_key' => $token])
+			->one();
 	}
 
 	/**
@@ -182,6 +184,13 @@ class User extends ActiveRecord implements IdentityInterface
         $this->auth_key = Yii::$app->security->generateRandomString();
     }
 
+	public function setNewAuthKey(){
+		$this->generateAuthKey();
+		$userModel = User::find()->where(['id' => $this->id])->one();
+		$userModel->auth_key = $this->getAuthKey();
+		$userModel->save();
+	}
+
 	/**
 	 * @inheritdoc
 	 */
@@ -204,14 +213,14 @@ class User extends ActiveRecord implements IdentityInterface
             ],
 			['username', 'filter', 'filter' => 'trim'],
 			['username', 'required'],
-			['username', 'unique', 'message' => Yii::t('auth.user', 'This username has already been taken.')],
+			['username', 'unique', 'message' =>  'This username has already been taken.'],
 			['username', 'string', 'min' => 2, 'max' => 255],
 
 			['email', 'filter', 'filter' => 'trim'],
 			['email', 'required'],
 			['email', 'email'],
-			['email', 'unique', 'message' => Yii::t('auth.user', 'This email address has already been taken.')],
-			['email', 'exist', 'message' => Yii::t('auth.user', 'There is no user with such email.'), 'on' => 'requestPasswordResetToken'],
+			['email', 'unique', 'message' => 'This email address has already been taken.'],
+			['email', 'exist', 'message' =>  'There is no user with such email.', 'on' => 'requestPasswordResetToken'],
 		];
 	}
 

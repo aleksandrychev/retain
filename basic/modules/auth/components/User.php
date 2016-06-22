@@ -39,7 +39,7 @@ class User extends BaseUser
 	/**
 	 * @inheritdoc
 	 */
-	protected function afterLogin($identity, $cookieBased, $duration)
+	public function afterLogin($identity, $cookieBased, $duration)
 	{
 		parent::afterLogin($identity, $cookieBased, $duration);
 		$this->identity->setScenario(self::EVENT_AFTER_LOGIN);

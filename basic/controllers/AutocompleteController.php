@@ -6,6 +6,7 @@ use app\models\ar\Documents;
 use app\models\ar\SentencesPlusHl;
 use app\models\ar\Projects;
 use app\models\logic\AutocompleteForm;
+use app\models\logic\ImportEntityForm;
 
 class AutocompleteController extends \yii\web\Controller
 {
@@ -25,6 +26,7 @@ class AutocompleteController extends \yii\web\Controller
     {
 
         $model = new AutocompleteForm();
+        $importModel = new ImportEntityForm();
         $projects = Projects::find()->byUser()->all();
 
         $selectedProject = false;
@@ -33,12 +35,17 @@ class AutocompleteController extends \yii\web\Controller
         }
 
 
+
         if ($model->load(\Yii::$app->request->post()) && $model->validate()) {
             $model->save();
         }
 
+        if ($importModel->load(\Yii::$app->request->post()) && $importModel->validate()) {
+            var_dump($importModel);exit;
+        }
+
         return $this->render('index',
-            ['projects' => $projects, 'model' => $model, 'selectedProject' => $selectedProject]);
+            ['projects' => $projects, 'model' => $model, 'selectedProject' => $selectedProject, 'importModel' => $importModel]);
 
     }
 

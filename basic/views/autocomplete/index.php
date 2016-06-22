@@ -24,7 +24,7 @@ $this->title = 'Project Report';
         <?php ActiveForm::end(); ?>
     </div>
     <div class="col-lg-6">
-        <?= $this->render('tabs', ['selectedProject' => $selectedProject]) ?>
+        <?= $this->render('tabs', ['selectedProject' => $selectedProject, 'importModel' => $importModel]) ?>
     </div>
 
 

@@ -24,12 +24,18 @@ $config = [
                 'ProfileFieldType' => 'profile_field_type',
             ],
         ],
+        'v1' => [
+            'class' => 'app\modules\api\v1\Module',
+        ],
 
     ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'XX4Q3FdDVM5PcPIpMIKSI-dsonRZIAeZ',
+            'parsers' => [
+                'application/json' => 'yii\web\JsonParser',
+            ]
         ],
         'cache' => [
             'class' => 'yii\caching\FileCache',
@@ -81,13 +87,41 @@ $config = [
         'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
+            'enableStrictParsing' => false,
             'showScriptName' => false,
 
             'rules' => [
+
+                [
+                    'class' => 'yii\rest\UrlRule',
+                    'controller' => [
+                        'v1/project',
+                    ],
+                    'pluralize' => false,
+                ],
+
+//              'POST, OPTIONS v1/project' => 'v1/project',
+
                 '' => 'projects/index',
                 '<controller>/<action>' => '<controller>/<action>',
                 '<controller>/<action>/<id:\d+>' => '<controller>/<action>',
+
             ],
+        ],
+
+        'response' => [
+            'class' => 'yii\web\Response',
+//            'format' => \yii\web\Response::FORMAT_JSON,
+            'on beforeSend' => function ($event) {
+                $response = $event->sender;
+
+                if ( $response->format == 'json' && $response->data !== null) {
+                    $response->data = [
+                        'success' => $response->isSuccessful,
+                        'data' => $response->data,
+                    ];
+                }
+            },
         ],
 
     ],

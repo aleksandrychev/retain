@@ -5,6 +5,7 @@
  * Date: 06.06.16
  * Time: 15:57
  */
+use yii\widgets\ActiveForm;
 ?>
 
 <!-- Nav tabs -->
@@ -12,6 +13,8 @@
     <li class="active"><a href="#notes" data-toggle="tab">Notes</a></li>
     <li><a href="#entities" data-toggle="tab">Entities</a></li>
     <li><a href="#articles" data-toggle="tab">Project's articles</a></li>
+    <li><a href="#import" data-toggle="tab">Import entities</a></li>
+
 
 </ul>
 
@@ -28,6 +31,7 @@
                 <th>Highlight</th>
                 <th>Note</th>
                 <th>Tag</th>
+
 
             </tr>
             </thead>
@@ -73,12 +77,20 @@
         </div>
             <br />  <br />
         <?php } ?>
-
+        <iframe style="display: none" id="frame" src="" name="topFrame" width="100%"
+                height="700px"></iframe>
 
     </div>
 
-    <iframe style="display: none" id="frame" src="" name="topFrame" width="100%"
-            height="700px"></iframe>
+    <div class="tab-pane" id="import">
+        <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]) ?>
+
+        <?= $form->field($importModel, 'csvFile')->fileInput() ?>
+
+        <?= \yii\helpers\Html::submitButton('load') ?>
+
+        <?php ActiveForm::end() ?>
+    </div>
 </div>
 
 <style>

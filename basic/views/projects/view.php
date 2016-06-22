@@ -12,13 +12,6 @@ $this->params['breadcrumbs'][] = $this->title;
 <div class="site-index">
     <h2><?= $model->title ?></h2>
 
-    <div>
-        <label for="autocomplite">Autocomplited text:</label>
-        <textarea class="form-control" rows="5" id="autocomplite"><?= $model->text ?>
-        </textarea>
-
-       <?= Html::button('save',['class'=>'btn saveText btn-defalut pull-right']) ?>
-    </div>
 
     <div class="row" style="margin-top: 30px;">
         <?php
@@ -94,46 +87,7 @@ $this->registerJs($script);
 
 $this->registerJsFile('/js/jquery.textcomplete.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 
-$this->registerJs("
 
-$('textarea').textcomplete([{
-    match: /(^|\b)(\w{2,})$/,
-    search: function (term, callback) {
-        var words = " . $model->getEntityForAutocomplete() . ";
-        callback($.map(words, function (word) {
-             return word.toLowerCase().indexOf(term.toLowerCase()) === 0 ? word : null;
-        }));
-    },
-    replace: function (word) {
-        return word + ' ';
-    }
-  }]);
-
-  $(document).ready(function(){
-
-  $('.saveText').click(function(){
-
-  $.ajax({
-  type: \"POST\",
-  url: \"/projects/set-text\",
-  data: {id: \"". $model->id ."\", text:  $('#autocomplite').val() },
-  success: function(){
-   $.notify({
-                message: 'Text was successful saved',
-            }, {
-
-                type: 'success'
-            });
-
-  },
-
-});
-
-  });
-
-  });
-
-");
 $this->registerJsFile('/js/notify/bootstrap-notify.js', ['depends' => [\yii\web\JqueryAsset::className()]]);
 ?>
 
