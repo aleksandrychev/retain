@@ -13,7 +13,7 @@ use app\models\ar\Projects;
 use app\modules\api\common\controllers\BaseApiController;
 use yii\data\ActiveDataProvider;
 use yii\web\ForbiddenHttpException;
-use yii\web\NotFoundHttpException;
+
 
 class ProjectController extends BaseApiController
 {
