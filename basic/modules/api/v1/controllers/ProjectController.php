@@ -12,6 +12,8 @@ namespace app\modules\api\v1\controllers;
 use app\models\ar\Projects;
 use app\modules\api\common\controllers\BaseApiController;
 use yii\data\ActiveDataProvider;
+use yii\web\ForbiddenHttpException;
+use yii\web\NotFoundHttpException;
 
 class ProjectController extends BaseApiController
 {
@@ -21,19 +23,29 @@ class ProjectController extends BaseApiController
     public function actions()
     {
         $actions = parent::actions();
-        unset($actions['index']);
+
+        $actions['index']['prepareDataProvider'] = function () {
+            $query = Projects::find()->select('id, title')->where(['user' => \Yii::$app->user->identity->getId()]);
+            return new ActiveDataProvider([
+                'query' => $query,
+                'pagination' => [
+                    'pageSize' => $this->count,
+                ]
+            ]);
+        };
+
+
         return $actions;
     }
 
-    public function actionIndex()
+
+    public function checkAccess($action, $model = null, $params = [])
     {
-        $activeData = new ActiveDataProvider([
-            'query' => Projects::find(),
-            'pagination' => [
-                'defaultPageSize' => 999,
-            ],
-        ]);
-        return $activeData;
+
+        if ($model && $model->user != \Yii::$app->user->identity->getId()) {
+            throw new ForbiddenHttpException('Access deny');
+        }
+
     }
 
 
@@ -187,7 +199,7 @@ class ProjectController extends BaseApiController
      * @apiGroup Projects
      * @apiVersion 1.0.0
      *
-     * @apiParam {string} id Project ID
+     * @apiParam {integer} id Project ID
      *
      * @apiSuccessExample Success-Response:
      * HTTP/1.1 204 No Content
@@ -199,10 +211,21 @@ class ProjectController extends BaseApiController
      * @apiGroup Projects
      * @apiVersion 1.0.0
      *
-     * @apiParam {string} id Project ID
+     * @apiParam {integer} id Project ID
+     * @apiParam {string} title Title of project
+     * @apiParam {string} text Text of project
      *
      * @apiSuccessExample Success-Response:
-     * HTTP/1.1 204 No Content
+     * {
+     * "success": true,
+     * "data": {
+     * "id": 8,
+     * "title": "new title",
+     * "position": 0,
+     * "user": 1,
+     * "text": "new text"
+     * }
+     * }
      */
 
     /**

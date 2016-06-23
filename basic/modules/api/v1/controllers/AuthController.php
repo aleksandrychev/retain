@@ -54,12 +54,12 @@ class AuthController extends BaseApiController
         $user->auth_key = '';
         $user->save();
 
-        return ['success' => true];
+        return [];
     }
 
 
     /**
-     * @api {post} v1/login Login user
+     * @api {post} v1/auth/login Login user
      * @apiName userLogin
      * @apiGroup Authorization
      * @apiVersion 1.0.0
@@ -80,7 +80,7 @@ class AuthController extends BaseApiController
      */
 
     /**
-     * @api {post} v1/logout Logout user
+     * @api {post} v1/auth/logout Logout user
      * @apiName userLogout
      * @apiGroup Authorization
      *
