@@ -58,6 +58,38 @@
     "groupTitle": "Authorization"
   },
   {
+    "type": "get",
+    "url": "v1/document/html/?uuid=xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxx",
+    "title": "Html entity of document",
+    "name": "documentHtml",
+    "group": "Documents",
+    "version": "1.0.0",
+    "parameter": {
+      "fields": {
+        "Parameter": [
+          {
+            "group": "Parameter",
+            "type": "string",
+            "optional": false,
+            "field": "uuid",
+            "description": "<p>UUID of document</p>"
+          }
+        ]
+      }
+    },
+    "success": {
+      "examples": [
+        {
+          "title": "Success-Response:",
+          "content": "{\n   \"success\": true,\n   \"data\": \"<!DOCTYPE html>code</html>\"\n}",
+          "type": "json"
+        }
+      ]
+    },
+    "filename": "../controllers/DocumentController.php",
+    "groupTitle": "Documents"
+  },
+  {
     "type": "post",
     "url": "v1/project",
     "title": "Create",

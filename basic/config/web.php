@@ -96,6 +96,7 @@ $config = [
                     'class' => 'yii\rest\UrlRule',
                     'controller' => [
                         'v1/project',
+                        'v1/document',
                     ],
                     'pluralize' => false,
                 ],
