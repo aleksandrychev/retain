@@ -16,11 +16,15 @@ use yii\rest\ActiveController;
 class BaseApiController extends ActiveController
 {
 
-
-    public function init()
+      public function beforeAction($action)
     {
-         $this->setHeaders();
-         parent::init();
+      
+        $this->setHeaders();
+        if (\Yii::$app->getRequest()->isOptions) {
+            return false;
+        }
+
+        return parent::beforeAction($action);
     }
 
     /**
@@ -39,7 +43,7 @@ class BaseApiController extends ActiveController
 
     protected  function setHeaders(){
         header('Access-Control-Request-Headers: *');
-        header('Access-Control-Allow-Headers: accept, content-type');
+        header('Access-Control-Allow-Headers: accept, content-type, authorization');
         if (isset($_SERVER['HTTP_ORIGIN'])) {
             header('Access-Control-Allow-Origin: ' . $_SERVER['HTTP_ORIGIN']);
         }
