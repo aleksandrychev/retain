@@ -25,7 +25,7 @@ class Documents extends \app\models\ar\base\Documents
     }
 
     public function getUrlToView(){
-      return  Url::base('http') . Url::to('/uploads/html/' . $this->html_file);
+      return  Url::base('https') . Url::to('/uploads/html/' . $this->html_file);
     }
 
     /**
