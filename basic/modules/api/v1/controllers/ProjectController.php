@@ -153,35 +153,6 @@ class ProjectController extends BaseApiController
      * "text": null,
      * "entity": [
      * {
-<<<<<<< HEAD
-     * "id": 2163,
-     * "doc_id": 14,
-     * "tag_id": null,
-     * "tag_type": 0,
-     * "selection": null,
-     * "sent_hl": "Otherwise, use this document as an instruction set.",
-     * "manual_date": null,
-     * "entity": "instruction set",
-     * "entity_type": "FieldTerminology",
-     * "note": null,
-     * "page_number": 1,
-     * "line_number" 6
-     * },
-     * {
-     * "id": 2164,
-     * "doc_id": 14,
-     * "tag_id": null,
-     * "tag_type": 0,
-     * "selection": null,
-     * "sent_hl": "Instructions about final paper and figure submissions in this document are for IEEE journals;  please use this document as a “template” to prepare your manuscript.",
-     * "manual_date": null,
-     * "entity": "IEEE",
-     * "entity_type": "Organization",
-     * "note": null,
-     * "page_number": 1,
-     * "line_number" 6
-     * }
-=======
      *  {
      *      "name": "tag",
      *      "type": "tag"
@@ -198,7 +169,6 @@ class ProjectController extends BaseApiController
      *      "name": "Pacific Rim Mining Corp.",
      *      "type": "entity"
      *  }
->>>>>>> f68c14e2e9fe3f79d13f934f1818fa72fe60c120
      * ]
      * }
      * }
