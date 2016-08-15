@@ -2,7 +2,7 @@
 
 namespace app\models\ar\base;
 
-use app\models\ar\Documents;
+#use app\models\ar\Documents as Documents;
 use app\models\ar\Tags;
 use Yii;
 

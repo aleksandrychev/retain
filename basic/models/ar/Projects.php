@@ -90,21 +90,7 @@ class Projects extends \app\models\ar\base\Projects
         $return = [];
         $tag_ids = TagsResult::find()
             ->select([
-<<<<<<< HEAD
-                'id',
-                'doc_id',
-                'tag_type',
-                'selection',
-                'sent_hl',
-                'manual_date',
-                'entity',
-                'entity_type',
-                'note',
-                'page_number',
-                'line_number'
-=======
                 'tag_id'
->>>>>>> f68c14e2e9fe3f79d13f934f1818fa72fe60c120
             ])
             ->orderBy('doc_id')
             ->where(['user_id' => \Yii::$app->user->id])
