@@ -39,18 +39,6 @@ class ProjectController extends BaseApiController
     }
 
 
-    public function checkAccess($action, $model = null, $params = [])
-    {
-
-        if ($model && $model->user != \Yii::$app->user->identity->getId()) {
-            throw new ForbiddenHttpException('Access deny');
-        }
-
-    }
-
-
-
-
 
     /**
      * @api {get} v1/project List
@@ -152,7 +140,6 @@ class ProjectController extends BaseApiController
      * @apiVersion 1.0.0
      *
      * @apiParam {string} id Project ID
-     * @apiParam {integer} tag_type ```1``` - manual tag (note) ```0``` - auto inserted entity
      *
      * @apiSuccessExample Success-Response:
      * {
@@ -165,33 +152,22 @@ class ProjectController extends BaseApiController
      * "text": null,
      * "entity": [
      * {
-     * "id": 2163,
-     * "doc_id": 14,
-     * "tag_id": null,
-     * "tag_type": 0,
-     * "selection": null,
-     * "sent_hl": "Otherwise, use this document as an instruction set.",
-     * "manual_date": null,
-     * "entity": "instruction set",
-     * "entity_type": "FieldTerminology",
-     * "note": null,
-     * "page_number": 1,
-     * "line_number" 6
-     * },
-     * {
-     * "id": 2164,
-     * "doc_id": 14,
-     * "tag_id": null,
-     * "tag_type": 0,
-     * "selection": null,
-     * "sent_hl": "Instructions about final paper and figure submissions in this document are for IEEE journals;  please use this document as a “template” to prepare your manuscript.",
-     * "manual_date": null,
-     * "entity": "IEEE",
-     * "entity_type": "Organization",
-     * "note": null,
-     * "page_number": 1,
-     * "line_number" 6
-     * }
+     *  {
+     *      "name": "tag",
+     *      "type": "tag"
+     *  },
+     *  {
+     *      "name": "12-09-1098",
+     *      "type": "date"
+     *  },
+     *  {
+     *      "name": "USA",
+     *      "type": "entity"
+     *  },
+     *  {
+     *      "name": "Pacific Rim Mining Corp.",
+     *      "type": "entity"
+     *  }
      * ]
      * }
      * }

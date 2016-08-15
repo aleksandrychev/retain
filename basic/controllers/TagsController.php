@@ -141,12 +141,14 @@ class TagsController extends Controller
     public function actionSaveAdditionalData()
     {
         if ($_POST['id'] AND !empty($_POST['id'])) {
-            $tagsResult = SentencesPlusHl::find()->where(['=', 'id', $_POST['id']])->one();
+            $tagsResult = TagsResult::find()->where(['=', 'id', $_POST['id']])->one();
         } else {
             return json_encode(['error' => '1']);
         }
+
         if ($tagsResult && $_POST['field'] && $tagsResult->hasAttribute($_POST['field'])) {
-            $tagsResult->$_POST['field'] = $_POST['data'];
+            $field = strval($_POST['field']);
+            $tagsResult->$field = $_POST['data'];
             if ($tagsResult->save()) {
                 return json_encode(['success' => 'true']);
             } else {
@@ -164,23 +166,20 @@ class TagsController extends Controller
         $selection = $_POST['selection'];
 
         if (!empty($selection) AND is_array($selection)) {
-            $tagsResult = new SentencesPlusHl();
+            $tagsResult = new TagsResult();
             $tagsResult->doc_id = $_POST['doc_id'];
             $tagsResult->user_id = \Yii::$app->user->id;
-            $tagsResult->sent_hl = strip_tags(str_replace('div></div', 'div> </div',$selection['html']));
-            $tagsResult->selection = $selection['html'];
+            $tagsResult->text = strip_tags(str_replace('div></div', 'div> </div',$selection['html']));
+            $tagsResult->html = $selection['html'];
             $tagsResult->page_number = $selection['page'];
             $tagsResult->line_number = $selection['line_number'];
-            $tagsResult->tag_type = 1;
             $tagsResult->tag_id = $_POST['tag_id'];
             $selection['position']['selector'] = $selection['page_selector'];
             $tagsResult->positions = json_encode($selection['position']);
 
             if ($tagsResult->save()) {
-                $tagsResult->entity_type = $tagsResult->tag->title;
-                $tagsResult->save();
 
-                $highlightModel = new EntityDateSetter($tagsResult, $tagsResult->doc_id);
+                $highlightModel = new EntityDateSetter($tagsResult, '\app\models\ar\TagEntities', $tagsResult->doc_id);
                 $highlightModel->process();
 
 

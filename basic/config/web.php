@@ -97,6 +97,8 @@ $config = [
                     'controller' => [
                         'v1/project',
                         'v1/document',
+                        'v1/tags',
+                        'v1/note',
                     ],
                     'pluralize' => false,
                 ],
