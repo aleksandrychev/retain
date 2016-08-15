@@ -97,7 +97,9 @@ class Projects extends \app\models\ar\base\Projects
                 'manual_date',
                 'entity',
                 'entity_type',
-                'note'
+                'note',
+                'page_number',
+                'line_number'
             ])
             ->orderBy('doc_id')
             ->where(['user' => \Yii::$app->user->id])

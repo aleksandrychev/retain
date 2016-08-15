@@ -19,7 +19,7 @@ class AppHelper
 
     public static function getHtmlUrlById($id)
     {
-        return Url::base('http') . Url::to('/documents/html?uuid=' . $id);
+        return Url::base('https') . Url::to('/documents/html?uuid=' . $id);
     }
 
     public static function getSentenceByPhrase($phrase, $htmlFileName, $d = false)

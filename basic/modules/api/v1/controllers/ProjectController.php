@@ -152,6 +152,7 @@ class ProjectController extends BaseApiController
      * @apiVersion 1.0.0
      *
      * @apiParam {string} id Project ID
+     * @apiParam {integer} tag_type ```1``` - manual tag (note) ```0``` - auto inserted entity
      *
      * @apiSuccessExample Success-Response:
      * {
@@ -173,7 +174,9 @@ class ProjectController extends BaseApiController
      * "manual_date": null,
      * "entity": "instruction set",
      * "entity_type": "FieldTerminology",
-     * "note": null
+     * "note": null,
+     * "page_number": 1,
+     * "line_number" 6
      * },
      * {
      * "id": 2164,
@@ -185,7 +188,9 @@ class ProjectController extends BaseApiController
      * "manual_date": null,
      * "entity": "IEEE",
      * "entity_type": "Organization",
-     * "note": null
+     * "note": null,
+     * "page_number": 1,
+     * "line_number" 6
      * }
      * ]
      * }
