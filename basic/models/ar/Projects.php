@@ -87,8 +87,10 @@ class Projects extends \app\models\ar\base\Projects
             return false;
         }
 
-        return SentencesPlusHl::find()
+        $return = [];
+        $tag_ids = TagsResult::find()
             ->select([
+<<<<<<< HEAD
                 'id',
                 'doc_id',
                 'tag_type',
@@ -100,12 +102,35 @@ class Projects extends \app\models\ar\base\Projects
                 'note',
                 'page_number',
                 'line_number'
+=======
+                'tag_id'
+>>>>>>> f68c14e2e9fe3f79d13f934f1818fa72fe60c120
             ])
             ->orderBy('doc_id')
-            ->where(['user' => \Yii::$app->user->id])
+            ->where(['user_id' => \Yii::$app->user->id])
             ->where(['doc_id' => $docIds])
-            ->andWhere('entity IS NOT NULL OR entity_type IS NOT NULL')
+            ->indexBy('tag_id')
             ->all();
+        $tag_ids = array_keys($tag_ids);
+        $tags = Tags::find()->where(['id' => $tag_ids])->select('title')->all();
+        if($tags)
+        foreach($tags as $tag){
+            $return[] = ['name' => $tag->title, 'type' => 'tag'];
+        }
+
+        $entity = ExtractedEntity::find()->where(['document_id' => $docIds])->all();
+        if($entity)
+            foreach($entity as $e){
+                $return[] = ['name' => $e->entity, 'type' => 'entity'];
+            }
+
+        $dates = ExtractedDate::find()->where(['document_id' => $docIds])->all();
+        if($dates)
+            foreach($dates as $e){
+                $return[] = ['name' => $e->date, 'type' => 'date'];
+            }
+
+        return $return;
     }
 
 

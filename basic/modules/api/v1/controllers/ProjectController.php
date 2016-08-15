@@ -39,18 +39,6 @@ class ProjectController extends BaseApiController
     }
 
 
-    public function checkAccess($action, $model = null, $params = [])
-    {
-
-        if ($model && $model->user != \Yii::$app->user->identity->getId()) {
-            throw new ForbiddenHttpException('Access deny');
-        }
-
-    }
-
-
-
-
 
     /**
      * @api {get} v1/project List
@@ -165,6 +153,7 @@ class ProjectController extends BaseApiController
      * "text": null,
      * "entity": [
      * {
+<<<<<<< HEAD
      * "id": 2163,
      * "doc_id": 14,
      * "tag_id": null,
@@ -192,6 +181,24 @@ class ProjectController extends BaseApiController
      * "page_number": 1,
      * "line_number" 6
      * }
+=======
+     *  {
+     *      "name": "tag",
+     *      "type": "tag"
+     *  },
+     *  {
+     *      "name": "12-09-1098",
+     *      "type": "date"
+     *  },
+     *  {
+     *      "name": "USA",
+     *      "type": "entity"
+     *  },
+     *  {
+     *      "name": "Pacific Rim Mining Corp.",
+     *      "type": "entity"
+     *  }
+>>>>>>> f68c14e2e9fe3f79d13f934f1818fa72fe60c120
      * ]
      * }
      * }

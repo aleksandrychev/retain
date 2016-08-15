@@ -66,4 +66,27 @@ class Documents extends \app\models\ar\base\Documents
         $this->html_file = $this->id . '.html';
         $this->save();
     }
+
+    public function getNotes(){
+        return TagsResult::find()->where(['doc_id' => $this->id])->all();
+    }
+
+    public function getEntities(){
+        return ExtractedEntity::find()->where(['document_id' => $this->id])->all();
+    }
+
+
+    public function getDates(){
+        return ExtractedDate::find()->where(['document_id' => $this->id])->all();
+    }
+
+
+    public function extraFields()
+    {
+        return [
+            'notes',
+            'entities',
+            'dates'
+        ];
+    }
 }

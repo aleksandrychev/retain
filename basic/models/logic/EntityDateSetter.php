@@ -21,12 +21,14 @@ class  EntityDateSetter extends Model
     private $shl;
     private $doc_id;
     private $text;
+    private $modelToSave;
 
-    public  function __construct(SentencesPlusHl $shl, $doc_id)
+    public  function __construct($model, $modelToSave, $doc_id)
     {
         $this->doc_id = $doc_id;
-        $this->shl = $shl;
-        $this->text = strip_tags($shl->sent_hl);
+        $this->shl = $model;
+        $this->modelToSave = $modelToSave;
+        $this->text = strip_tags($model->text);
         parent::__construct();
     }
 
@@ -47,23 +49,16 @@ class  EntityDateSetter extends Model
             if (stristr($this->text, $en->entity) AND !in_array($en->entity, $justFounded)) {
                 $justFounded[] = $en->entity;
 
-                if ($this->shl->entity_type) {
-                    $tagEntity = new SentencesPlusHl();
-                    $tagEntity->attributes = $this->shl->attributes;
-                    $tagEntity->tag_type = 0;
-                    $tagEntity->entity_type = $en->type;
-                    $tagEntity->entity = $en->entity;
+                    $tagEntity = new $this->modelToSave();
+                    $tagEntity->type = $en->type;
+                    $tagEntity->result_id =  $this->shl->id;
+                    $tagEntity->entity_id = $en->id;
+                    $tagEntity->entity_title = $en->entity;
                     $tagEntity->save();
-                } else{
-                    $this->shl->entity_type = $en->type;
-                    $this->shl->entity = $en->entity;
-                    $this->shl->save();
-                }
-
 
             }
-        }
 
+        }
     }
 
     private function setDate()
@@ -74,18 +69,12 @@ class  EntityDateSetter extends Model
 
             if (stristr($this->text, $d->date) AND !in_array($d->date, $justFounded)) {
                 $justFounded[] = $d->date;
-                if ($this->shl->entity_type) {
-                    $tagEntity = new SentencesPlusHl();
-                    $tagEntity->attributes = $this->shl->attributes;
-                    $tagEntity->tag_type = 0;
-                    $tagEntity->entity_type = 'Date';
-                    $tagEntity->entity =  $d->date;
-                    $tagEntity->save();
-                } else {
-                    $this->shl->entity_type = 'Date';
-                    $this->shl->entity =  $d->date;
-                    $this->shl->save();
-                }
+                $tagEntity = new $this->modelToSave();
+                $tagEntity->type = 'Date';
+                $tagEntity->result_id =  $this->shl->id;
+                $tagEntity->entity_id = $d->id;
+                $tagEntity->entity_title = $d->entity;
+                $tagEntity->save();
             }
         }
     }

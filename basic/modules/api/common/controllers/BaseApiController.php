@@ -15,6 +15,7 @@ use yii\rest\ActiveController;
 
 class BaseApiController extends ActiveController
 {
+    public $count = 999;
 
       public function beforeAction($action)
     {
@@ -38,6 +39,15 @@ class BaseApiController extends ActiveController
             'except' => []
         ];
         return $behaviors;
+    }
+
+    public function checkAccess($action, $model = null, $params = [])
+    {
+
+        if ($model &&  isset($model->user) &&  $model->user != \Yii::$app->user->identity->getId()) {
+            throw new ForbiddenHttpException('Access deny');
+        }
+
     }
 
 
