@@ -54,9 +54,9 @@ $config = [
         ],
         'sphinx' => [
             'class' => 'yii\sphinx\Connection',
-            'dsn' => 'mysql:host=localhost;dbname=pdf2html',
-            'username' => 'root',
-            'password' => '111111'
+            'dsn' => 'mysql:host=localhost;dbname=pdftohtml',
+            'username' => 'pdf2html',
+            'password' => 'retainpdftohtml'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
