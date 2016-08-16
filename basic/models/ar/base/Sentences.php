@@ -32,13 +32,12 @@ class Sentences extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['doc_id', 'tag_id', 'user_id', 'project_id'], 'integer'],
+            [['doc_id', 'user_id', 'project_id'], 'integer'],
             [['sentence'], 'string'],
             [['entity_type'], 'string', 'max' => 200],
             [['entity'], 'string', 'max' => 400],
             [['doc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Documents::className(), 'targetAttribute' => ['doc_id' => 'id']],
             [['project_id'], 'exist', 'skipOnError' => true, 'targetClass' => Projects::className(), 'targetAttribute' => ['project_id' => 'id']],
-            [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
     }
@@ -51,7 +50,6 @@ class Sentences extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'doc_id' => 'Doc ID',
-            'tag_id' => 'Tag ID',
             'user_id' => 'User ID',
             'project_id' => 'Project ID',
             'entity_type' => 'Entity Type',
