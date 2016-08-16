@@ -48,10 +48,10 @@ $columns =
         'tag_type' => [
             'attribute' => 'tag_type',
             'value' => function ($model) {
-                return $model->tag_type == 1 ? 'Manual' : 'Auto';
+                return $model->tag_type;
             },
 
-            'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['0' => 'Auto', '1' => 'Manual'],
+            'filter' => Html::activeDropDownList($searchModel, 'tag_type', ['Auto' => 'Auto', 'Manual' => 'Manual'],
                 ['class' => 'form-control multiselect', 'multiple' => true]),
         ],
         'entity_type' => [

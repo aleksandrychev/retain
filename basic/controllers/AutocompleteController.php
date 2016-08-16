@@ -2,8 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\ar\Documents;
-use app\models\ar\SentencesPlusHl;
 use app\models\ar\Projects;
 use app\models\logic\AutocompleteForm;
 use app\models\logic\ImportEntityForm;
@@ -41,7 +39,7 @@ class AutocompleteController extends \yii\web\Controller
         }
 
         if ($importModel->load(\Yii::$app->request->post()) && $importModel->validate()) {
-            var_dump($importModel);exit;
+            return $importModel;
         }
 
         return $this->render('index',
@@ -78,12 +76,11 @@ class AutocompleteController extends \yii\web\Controller
         if (\Yii::$app->request->post('text')) {
             if (isset($this->mentionConditions[\Yii::$app->request->post('text')])) {
                 $project = Projects::find()->where(['id'=> \Yii::$app->request->post('project_id')])->one();
-                $docIds = $project->getDocumentsId();
-                $hls = SentencesPlusHl::find()->select('entity')->where($this->mentionConditions[\Yii::$app->request->post('text')])->andWhere(['doc_id' => $docIds])->distinct()->limit(15)->all();
+                $entAuto = $project->getEntity();
                 $mentions = [];
-                if ($hls) {
-                    foreach ($hls as $hl) {
-                        $mentions[] = ['name' => $hl->entity];
+                if ($entAuto) {
+                    foreach ($entAuto as $e) {
+                        $mentions[] = ['name' => $e['name']];
                     }
                 }
                 return json_encode($mentions);

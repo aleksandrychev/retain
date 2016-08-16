@@ -50,7 +50,7 @@ use yii\widgets\ActiveForm;
                     <tr>
                         <td title="↩️ Click to insert to text redactor" class="toEditor"
                             data-document="<?= $r->doc->title ?>"><?= strip_tags(str_replace('</div><div',
-                                '</div> <div', $r->sent_hl)) ?></td>
+                                '</div> <div', $r->text)) ?></td>
                         <td><?= $r->note ?></td>
                         <td><?= $r->tag->title ?></td>
                     </tr>

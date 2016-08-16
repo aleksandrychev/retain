@@ -29,14 +29,13 @@ class Projects extends \app\models\ar\base\Projects
             }
         }
         $itemsToReturn = [];
-        $entityToAutocomplite = \app\models\ar\base\SentencesPlusHl::find()->where(['doc_id' => $docIds])->andWhere('(entity IS NOT NULL OR entity_type IS NOT NULL OR manual_date IS NOT NULL)')->select('entity,entity_type,manual_date')->asArray()->all();
+        $entityToAutocomplite = $this->getEntity();
+
         if ($entityToAutocomplite) {
-            foreach ($entityToAutocomplite as $items) {
-                foreach ($items as $item) {
+            foreach ($entityToAutocomplite as $item) {
                     if ($item != null) {
-                        $itemsToReturn[] = $item;
+                        $itemsToReturn[] = $item['name'];
                     }
-                }
             }
         }
         $itemsToReturn = array_unique($itemsToReturn);
@@ -75,7 +74,7 @@ class Projects extends \app\models\ar\base\Projects
             return false;
         }
 
-        return SentencesPlusHl::find()->orderBy('doc_id')->where(['user' => \Yii::$app->user->id])->where(['doc_id' => $docIds])->andWhere('tag_type = 1')->all();
+        return TagsResult::find()->orderBy('doc_id')->where(['user' => \Yii::$app->user->id])->where(['doc_id' => $docIds])->all();
     }
 
 

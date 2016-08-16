@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\ar\SentencesPlusHl;
 use yii\filters\AccessControl;
 use app\models\ar\TagsResult;
 use app\models\logic\EntityDateSetter;
@@ -179,7 +178,7 @@ class TagsController extends Controller
 
             if ($tagsResult->save()) {
 
-                $highlightModel = new EntityDateSetter($tagsResult, '\app\models\ar\TagEntities', $tagsResult->doc_id);
+                $highlightModel = new EntityDateSetter($tagsResult, '\app\models\ar\TagEntities', $tagsResult->doc_id, $tagsResult->text);
                 $highlightModel->process();
 
 

@@ -87,7 +87,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
     public function search($params)
     {
         $this->load($params);
-        $query = SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('id');
+        $query = SentencesPlusHl::find()->where(['user_id' => Yii::$app->user->id])->andWhere('entity_type IS NOT NULL')->groupBy('sentences_plus_hl.id');
 
 
 
@@ -205,7 +205,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         }
 
         if ($this->searchText) {
-            $query->andFilterWhere(['IN', 'sentences_plus_hl.id', $ids]);
+//            $query->andFilterWhere(['IN', 'sentences_plus_hl.id', $ids]);
         }
 
         if ($this->entity_type != '') {
@@ -217,7 +217,6 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         }
 
         if ($this->tag_type != '') {
-
             $query->andFilterWhere(['IN', 'tag_type', $this->tag_type]);
         }
 

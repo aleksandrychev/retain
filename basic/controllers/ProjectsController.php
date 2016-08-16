@@ -2,7 +2,6 @@
 
 namespace app\controllers;
 
-use app\models\ar\base\SentencesPlusHl;
 use app\models\ar\Documents;
 use Yii;
 use app\models\ar\Projects;
