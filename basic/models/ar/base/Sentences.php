@@ -32,8 +32,6 @@ class Sentences extends \yii\db\ActiveRecord
         return [
             [['doc_id', 'user_id'], 'integer'],
             [['sentence'], 'string'],
-            [['entity_type'], 'string', 'max' => 200],
-            [['entity'], 'string', 'max' => 400],
             [['doc_id'], 'exist', 'skipOnError' => true, 'targetClass' => Documents::className(), 'targetAttribute' => ['doc_id' => 'id']],
             [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => User::className(), 'targetAttribute' => ['user_id' => 'id']],
         ];
@@ -48,8 +46,6 @@ class Sentences extends \yii\db\ActiveRecord
             'id' => 'ID',
             'doc_id' => 'Doc ID',
             'user_id' => 'User ID',
-            'entity_type' => 'Entity Type',
-            'entity' => 'Entity',
             'sentence' => 'Sentence',
         ];
     }
