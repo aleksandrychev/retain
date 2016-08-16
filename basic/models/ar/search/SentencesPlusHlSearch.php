@@ -205,7 +205,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
         }
 
         if ($this->searchText) {
-//            $query->andFilterWhere(['IN', 'sentences_plus_hl.id', $ids]);
+               $query->andFilterWhere(['IN', 'sentences_plus_hl.id', $ids]);
         }
 
         if ($this->entity_type != '') {

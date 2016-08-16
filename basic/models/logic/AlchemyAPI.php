@@ -13,7 +13,7 @@ class AlchemyAPI
 {
     private $urlDoc;
     private $apiKey;
-    private $dateApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLExtractDates';
+    private $dateApiUrl = 'https://gateway-a.watsonplatform.net/calls/url/URLExtractDates';
     private $entityApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedNamedEntities';
     private $keywordsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedKeywords';
     private $conceptsApiUrl = 'http://gateway-a.watsonplatform.net/calls/url/URLGetRankedConcepts';

@@ -54,9 +54,9 @@ $config = [
         ],
         'sphinx' => [
             'class' => 'yii\sphinx\Connection',
-            'dsn' => 'mysql:host=127.0.0.1;port=9306;',
-            'username' => '',
-            'password' => '',
+            'dsn' => 'mysql:host=localhost;dbname=pdf2html',
+            'username' => 'root',
+            'password' => '111111'
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
