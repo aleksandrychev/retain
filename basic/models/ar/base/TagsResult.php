@@ -39,7 +39,8 @@ class TagsResult extends \yii\db\ActiveRecord
         return [
             [['text', 'note','date','html','color'], 'string'],
             [['doc_id', 'tag_id', 'page_number', 'user_id'], 'integer'],
-            [['doc_id', 'tag_id'], 'required'],
+            [['doc_id'], 'required'],
+            [['tag_id','note'],'checkTag'],
             [['doc_id', 'tag_id'], 'checkUserId'],
             [['positions'], 'string', 'max' => 200],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
@@ -57,6 +58,12 @@ class TagsResult extends \yii\db\ActiveRecord
             $this->addError('doc_id','Document ID is invalid.');
         }
 
+    }
+
+    public function checkTag($attr){
+        if(!empty($this->note) && empty($this->tag_id)){
+            $this->addError($attr,'Tag ID cannot be blank.');
+        }
     }
 
     public function beforeValidate()

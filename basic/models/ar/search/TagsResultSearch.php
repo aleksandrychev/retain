@@ -2,6 +2,7 @@
 
 namespace app\models\ar\search;
 
+use app\models\ar\Projects;
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -12,6 +13,7 @@ use app\models\ar\TagsResult;
  */
 class TagsResultSearch extends TagsResult
 {
+    public $project_id;
     /**
      * @inheritdoc
      */
@@ -19,7 +21,7 @@ class TagsResultSearch extends TagsResult
     {
         return [
             [['id', 'doc_id', 'tag_id', 'user_id', 'page_number', 'line_number', 'paragraph_number'], 'integer'],
-            [['text', 'html', 'note', 'date', 'positions'], 'safe'],
+            [['text', 'html', 'note', 'date', 'positions', 'project_id'], 'safe'],
         ];
     }
 
@@ -73,6 +75,16 @@ class TagsResultSearch extends TagsResult
             ->andFilterWhere(['like', 'note', $this->note])
             ->andFilterWhere(['like', 'date', $this->date])
             ->andFilterWhere(['like', 'positions', $this->positions]);
+
+        if($this->project_id){
+            $project = Projects::find()->where(['id' => $this->project_id, 'user' => \Yii::$app->user->id])->one();
+            if(!$project){
+                $query->where('0=1');
+            } else{
+                $query->andWhere(['doc_id' => $project->getDocumentsId()]);
+            }
+
+        }
 
         return $dataProvider;
     }
