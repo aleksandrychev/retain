@@ -153,22 +153,21 @@ class ProjectController extends BaseApiController
      * "text": null,
      * "entity": [
      * {
-     *  {
-     *      "name": "tag",
-     *      "type": "tag"
-     *  },
-     *  {
-     *      "name": "12-09-1098",
-     *      "type": "date"
-     *  },
-     *  {
-     *      "name": "USA",
-     *      "type": "entity"
-     *  },
-     *  {
-     *      "name": "Pacific Rim Mining Corp.",
-     *      "type": "entity"
-     *  }
+     * {
+     * "name": "new tag",
+     * "type": "tag",
+     * "doc_id": 119
+     * },
+     * {
+     * "name": "45 Days",
+     * "type": "Quantity",
+     * "doc_id": 119
+     * },
+     * {
+     * "name": "1985",
+     * "type": "date",
+     * "doc_id": 81
+     * }
      * ]
      * }
      * }

@@ -87,32 +87,30 @@ class Projects extends \app\models\ar\base\Projects
         }
 
         $return = [];
-        $tag_ids = TagsResult::find()
-            ->select([
-                'tag_id'
-            ])
+        $tags = TagsResult::find()
+            ->select(
+                'tag_id, doc_id'
+            )
             ->orderBy('doc_id')
             ->where(['user_id' => \Yii::$app->user->id])
             ->where(['doc_id' => $docIds])
-            ->indexBy('tag_id')
             ->all();
-        $tag_ids = array_keys($tag_ids);
-        $tags = Tags::find()->where(['id' => $tag_ids])->select('title')->all();
+
         if($tags)
-        foreach($tags as $tag){
-            $return[] = ['name' => $tag->title, 'type' => 'tag'];
+        foreach($tags as $t){
+            $return[] = ['name' => $t->tag->title, 'type' => 'tag', 'doc_id' => $t->doc_id];
         }
 
         $entity = ExtractedEntity::find()->where(['document_id' => $docIds])->all();
         if($entity)
             foreach($entity as $e){
-                $return[] = ['name' => $e->entity, 'type' => 'entity'];
+                $return[] = ['name' => $e->entity, 'type' => $e->type, 'doc_id' => $e->document_id];
             }
 
         $dates = ExtractedDate::find()->where(['document_id' => $docIds])->all();
         if($dates)
             foreach($dates as $e){
-                $return[] = ['name' => $e->date, 'type' => 'date'];
+                $return[] = ['name' => $e->date, 'type' => 'date', 'doc_id' => $e->document_id];
             }
 
         return $return;
