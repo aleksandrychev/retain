@@ -40,7 +40,7 @@ class TagsResult extends \yii\db\ActiveRecord
             [['text', 'note','date','html','color'], 'string'],
             [['doc_id', 'tag_id', 'page_number', 'user_id'], 'integer'],
             [['doc_id'], 'required'],
-            [['tag_id','note'],'checkTag'],
+//            [['tag_id','note'],'checkTag'],
             [['doc_id', 'tag_id'], 'checkUserId'],
             [['positions'], 'string', 'max' => 200],
             [['tag_id'], 'exist', 'skipOnError' => true, 'targetClass' => Tags::className(), 'targetAttribute' => ['tag_id' => 'id']],
