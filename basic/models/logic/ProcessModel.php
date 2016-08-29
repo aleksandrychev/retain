@@ -10,6 +10,7 @@ namespace app\models\logic;
 
 
 use app\helpers\AppHelper;
+use app\models\ar\base\Sentences;
 use app\models\helpers\IntellexerSaver;
 use app\models\ar\Documents;
 use app\models\ar\ExtractedConcepts;
@@ -17,7 +18,6 @@ use app\models\ar\ExtractedDate;
 use app\models\ar\ExtractedEntity;
 use app\models\ar\ExtractedKeywords;
 use app\models\ar\ExtractedTaxonomy;
-use app\models\ar\SentencesPlusHl;
 use yii\base\Model;
 
 class ProcessModel extends Model
@@ -80,13 +80,13 @@ class ProcessModel extends Model
         $sentences = AppHelper::getDocumentSentences($this->document->html_file);
 
         foreach ($sentences as $s) {
-            $sentHL = new SentencesPlusHl();
-            $sentHL->sent_hl = $s;
+            $sentHL = new Sentences();
+            $sentHL->sentence = $s;
             $sentHL->doc_id = $this->document->id;
             $sentHL->user_id = \Yii::$app->user->id;
             $sentHL->save();
 
-            $entityDateSetter = new EntityDateSetter($sentHL, $this->document->id);
+            $entityDateSetter = new EntityDateSetter($sentHL, 'app\models\ar\base\SentenceEntities', $this->document->id, $sentHL->sentence);
             $entityDateSetter->process();
 
         }

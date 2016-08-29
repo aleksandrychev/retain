@@ -77,7 +77,7 @@ class DocumentsController extends Controller
         }
 
         if (isset($_GET['resId']) && !empty($_GET['resId'])) {
-            $curHl = SentencesPlusHl::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'id', $_GET['resId']])->one();
+            $curHl = TagsResult::find()->where(['user'=>Yii::$app->user->id])->where(['=', 'id', $_GET['resId']])->one();
         } else {
             $curHl = false;
         }

@@ -70,6 +70,6 @@ class Tags extends \yii\db\ActiveRecord
      */
     public function getTagsResults()
     {
-        return $this->hasMany(SentencesPlusHl::className(), ['tag_id' => 'id']);
+        return $this->hasMany(TagsResult::className(), ['tag_id' => 'id']);
     }
 }

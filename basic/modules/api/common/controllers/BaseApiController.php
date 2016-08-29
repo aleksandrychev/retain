@@ -12,6 +12,7 @@ namespace app\modules\api\common\controllers;
 use yii\filters\auth\HttpBearerAuth;
 use Yii;
 use yii\rest\ActiveController;
+use yii\web\ForbiddenHttpException;
 
 class BaseApiController extends ActiveController
 {

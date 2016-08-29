@@ -155,4 +155,12 @@ class SentencesPlusHl extends \yii\db\ActiveRecord
     {
         return new SentencesPlusHlQuery(get_called_class());
     }
+
+    /**
+     * @inheritdoc
+     */
+    public static function primaryKey()
+    {
+        return ['id'];
+    }
 }

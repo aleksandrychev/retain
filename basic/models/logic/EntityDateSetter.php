@@ -11,9 +11,6 @@ namespace app\models\logic;
 
 use app\models\ar\ExtractedDate;
 use app\models\ar\ExtractedEntity;
-use app\models\ar\SentencesPlusHl;
-use app\models\ar\TagEntities;
-use app\models\ar\TagsResult;
 use yii\base\Model;
 
 class  EntityDateSetter extends Model
@@ -23,12 +20,12 @@ class  EntityDateSetter extends Model
     private $text;
     private $modelToSave;
 
-    public  function __construct($model, $modelToSave, $doc_id)
+    public  function __construct($model, $modelToSave, $doc_id, $text)
     {
         $this->doc_id = $doc_id;
         $this->shl = $model;
         $this->modelToSave = $modelToSave;
-        $this->text = strip_tags($model->text);
+        $this->text = strip_tags($text);
         parent::__construct();
     }
 
