@@ -1,0 +1,9 @@
+{
+  "name": "Retain API",
+  "version": "1.0.0",
+  "url": "http://test.pdf2html.demo.relevant.software/",
+  "header": {
+    "title": "API Guide",
+    "filename": "header.md"
+  }
+}

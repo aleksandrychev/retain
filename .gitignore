@@ -1,6 +1,6 @@
 # phpstorm project files
 .idea
-
+/basic/modules/api/v1/apidoc/doc/*
 # netbeans project files
 nbproject
 
