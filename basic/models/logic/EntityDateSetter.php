@@ -70,7 +70,7 @@ class  EntityDateSetter extends Model
                 $tagEntity->type = 'Date';
                 $tagEntity->result_id =  $this->shl->id;
                 $tagEntity->entity_id = $d->id;
-                $tagEntity->entity_title = $d->entity;
+                $tagEntity->entity_title = $d->date;
                 $tagEntity->save();
             }
         }
