@@ -93,7 +93,8 @@ class Projects extends \app\models\ar\base\Projects
             )
             ->orderBy('doc_id')
             ->where(['user_id' => \Yii::$app->user->id])
-            ->where(['doc_id' => $docIds])
+            ->andWhere(['doc_id' => $docIds])
+            ->andWhere('tag_id IS NOT NULL')
             ->all();
 
         if($tags)
