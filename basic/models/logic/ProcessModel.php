@@ -146,7 +146,7 @@ class ProcessModel extends Model
         $tax = $this->api->getTaxonomy();
         if ($tax && $tax->status == 'OK' && count($tax->taxonomy) > 0) {
             foreach ($tax->taxonomy as $c) {
-                $this->saveKC($c, new ExtractedTaxonomy(), ['text' => 'label', 'relevance' => 'score']);
+                $this->saveKC($c, new ExtractedTaxonomy(),   'label',   'score');
             }
         }
     }
@@ -181,10 +181,10 @@ class ProcessModel extends Model
         $extractedEntity->save();
     }
 
-    private function saveKC($res, $item, $fields = ['text' => 'text', 'relevance' => 'relevance'])
+    private function saveKC($res, $item, $text = 'text', $relevance =  'relevance')
     {
-        $item->text = $res->$fields['text'];
-        $item->relevance = $res->$fields['relevance'];
+        $item->text = $res->$text;
+        $item->relevance = $res->$relevance;
         $item->doc_id = $this->document->id;
         $item->save();
 
