@@ -1,5 +1,6 @@
 #!/usr/bin/ruby
-require 'pragmatic_segmenter/segmenter'
+#require 'pragmatic_segmenter/segmenter'
+require "pragmatic_segmenter"
 require 'pathname'
 
 currentPath = File.expand_path(File.dirname(__FILE__))

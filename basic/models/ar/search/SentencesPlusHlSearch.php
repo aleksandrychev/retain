@@ -237,7 +237,7 @@ class SentencesPlusHlSearch extends SentencesPlusHl
 
     private  function GetSphinxKeyword($sQuery)
     {
-        $aKeyword = '';
+        $aKeyword = [];
         $sQuery = str_replace('/', ' ', $sQuery);
 
         $aRequestString = preg_split('/[\s,-]+/', $sQuery, 5);
