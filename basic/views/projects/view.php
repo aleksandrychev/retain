@@ -56,6 +56,22 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'entitiesCount',
             'datesCount',
+            [
+                'class' => 'yii\grid\ActionColumn',
+                'template' => '{delete}',
+                'contentOptions' => ['class' => 'action-column'],
+                'buttons' => [
+                    'delete' => function ($url, $model, $key) {
+
+                        return Html::a('<span class="glyphicon glyphicon-trash"></span>', '/documents/delete?id=' . $model->id, [
+                            'title' => Yii::t('yii', 'Delete'),
+                            'data-confirm' => Yii::t('yii', 'Are you sure you want to delete this item?'),
+                            'data-method' => 'post',
+                            'data-pjax' => 'w0',
+                        ]);
+                    },
+                ],
+            ],
         ],
     ]); ?>
 

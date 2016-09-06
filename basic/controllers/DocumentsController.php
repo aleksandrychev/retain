@@ -106,6 +106,15 @@ class DocumentsController extends Controller
         echo $htmlContent;
     }
 
+    public function actionDelete($id){
+        if (($model = Documents::findOne($id,['user' => \Yii::$app->user->id])) !== null) {
+            $model->delete();
+            return $this->redirect(Yii::$app->request->referrer);
+        } else {
+            throw new NotFoundHttpException('The requested page does not exist.');
+        }
+    }
+
 
     /**
      * Finds the Documents model based on its primary key value.
