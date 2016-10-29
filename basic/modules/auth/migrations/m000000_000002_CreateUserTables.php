@@ -19,10 +19,10 @@ class m000000_000002_CreateUserTables extends \yii\db\Migration
 					 'password_reset_token' => Schema::TYPE_STRING . '(32)',
 					 'auth_key' => Schema::TYPE_STRING . '(128)',
 					 'status' => Schema::TYPE_INTEGER . ' NOT NULL DEFAULT ' . auth\models\User::STATUS_ACTIVE,
-					 'last_visit_time' => Schema::TYPE_TIMESTAMP,
-					 'create_time' => Schema::TYPE_TIMESTAMP . ' NOT NULL',
-					 'update_time' => Schema::TYPE_TIMESTAMP,
-					 'delete_time' => Schema::TYPE_TIMESTAMP,
+					 'last_visit_time' => $this->dateTime(),
+					 'create_time' => $this->dateTime()->notNull(),
+					 'update_time' => $this->dateTime(),
+					 'delete_time' => $this->dateTime(),
 				 )
 		);
 		$this->createIndex('User_status_ix', $tableMap['User'], 'status');

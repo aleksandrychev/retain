@@ -21,8 +21,5 @@ class ConvertFromDoc extends AbstractConverterBase
         $command .= 'pdf2htmlEX --tounicode 1   --dest-dir ./html ./pdf/' . $this->docID . '.pdf';
         exec('unoconv --listener &');
         exec($command, $output, $return_var);
-        // var_dump($command);exit;
-
-
     }
 }
